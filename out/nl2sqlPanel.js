@@ -754,11 +754,52 @@ class NL2SQLPanel {
             }
         }, null, this._disposables);
     }
+    /** Locate Spider assets inside the repository opened in the VS Code workspace. */
+    async _resolveSpiderFiles() {
+        const folders = vscode.workspace.workspaceFolders;
+        if (!folders || folders.length === 0) {
+            throw new Error('Open the repository containing dataset/spider in VS Code before running Spider Batch.');
+        }
+        // First prefer the expected layout at each opened repository root.
+        const candidates = [];
+        for (const folder of folders) {
+            if (folder.uri.scheme !== 'file')
+                continue;
+            const direct = path.join(folder.uri.fsPath, 'dataset', 'spider', 'dev.json');
+            if (fs.existsSync(direct))
+                candidates.push(vscode.Uri.file(direct));
+        }
+        // Also support opening the parent folder (e.g. a workspace containing
+        // both the extension and a backend repository), without hard-coded names.
+        if (!candidates.length) {
+            candidates.push(...await vscode.workspace.findFiles('**/dataset/spider/dev.json', '**/{node_modules,.git,out}/**', 30));
+        }
+        for (const candidate of candidates) {
+            if (candidate.scheme !== 'file')
+                continue;
+            const databaseRoot = path.join(path.dirname(candidate.fsPath), 'database');
+            if (!fs.existsSync(databaseRoot) || !fs.statSync(databaseRoot).isDirectory())
+                continue;
+            return {
+                questionFile: candidate.fsPath,
+                databaseRoot,
+                repoRoot: path.resolve(path.dirname(candidate.fsPath), '..', '..')
+            };
+        }
+        throw new Error('Spider dataset not found in the opened VS Code workspace. Expected '
+            + 'dataset/spider/dev.json and dataset/spider/database. '
+            + 'Open the backend repository or add it to the workspace.');
+    }
     _getAblationMode(useDail, useRules) {
         return useDail ? (useRules ? 'full' : 'dail_only') : (useRules ? 'rule_only' : 'direct');
     }
-    _getResultDirectory(useServer, provider = 'copilot', useRules = true, selectedModelId) {
-        const outputRoot = String.raw `C:\Users\grizz\OneDrive\Desktop\COSC 449\vscode_NL_to_SQL`;
+    _getResultDirectory(useServer, provider = 'copilot', useRules = true, selectedModelId, repoRoot) {
+        // Store generated results in the repository opened in VS Code.
+        // When there is no workspace, use VS Code extension storage rather than
+        // a machine-specific absolute path.
+        const outputRoot = repoRoot
+            || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath
+            || this._context.globalStorageUri.fsPath;
         const mode = this._getAblationMode(useServer, useRules);
         if (provider === 'kimi') {
             // Keep each model and each ablation condition in its own directory.
@@ -1498,8 +1539,7 @@ class NL2SQLPanel {
         return outputSql;
     }
     async _runSpiderBatch(message) {
-        const questionFile = String.raw `C:\Users\grizz\OneDrive\Desktop\COSC448\ideas\model\DAIL-SQL\dataset\spider\dev.json`;
-        const databaseRoot = String.raw `C:\Users\grizz\OneDrive\Desktop\COSC448\ideas\model\DAIL-SQL\dataset\spider\database`;
+        const { questionFile, databaseRoot, repoRoot } = await this._resolveSpiderFiles();
         const datasetBytes = await fs.promises.readFile(questionFile);
         const raw = JSON.parse(datasetBytes.toString('utf8'));
         if (!Array.isArray(raw) || raw.length === 0)
@@ -1574,7 +1614,7 @@ class NL2SQLPanel {
                 : null,
             timing_scope: 'schema loading through final SQL; includes rule validation and retries iff enabled; excludes file writes'
         };
-        const outputDirectory = this._getResultDirectory(useServer, aiProvider, useRuleValidation, modelId);
+        const outputDirectory = this._getResultDirectory(useServer, aiProvider, useRuleValidation, modelId, repoRoot);
         const outputBase = generationMode === 'full' ? 'spider_timing'
             : generationMode === 'direct' ? 'spider_timing_direct' : 'spider_timing_' + generationMode;
         let resultFile = path.join(outputDirectory, outputBase + '.jsonl');
