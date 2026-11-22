@@ -25,7 +25,7 @@ The current interface has an integrated **Selected Database / Database Details**
 
 You need Visual Studio Code with an extension host compatible with `vscode` `^1.90.0`, Node.js and npm, plus access to at least one supported model provider. GitHub Copilot requires the relevant VS Code extension and an authenticated account with access to a compatible model. Kimi requires a Moonshot API key.
 
-SQLite databases can be opened locally. MySQL and PostgreSQL require reachable database instances and valid connection settings. For DAIL-SQL prompting or rule validation, start the separate backend on its configured URL (default `http://localhost:8000`).
+SQLite databases can be opened locally. MySQL and PostgreSQL require reachable database instances and valid connection settings. For DAIL-SQL prompting or rule validation, start the separate backend on its configured URL (default `http://localhost:8000`). The Spider 1.0 dataset is needed only for Spider batch experiments, not for ordinary single-question SQL generation.
 
 ## Build and run
 
@@ -73,9 +73,57 @@ SQLite execution opens the local database in read-only mode. MySQL and PostgreSQ
 
 ## Spider batch experiments
 
-The **Spider Batch Timing** control runs a chosen number of questions from a Spider `dev.json` dataset. **Stop Batch** requests a stop after the current question is processed. The experiment workflow records generation modes, prompts, timing, and, where exposed by the provider, token usage. Kimi experiment output is grouped by selected model ID and condition (`DAIL_Rules`, `DAIL_Only`, `Rules_Only`, `Baseline`).
+The **Spider Batch Timing** feature runs a set of natural-language questions from the **Spider 1.0 development dataset**. The dataset is **not installed by `npm ci`** and is **not required for normal single-query SQL generation**. If the relevant Spider files are already present in a repository you have opened in VS Code, you do not need to download them again.
 
-**Portability limitation:** the inspected `src/nl2sqlPanel.ts` still contains absolute Windows paths for the Spider `dev.json`, Spider `database/`, and experiment output directories inside `_runSpiderBatch()` and `_getResultDirectory()`. Update those local paths in the source before using Spider Batch on another machine or after moving the project. The extension's basic SQL generation workflow is separate from these hard-coded batch paths. Existing experiment outputs may be needed to resume prior runs; preserve them when cleaning the repository.
+### Download Spider 1.0
+
+Download the **Spider 1.0** dataset from the [official Yale Spider website](https://yale-lily.github.io/spider) (the **Spider Dataset** link under *Getting Started*). **Do not substitute Spider 2.0**: this extension's batch reader expects the Spider 1.0 `dev.json` format and SQLite database layout.
+
+The batch runner requires `dev.json` and the matching `database/` directory. Each database must be stored at `database/<db_id>/<db_id>.sqlite`, where `<db_id>` is the value in each development-set question. The accompanying `tables.json` is also recommended, particularly when using the DAIL-SQL backend, which may require schema metadata and other training or retrieval assets. Those backend dependencies are managed by the separate backend project.
+
+### Put the dataset in the opened VS Code workspace
+
+The extension resolves Spider paths **dynamically from the folders open in VS Code**. It does not require you to edit a machine-specific path in the TypeScript code. A recommended layout is:
+
+```text
+NL2SQL_paper/                     # Open this parent folder in VS Code, or add the backend as a workspace folder
+├── NL2SQL-plugin/                # Frontend extension
+│   ├── package.json
+│   └── src/
+└── DAIL-SQL_server/              # Backend repository
+    └── dataset/
+        └── spider/
+            ├── dev.json         # Required for batch questions
+            ├── tables.json      # Recommended schema metadata
+            └── database/        # Required for per-question SQLite databases
+                ├── concert_singer/
+                │   └── concert_singer.sqlite
+                └── ...
+```
+
+Place the contents of the downloaded Spider archive under `DAIL-SQL_server/dataset/spider/` without adding another nested `spider/` level. The extension first checks `dataset/spider/dev.json` at the root of each open workspace folder, then searches inside the opened workspace. It also verifies that a sibling `database/` directory exists.
+
+If you opened **only the frontend repository** in VS Code and the Spider files live in a separate backend repository outside that workspace, the batch runner **will not find them**. Open the parent directory containing both projects, or use **File > Add Folder to Workspace...** to include the backend. When testing in the **Extension Development Host** launched with `F5`, make sure that the required folder is open in that host window too.
+
+### Verify files before running
+
+From the backend repository root, use PowerShell to check the expected files:
+
+```powershell
+Test-Path .\dataset\spider\dev.json
+Test-Path .\dataset\spider\database
+Test-Path .\dataset\spider\tables.json
+```
+
+The first two checks should return `True` for the batch reader. `tables.json` should also be present when required by your backend configuration. Simply cloning the frontend repository does not guarantee that these files are available.
+
+### Run a small batch
+
+Install and compile the extension as described above, launch it with `F5`, and open the **NL2SQL Panel**. Select and configure a supported model provider (GitHub Copilot or Kimi). Start the DAIL-SQL backend if **DAIL Prompt + Few-shot** or **Rule-based Validation & Retry** is enabled. Click **Spider Batch Timing** and enter **5** as the number of questions for an initial test. Entering **0** selects all questions from `dev.json`.
+
+The runner reads the questions from `dev.json`, looks up each `db_id` in the matching SQLite database folder, and records generation timing, model outputs, prompts, and available usage metadata. **Stop Batch** requests that processing stop after the current question is saved. Batch results are written under the repository containing the Spider dataset, using mode- and provider-specific result folders such as `Results/` or `result_DAIL/`. Preserve existing outputs if you intend to resume an experiment.
+
+**Evaluation limitation:** Spider Batch Timing is a batch-generation and instrumentation workflow. It does not, by itself, report an official Spider exact-match or execution-accuracy score against the reference SQL queries; such evaluation requires a separate assessment step.
 
 ## Backend configuration
 
@@ -85,7 +133,7 @@ The backend itself is not a substitute for a Copilot login or Kimi API key. Conv
 
 ## Project status and limitations
 
-This is a research prototype. Static inspection and compilation of the cleaned frontend source were performed, but an end-to-end verification against all supported database engines and model providers has not been completed. Results depend on the selected model, prompt configuration, database schema, training data, and backend availability. No unverified Spider accuracy claim is made here.
+This is a research prototype. The previous source snapshot and portable-path patch passed static inspection and TypeScript compilation, but an end-to-end verification against all supported database engines and model providers has not been completed. Results depend on the selected model, prompt configuration, database schema, training data, and backend availability. No unverified Spider accuracy claim is made here.
 
 ## Attribution
 

@@ -1477,7 +1477,7 @@ async function testDailSqlApiConnection(): Promise<void> {
             statusReport.push('💡 To fix this:');
             statusReport.push('  1. Check DAIL-SQL server configuration');
             statusReport.push('  2. Verify database file exists at:');
-            statusReport.push('     C:\\Users\\grizz\\OneDrive\\Desktop\\COSC448\\ideas\\model\\DAIL-SQL\\dataset\\spider\\database\\car_1\\car_1.sqlite');
+            statusReport.push('     dataset/spider/database/car_1/car_1.sqlite (relative to the backend repository)');
             statusReport.push('  3. Ensure server has read permissions to the file');
             statusReport.push('  4. Restart DAIL-SQL server after configuration changes');
         }
