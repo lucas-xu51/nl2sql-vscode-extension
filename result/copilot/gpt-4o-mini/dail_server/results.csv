@@ -1,0 +1,453 @@
+﻿index,db_id,question,status,use_server,generation_mode,started_at,finished_at,total_ms,schema_ms,copilot_ms,attempts,model_id,sql,error
+"0","concert_singer","How many singers do we have?","completed","true","dail_server","2026-10-07T17:21:34.529Z","2026-10-07T17:21:49.296Z","14767.238","117.325","906.412","1","gpt-4o-mini","SELECT count(*) FROM singer;",""
+"1","concert_singer","What is the total number of singers?","completed","true","dail_server","2026-10-07T17:21:49.302Z","2026-10-07T17:21:51.887Z","2585.675","6.605","478.251","1","gpt-4o-mini","SELECT count(*) FROM singer;",""
+"2","concert_singer","Show name, country, age for all singers ordered by age from the oldest to the youngest.","completed","true","dail_server","2026-10-07T17:21:51.898Z","2026-10-07T17:21:54.632Z","2734.092","6.612","522.264","1","gpt-4o-mini","SELECT Name, Country, Age FROM singer ORDER BY Age DESC;",""
+"3","concert_singer","What are the names, countries, and ages for every singer in descending order of age?","completed","true","dail_server","2026-10-07T17:21:54.640Z","2026-10-07T17:21:57.421Z","2781.31","17.677","693.118","1","gpt-4o-mini","SELECT Name, Country, Age FROM singer ORDER BY Age DESC;",""
+"4","concert_singer","What is the average, minimum, and maximum age of all singers from France?","completed","true","dail_server","2026-10-07T17:21:57.425Z","2026-10-07T17:21:59.770Z","2345.29","5.463","567.322","1","gpt-4o-mini","SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = 'France'",""
+"5","concert_singer","What is the average, minimum, and maximum age for all French singers?","completed","true","dail_server","2026-10-07T17:21:59.774Z","2026-10-07T17:22:02.801Z","3026.8","6.486","527.548","1","gpt-4o-mini","SELECT avg(Age), min(Age), max(Age) FROM singer WHERE Country = 'France'",""
+"6","concert_singer","Show the name and the release year of the song by the youngest singer.","completed","true","dail_server","2026-10-07T17:22:02.804Z","2026-10-07T17:22:05.270Z","2465.562","5.135","596.14","1","gpt-4o-mini","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT min(Age) FROM singer);",""
+"7","concert_singer","What are the names and release years for all the songs of the youngest singer?","completed","true","dail_server","2026-10-07T17:22:05.274Z","2026-10-07T17:22:08.258Z","2983.939","11.249","628.128","1","gpt-4o-mini","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT min(Age) FROM singer)",""
+"8","concert_singer","What are all distinct countries where singers above age 20 are from?","completed","true","dail_server","2026-10-07T17:22:08.262Z","2026-10-07T17:22:11.185Z","2923.795","7.54","528.732","1","gpt-4o-mini","SELECT DISTINCT Country FROM singer WHERE Age > 20;",""
+"9","concert_singer","What are  the different countries with singers above age 20?","completed","true","dail_server","2026-10-07T17:22:11.189Z","2026-10-07T17:22:13.625Z","2435.772","8.725","512.411","1","gpt-4o-mini","SELECT DISTINCT Country FROM singer WHERE Age > 20",""
+"10","concert_singer","Show all countries and the number of singers in each country.","completed","true","dail_server","2026-10-12T21:52:48.379Z","2026-10-12T21:52:58.379Z","10000.005","135.806","833.452","1","gpt-4o-mini","SELECT Country, count(*) FROM singer GROUP BY Country",""
+"11","concert_singer","How many singers are from each country?","completed","true","dail_server","2026-10-12T21:52:58.383Z","2026-10-12T21:53:00.889Z","2505.859","6.264","547.801","1","gpt-4o-mini","SELECT Country, COUNT(*) FROM singer GROUP BY Country",""
+"12","concert_singer","List all song names by singers above the average age.","completed","true","dail_server","2026-10-12T21:53:00.893Z","2026-10-12T21:53:03.349Z","2456.246","6.171","536.963","1","gpt-4o-mini","SELECT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer);",""
+"13","concert_singer","What are all the song names by singers who are older than average?","completed","true","dail_server","2026-10-12T21:53:03.360Z","2026-10-12T21:53:05.850Z","2490.667","20.06","485.893","1","gpt-4o-mini","SELECT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)",""
+"14","concert_singer","Show location and name for all stadiums with a capacity between 5000 and 10000.","completed","true","dail_server","2026-10-12T21:53:05.854Z","2026-10-12T21:53:08.255Z","2400.906","5.672","581.971","1","gpt-4o-mini","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000;",""
+"15","concert_singer","What are the locations and names of all stations with capacity between 5000 and 10000?","completed","true","dail_server","2026-10-12T21:53:08.259Z","2026-10-12T21:53:11.050Z","2791.265","4.297","564.661","1","gpt-4o-mini","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000",""
+"16","concert_singer","What is the maximum capacity and the average of all stadiums ?","completed","true","dail_server","2026-10-12T21:53:11.053Z","2026-10-12T21:53:13.313Z","2259.992","5.801","559.109","1","gpt-4o-mini","SELECT max(Capacity), avg(Capacity) FROM stadium",""
+"17","concert_singer","What is the average and maximum capacities for all stadiums ?","completed","true","dail_server","2026-10-12T21:53:13.317Z","2026-10-12T21:53:15.811Z","2493.992","6.865","493.249","1","gpt-4o-mini","SELECT avg(Capacity), max(Capacity) FROM stadium",""
+"18","concert_singer","What is the name and capacity for the stadium with highest average attendance?","completed","true","dail_server","2026-10-12T21:53:15.815Z","2026-10-12T21:53:18.782Z","2966.923","7.966","535.084","1","gpt-4o-mini","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1",""
+"19","concert_singer","What is the name and capacity for the stadium with the highest average attendance?","completed","true","dail_server","2026-10-12T21:53:18.785Z","2026-10-12T21:53:21.257Z","2472.344","8.439","584.088","1","gpt-4o-mini","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1",""
+"20","concert_singer","How many concerts are there in year 2014 or 2015?","completed","true","dail_server","2026-10-12T21:53:21.261Z","2026-10-12T21:53:23.963Z","2701.728","8.02","522.709","1","gpt-4o-mini","SELECT COUNT(*) FROM concert WHERE Year IN (2014, 2015)",""
+"21","concert_singer","How many concerts occurred in 2014 or 2015?","completed","true","dail_server","2026-10-12T21:53:23.966Z","2026-10-12T21:53:26.316Z","2350.07","4.488","569.349","1","gpt-4o-mini","SELECT count(*) FROM concert WHERE Year IN (2014, 2015)",""
+"22","concert_singer","Show the stadium name and the number of concerts in each stadium.","completed","true","dail_server","2026-10-12T21:53:26.320Z","2026-10-12T21:53:28.990Z","2670.026","11.465","574.619","1","gpt-4o-mini","SELECT Name, count(*) FROM stadium JOIN concert ON stadium.Stadium_ID = concert.Stadium_ID GROUP BY Name",""
+"23","concert_singer","For each stadium, how many concerts play there?","completed","true","dail_server","2026-10-12T21:53:29.002Z","2026-10-12T21:53:32.023Z","3020.769","11.181","697.985","1","gpt-4o-mini","SELECT T1.Stadium_ID, COUNT(*) 
+FROM stadium AS T1 
+JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID 
+GROUP BY T1.Stadium_ID",""
+"24","concert_singer","Show the stadium name and capacity with most number of concerts in year 2014 or after.","completed","true","dail_server","2026-10-12T21:53:32.026Z","2026-10-12T21:53:34.664Z","2637.602","6.777","786.351","1","gpt-4o-mini","SELECT S.Name, S.Capacity 
+FROM stadium AS S 
+JOIN concert AS C ON S.Stadium_ID = C.Stadium_ID 
+WHERE C.Year >= 2014 
+GROUP BY S.Name, S.Capacity 
+ORDER BY COUNT(*) DESC 
+LIMIT 1;",""
+"25","concert_singer","What is the name and capacity of the stadium with the most concerts after 2013 ?","completed","true","dail_server","2026-10-12T21:53:34.668Z","2026-10-12T21:53:38.089Z","3420.905","6.255","785.137","1","gpt-4o-mini","SELECT s.Name, s.Capacity 
+FROM stadium AS s 
+JOIN concert AS c ON s.Stadium_ID = c.Stadium_ID 
+WHERE c.Year > 2013 
+GROUP BY s.Stadium_ID 
+ORDER BY COUNT(c.concert_ID) DESC 
+LIMIT 1;",""
+"26","concert_singer","Which year has most number of concerts?","completed","true","dail_server","2026-10-12T21:53:38.093Z","2026-10-12T21:53:40.419Z","2326.847","3.321","559.628","1","gpt-4o-mini","SELECT Year FROM concert GROUP BY Year ORDER BY count(*) DESC LIMIT 1",""
+"27","concert_singer","What is the year that had the most concerts?","completed","true","dail_server","2026-10-12T21:53:40.429Z","2026-10-12T21:53:43.075Z","2646.036","11.934","549.772","1","gpt-4o-mini","SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1",""
+"28","concert_singer","Show the stadium names without any concert.","completed","true","dail_server","2026-10-12T21:53:43.079Z","2026-10-12T21:53:45.977Z","2898.265","6.611","579.112","1","gpt-4o-mini","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)",""
+"29","concert_singer","What are the names of the stadiums without any concerts?","completed","true","dail_server","2026-10-12T21:53:45.981Z","2026-10-12T21:53:48.507Z","2526.507","3.197","526.392","1","gpt-4o-mini","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)",""
+"30","concert_singer","Show countries where a singer above age 40 and a singer below 30 are from.","completed","true","dail_server","2026-10-12T21:53:48.511Z","2026-10-12T21:53:51.641Z","3130.021","3.839","692.058","1","gpt-4o-mini","SELECT Country FROM singer WHERE Age > 40 INTERSECT SELECT Country FROM singer WHERE Age < 30",""
+"31","concert_singer","Show names for all stadiums except for stadiums having a concert in year 2014.","completed","true","dail_server","2026-10-12T21:53:51.645Z","2026-10-12T21:53:54.102Z","2456.633","5.864","569.464","1","gpt-4o-mini","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)",""
+"32","concert_singer","What are the names of all stadiums that did not have a concert in 2014?","completed","true","dail_server","2026-10-12T21:53:54.106Z","2026-10-12T21:53:56.905Z","2799.467","4.648","562.763","1","gpt-4o-mini","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)",""
+"33","concert_singer","Show the name and theme for all concerts and the number of singers in each concert.","completed","true","dail_server","2026-10-12T21:53:56.910Z","2026-10-12T21:54:00.193Z","3283.492","5.89","787.329","1","gpt-4o-mini","SELECT c.concert_Name, c.Theme, COUNT(sic.Singer_ID) AS Number_of_Singers 
+FROM concert AS c 
+LEFT JOIN singer_in_concert AS sic ON c.concert_ID = sic.concert_ID 
+GROUP BY c.concert_ID;",""
+"34","concert_singer","What are the names , themes , and number of singers for every concert ?","completed","true","dail_server","2026-10-12T21:54:00.212Z","2026-10-12T21:54:02.983Z","2771.321","34.005","766.248","1","gpt-4o-mini","SELECT c.concert_Name, c.Theme, COUNT(s.Singer_ID) 
+FROM concert c 
+JOIN singer_in_concert sic ON c.concert_ID = sic.concert_ID 
+JOIN singer s ON sic.Singer_ID = s.Singer_ID 
+GROUP BY c.concert_Name, c.Theme;",""
+"35","concert_singer","List singer names and number of concerts for each singer.","completed","true","dail_server","2026-10-12T21:54:02.987Z","2026-10-12T21:54:06.129Z","3142.525","5.675","710.876","1","gpt-4o-mini","SELECT s.Name, COUNT(sc.concert_ID) 
+FROM singer s 
+LEFT JOIN singer_in_concert sc ON s.Singer_ID = sc.Singer_ID 
+GROUP BY s.Name;",""
+"36","concert_singer","What are the names of the singers and number of concerts for each person?","completed","true","dail_server","2026-10-12T21:54:06.133Z","2026-10-12T21:54:08.759Z","2626.054","8.327","786.372","1","gpt-4o-mini","SELECT s.Name, COUNT(sc.concert_ID) 
+FROM singer AS s 
+LEFT JOIN singer_in_concert AS sc ON s.Singer_ID = sc.Singer_ID 
+GROUP BY s.Name;",""
+"37","concert_singer","List all singer names in concerts in year 2014.","completed","true","dail_server","2026-10-12T21:54:08.763Z","2026-10-12T21:54:11.507Z","2744.206","4.838","786.856","1","gpt-4o-mini","SELECT DISTINCT s.Name FROM singer s
+JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID
+JOIN concert c ON sic.concert_ID = c.concert_ID
+WHERE c.Year = 2014;",""
+"38","concert_singer","What are the names of the singers who performed in a concert in 2014?","completed","true","dail_server","2026-10-12T21:54:11.511Z","2026-10-12T21:54:14.505Z","2994.098","3.128","722.305","1","gpt-4o-mini","SELECT DISTINCT S.Name FROM singer AS S JOIN singer_in_concert AS SIC ON S.Singer_ID = SIC.Singer_ID JOIN concert AS C ON SIC.concert_ID = C.concert_ID WHERE C.Year = 2014",""
+"39","concert_singer","what is the name and nation of the singer who have a song having 'Hey' in its name?","completed","true","dail_server","2026-10-12T21:54:14.508Z","2026-10-12T21:54:17.063Z","2554.567","7.917","529.741","1","gpt-4o-mini","SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'",""
+"40","concert_singer","What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?","completed","true","dail_server","2026-10-12T21:54:17.066Z","2026-10-12T21:54:20.095Z","3028.915","5.231","564.933","1","gpt-4o-mini","SELECT Name, Country FROM singer WHERE Song_Name LIKE ""%Hey%""",""
+"41","concert_singer","Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.","completed","true","dail_server","2026-10-12T21:54:20.099Z","2026-10-12T21:54:22.895Z","2795.774","7.417","828.279","1","gpt-4o-mini","SELECT DISTINCT s.Name, s.Location 
+FROM stadium AS s 
+JOIN concert AS c ON s.Stadium_ID = c.Stadium_ID 
+WHERE c.Year IN (2014, 2015) 
+GROUP BY s.Stadium_ID 
+HAVING COUNT(DISTINCT c.Year) = 2;",""
+"42","concert_singer","What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?","completed","true","dail_server","2026-10-12T21:54:22.898Z","2026-10-12T21:54:32.618Z","9719.316","5.774","830.378","1","gpt-4o-mini","SELECT DISTINCT S.Name, S.Location 
+FROM stadium AS S 
+JOIN concert AS C ON S.Stadium_ID = C.Stadium_ID 
+WHERE C.Year IN (2014, 2015) 
+GROUP BY S.Stadium_ID 
+HAVING COUNT(DISTINCT C.Year) = 2",""
+"43","concert_singer","Find the number of concerts happened in the stadium with the highest capacity .","completed","true","dail_server","2026-10-12T21:54:32.622Z","2026-10-12T21:54:35.592Z","2969.805","5.897","579.734","1","gpt-4o-mini","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",""
+"44","concert_singer","What are the number of concerts that occurred in the stadium with the largest capacity ?","completed","true","dail_server","2026-10-12T21:54:35.595Z","2026-10-12T21:54:38.025Z","2429.431","6.897","571.505","1","gpt-4o-mini","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",""
+"45","pets_1","Find the number of pets whose weight is heavier than 10.","completed","true","dail_server","2026-10-12T21:54:38.029Z","2026-10-12T21:54:41.556Z","3527.307","7.789","501.134","1","gpt-4o-mini","SELECT count(*) FROM Pets WHERE weight > 10",""
+"46","pets_1","How many pets have a greater weight than 10?","completed","true","dail_server","2026-10-12T21:54:41.560Z","2026-10-12T21:54:43.820Z","2259.549","4.957","505.491","1","gpt-4o-mini","SELECT count(*) FROM Pets WHERE weight > 10",""
+"47","pets_1","Find the weight of the youngest dog.","completed","true","dail_server","2026-10-12T21:54:43.824Z","2026-10-12T21:54:46.545Z","2721.104","4.179","562.568","1","gpt-4o-mini","SELECT weight FROM Pets WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1",""
+"48","pets_1","How much does the youngest dog weigh?","completed","true","dail_server","2026-10-12T21:54:46.551Z","2026-10-12T21:54:49.504Z","2952.816","9.579","657.03","1","gpt-4o-mini","SELECT weight FROM Pets WHERE PetType = 'dog' AND pet_age = (SELECT min(pet_age) FROM Pets WHERE PetType = 'dog')",""
+"49","pets_1","Find the maximum weight for each type of pet. List the maximum weight and pet type.","completed","true","dail_server","2026-10-12T21:54:49.507Z","2026-10-12T21:54:51.865Z","2357.634","2.454","549.889","1","gpt-4o-mini","SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType",""
+"50","pets_1","List the maximum weight and type for each type of pet.","completed","true","dail_server","2026-10-12T21:54:51.869Z","2026-10-12T21:54:54.589Z","2719.779","4.123","508.956","1","gpt-4o-mini","SELECT max(weight), PetType FROM Pets GROUP BY PetType",""
+"51","pets_1","Find number of pets owned by students who are older than 20.","completed","true","dail_server","2026-10-12T21:54:54.592Z","2026-10-12T21:54:57.008Z","2416.383","4.791","653.531","1","gpt-4o-mini","SELECT count(*) FROM Has_Pet AS T1 JOIN Student AS T2 ON T1.StuID = T2.StuID WHERE T2.Age > 20",""
+"52","pets_1","How many pets are owned by students that have an age greater than 20?","completed","true","dail_server","2026-10-12T21:54:57.017Z","2026-10-12T21:54:59.594Z","2577.545","8.479","610.963","1","gpt-4o-mini","SELECT count(*) FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20)",""
+"53","pets_1","Find the number of dog pets that are raised by female students (with sex F).","completed","true","dail_server","2026-10-12T21:54:59.598Z","2026-10-12T21:55:02.696Z","3098.291","6.13","799.241","1","gpt-4o-mini","SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID JOIN Student AS T3 ON T1.StuID = T3.StuID WHERE T2.PetType = 'Dog' AND T3.Sex = 'F'",""
+"54","pets_1","How many dog pets are raised by female students?","completed","true","dail_server","2026-10-12T21:55:02.700Z","2026-10-12T21:55:05.431Z","2731.515","4.376","895.825","1","gpt-4o-mini","SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID JOIN Student AS T3 ON T1.StuID = T3.StuID WHERE T2.PetType = 'Dog' AND T3.Sex = 'F'",""
+"55","pets_1","Find the number of distinct type of pets.","completed","true","dail_server","2026-10-12T21:55:05.435Z","2026-10-12T21:55:08.327Z","2891.627","2.674","529.511","1","gpt-4o-mini","SELECT count(DISTINCT PetType) FROM Pets;",""
+"56","pets_1","How many different types of pet are there?","completed","true","dail_server","2026-10-12T21:55:08.330Z","2026-10-12T21:55:10.627Z","2296.312","4.522","558.109","1","gpt-4o-mini","SELECT count(DISTINCT PetType) FROM Pets;",""
+"57","pets_1","Find the first name of students who have cat or dog pet.","completed","true","dail_server","2026-10-12T21:55:10.630Z","2026-10-12T21:55:13.392Z","2761.772","3.856","800.358","1","gpt-4o-mini","SELECT DISTINCT t1.Fname FROM Student AS t1 JOIN Has_Pet AS t2 ON t1.StuID = t2.StuID JOIN Pets AS t3 ON t2.PetID = t3.PetID WHERE t3.PetType IN ('cat', 'dog');",""
+"58","pets_1","What are the first names of every student who has a cat or dog as a pet?","completed","true","dail_server","2026-10-12T21:55:13.397Z","2026-10-12T21:55:17.003Z","3605.955","11.239","1421.065","2","gpt-4o-mini","SELECT Fname 
+FROM Student 
+WHERE StuID IN (
+    SELECT H.StuID 
+    FROM Has_Pet H 
+    JOIN Pets P ON H.PetID = P.PetID 
+    WHERE P.PetType IN ('cat', 'dog')
+)",""
+"59","pets_1","Find the first name of students who have both cat and dog pets .","completed","true","dail_server","2026-10-12T21:55:17.007Z","2026-10-12T21:55:19.620Z","2612.601","5.268","869.192","1","gpt-4o-mini","SELECT DISTINCT s.Fname 
+FROM Student AS s 
+JOIN Has_Pet AS hp ON s.StuID = hp.StuID 
+JOIN Pets AS p ON hp.PetID = p.PetID 
+WHERE p.PetType IN ('cat', 'dog') 
+GROUP BY s.StuID 
+HAVING COUNT(DISTINCT p.PetType) = 2;",""
+"60","pets_1","What are the students' first names who have both cats and dogs as pets?","completed","true","dail_server","2026-10-12T21:55:19.624Z","2026-10-12T21:55:22.923Z","3299.191","4.431","1003.927","1","gpt-4o-mini","SELECT S.Fname 
+FROM Student S 
+JOIN Has_Pet HP1 ON S.StuID = HP1.StuID 
+JOIN Pets P1 ON HP1.PetID = P1.PetID 
+JOIN Has_Pet HP2 ON S.StuID = HP2.StuID 
+JOIN Pets P2 ON HP2.PetID = P2.PetID 
+WHERE P1.PetType = 'cat' AND P2.PetType = 'dog';",""
+"61","pets_1","Find the major and age of students who do not have a cat pet.","completed","true","dail_server","2026-10-12T21:55:22.927Z","2026-10-12T21:55:25.444Z","2517.375","4.75","705.378","1","gpt-4o-mini","SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')",""
+"62","pets_1","What major is every student who does not own a cat as a pet, and also how old are they?","completed","true","dail_server","2026-10-12T21:55:25.448Z","2026-10-12T21:55:28.258Z","2809.736","4.668","714.524","1","gpt-4o-mini","SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')",""
+"63","pets_1","Find the id of students who do not have a cat pet.","completed","true","dail_server","2026-10-12T21:55:28.261Z","2026-10-12T21:55:31.280Z","3018.323","4.446","785.89","1","gpt-4o-mini","SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet HP JOIN Pets P ON HP.PetID = P.PetID WHERE P.PetType = 'cat')",""
+"64","pets_1","What are the ids of the students who do not own cats as pets?","completed","true","dail_server","2026-10-12T21:55:31.283Z","2026-10-12T21:55:33.731Z","2447.401","2.813","647.476","1","gpt-4o-mini","SELECT StuID FROM Student EXCEPT SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat')",""
+"65","pets_1","Find the first name and age of students who have a dog but do not have a cat as a pet.","completed","true","dail_server","2026-10-12T21:55:33.735Z","2026-10-12T21:55:37.158Z","3423.536","2.282","1064.392","1","gpt-4o-mini","SELECT s.Fname, s.Age 
+FROM Student AS s 
+JOIN Has_Pet AS hp ON s.StuID = hp.StuID 
+JOIN Pets AS p ON hp.PetID = p.PetID 
+WHERE p.PetType = ""Dog"" 
+AND s.StuID NOT IN (SELECT hp2.StuID FROM Has_Pet AS hp2 JOIN Pets AS p2 ON hp2.PetID = p2.PetID WHERE p2.PetType = ""Cat"");",""
+"66","pets_1","What is the first name of every student who has a dog but does not have a cat?","completed","true","dail_server","2026-10-12T21:55:37.162Z","2026-10-12T21:55:41.922Z","4760.235","4.017","2991.003","3","gpt-4o-mini","SELECT Fname 
+FROM Student 
+WHERE StuID IN (
+    SELECT H.StuID 
+    FROM Has_Pet H
+    JOIN Pets P ON H.PetID = P.PetID 
+    WHERE P.PetType = 'Dog'
+) 
+AND StuID NOT IN (
+    SELECT H.StuID 
+    FROM Has_Pet H
+    JOIN Pets P ON H.PetID = P.PetID 
+    WHERE P.PetType = 'Cat'
+);",""
+"67","pets_1","Find the type and weight of the youngest pet.","completed","true","dail_server","2026-10-12T21:55:41.926Z","2026-10-12T21:55:44.456Z","2529.947","4.613","559.264","1","gpt-4o-mini","SELECT PetType, weight FROM Pets ORDER BY pet_age ASC LIMIT 1",""
+"68","pets_1","What type of pet is the youngest animal, and how much does it weigh?","completed","true","dail_server","2026-10-12T21:55:44.459Z","2026-10-12T21:55:47.425Z","2965.716","4.899","564.604","1","gpt-4o-mini","SELECT PetType, weight FROM Pets ORDER BY pet_age ASC LIMIT 1",""
+"69","pets_1","Find the id and weight of all pets whose age is older than 1.","completed","true","dail_server","2026-10-12T21:55:47.433Z","2026-10-12T21:55:49.716Z","2282.657","5.258","555.002","1","gpt-4o-mini","SELECT PetID, weight FROM Pets WHERE pet_age > 1",""
+"70","pets_1","What is the id and weight of every pet who is older than 1?","completed","true","dail_server","2026-10-12T21:55:49.719Z","2026-10-12T21:55:52.668Z","2949.496","2.809","551.724","1","gpt-4o-mini","SELECT PetID, weight FROM Pets WHERE pet_age > 1",""
+"71","pets_1","Find the average and maximum age for each type of pet.","completed","true","dail_server","2026-10-12T21:55:52.672Z","2026-10-12T21:55:54.996Z","2323.522","4.742","612.038","1","gpt-4o-mini","SELECT PetType, avg(pet_age) AS average_age, max(pet_age) AS maximum_age 
+FROM Pets 
+GROUP BY PetType;",""
+"72","pets_1","What is the average and maximum age for each pet type?","completed","true","dail_server","2026-10-12T21:55:55.000Z","2026-10-12T21:55:57.736Z","2736.231","5.322","616.713","1","gpt-4o-mini","SELECT PetType, avg(pet_age) AS average_age, max(pet_age) AS maximum_age FROM Pets GROUP BY PetType;",""
+"73","pets_1","Find the average weight for each pet type.","completed","true","dail_server","2026-10-12T21:55:57.741Z","2026-10-12T21:56:00.536Z","2795.295","5.08","618.344","1","gpt-4o-mini","SELECT PetType, avg(weight) FROM Pets GROUP BY PetType",""
+"74","pets_1","What is the average weight for each type of pet?","completed","true","dail_server","2026-10-12T21:56:00.543Z","2026-10-12T21:56:02.827Z","2283.66","10.497","542.776","1","gpt-4o-mini","SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType;",""
+"75","pets_1","Find the first name and age of students who have a pet.","completed","true","dail_server","2026-10-12T21:56:02.836Z","2026-10-12T21:56:05.685Z","2848.884","8.7","646.708","1","gpt-4o-mini","SELECT DISTINCT T1.Fname, T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID",""
+"76","pets_1","What are the different first names and ages of the students who do have pets?","completed","true","dail_server","2026-10-12T21:56:05.689Z","2026-10-12T21:56:08.115Z","2426.092","6.059","634.931","1","gpt-4o-mini","SELECT DISTINCT Fname, Age FROM Student AS S JOIN Has_Pet AS HP ON S.StuID = HP.StuID",""
+"77","pets_1","Find the id of the pet owned by student whose last name is ‘Smith’.","completed","true","dail_server","2026-10-12T21:56:08.121Z","2026-10-12T21:56:10.838Z","2717.41","4.932","613.045","1","gpt-4o-mini","SELECT H.PetID FROM Student AS S JOIN Has_Pet AS H ON S.StuID = H.StuID WHERE S.LName = 'Smith'",""
+"78","pets_1","What is the id of the pet owned by the student whose last name is 'Smith'?","completed","true","dail_server","2026-10-12T21:56:10.842Z","2026-10-12T21:56:13.731Z","2888.315","3.285","699.568","1","gpt-4o-mini","SELECT H.PetID FROM Student AS S JOIN Has_Pet AS H ON S.StuID = H.StuID WHERE S.LName = 'Smith'",""
+"79","pets_1","Find the number of pets for each student who has any pet and student id.","completed","true","dail_server","2026-10-12T21:56:13.735Z","2026-10-12T21:56:16.335Z","2599.799","3.36","761.324","1","gpt-4o-mini","SELECT T1.StuID, COUNT(T2.PetID) AS NumberOfPets 
+FROM Student AS T1 
+JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID 
+GROUP BY T1.StuID;",""
+"80","pets_1","For students who have pets , how many pets does each student have ? list their ids instead of names .","completed","true","dail_server","2026-10-12T21:56:16.340Z","2026-10-12T21:56:19.368Z","3028.144","6.949","715.665","1","gpt-4o-mini","SELECT S.StuID, COUNT(HP.PetID) AS PetCount 
+FROM Student AS S 
+JOIN Has_Pet AS HP ON S.StuID = HP.StuID 
+GROUP BY S.StuID;",""
+"81","pets_1","Find the first name and gender of student who have more than one pet.","completed","true","dail_server","2026-10-12T21:56:19.381Z","2026-10-12T21:56:22.116Z","2735.231","12.385","789.88","1","gpt-4o-mini","SELECT T1.Fname, T1.Sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID HAVING COUNT(T2.PetID) > 1",""
+"82","pets_1","What is the first name and gender of the all the students who have more than one pet?","completed","true","dail_server","2026-10-12T21:56:22.120Z","2026-10-12T21:56:25.937Z","3816.212","4.27","1644.02","2","gpt-4o-mini","SELECT T1.Fname, T1.Sex 
+FROM Student AS T1 
+JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID 
+GROUP BY T1.StuID 
+HAVING COUNT(T2.PetID) > 1;",""
+"83","pets_1","Find the last name of the student who has a cat that is age 3.","completed","true","dail_server","2026-10-12T21:56:25.941Z","2026-10-12T21:56:29.044Z","3103.377","4.643","795.106","1","gpt-4o-mini","SELECT S.LName FROM Student AS S JOIN Has_Pet AS HP ON S.StuID = HP.StuID JOIN Pets AS P ON HP.PetID = P.PetID WHERE P.PetType = 'cat' AND P.pet_age = 3;",""
+"84","pets_1","What is the last name of the student who has a cat that is 3 years old?","completed","true","dail_server","2026-10-12T21:56:29.049Z","2026-10-12T21:56:31.801Z","2752.306","3.085","929.769","1","gpt-4o-mini","SELECT T1.LName FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T3.PetType = 'cat' AND T3.pet_age = 3",""
+"85","pets_1","Find the average age of students who do not have any pet .","completed","true","dail_server","2026-10-12T21:56:31.805Z","2026-10-12T21:56:35.792Z","3986.66","3.761","568.397","1","gpt-4o-mini","SELECT avg(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)",""
+"86","pets_1","What is the average age for all students who do not own any pets ?","completed","true","dail_server","2026-10-12T21:56:35.800Z","2026-10-12T21:56:38.331Z","2531.53","6.364","567.943","1","gpt-4o-mini","SELECT avg(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)",""
+"87","car_1","How many continents are there?","completed","true","dail_server","2026-10-12T21:56:38.336Z","2026-10-12T21:56:41.962Z","3626.238","17.868","503.154","1","gpt-4o-mini","SELECT count(*) FROM continents;",""
+"88","car_1","What is the number of continents?","completed","true","dail_server","2026-10-12T21:56:41.966Z","2026-10-12T21:56:44.693Z","2726.996","8.675","492.875","1","gpt-4o-mini","SELECT count(*) FROM continents;",""
+"89","car_1","How many countries does each continent have? List the continent id, continent name and the number of countries.","completed","true","dail_server","2026-10-12T21:56:44.720Z","2026-10-12T21:56:47.645Z","2924.921","19.003","835.417","1","gpt-4o-mini","SELECT T1.ContId, T1.Continent, COUNT(*) 
+FROM continents AS T1 
+JOIN countries AS T2 ON T1.ContId = T2.Continent 
+GROUP BY T1.ContId;",""
+"90","car_1","For each continent, list its id, name, and how many countries it has?","completed","true","dail_server","2026-10-12T21:56:47.649Z","2026-10-12T21:56:51.156Z","3506.382","10.555","768.322","1","gpt-4o-mini","SELECT T1.ContId, T1.Continent, COUNT(T2.CountryId) 
+FROM continents AS T1 
+LEFT JOIN countries AS T2 ON T1.ContId = T2.Continent 
+GROUP BY T1.ContId, T1.Continent;",""
+"91","car_1","How many countries are listed?","completed","true","dail_server","2026-10-12T21:56:51.160Z","2026-10-12T21:56:53.504Z","2343.779","11.739","472.454","1","gpt-4o-mini","SELECT count(*) FROM countries;",""
+"92","car_1","How many countries exist?","completed","true","dail_server","2026-10-12T21:56:53.508Z","2026-10-12T21:56:56.007Z","2498.855","10.697","499.933","1","gpt-4o-mini","SELECT count(*) FROM countries;",""
+"93","car_1","How many models does each car maker produce? List maker full name, id and the number.","completed","true","dail_server","2026-10-12T21:56:56.012Z","2026-10-12T21:56:59.279Z","3267.161","8.814","732.638","1","gpt-4o-mini","SELECT CM.FullName, CM.Id, COUNT(ML.ModelId) AS ModelCount 
+FROM car_makers AS CM 
+JOIN model_list AS ML ON CM.Id = ML.Maker 
+GROUP BY CM.FullName, CM.Id;",""
+"94","car_1","What is the full name of each car maker, along with its id and how many models it produces?","completed","true","dail_server","2026-10-12T21:56:59.283Z","2026-10-12T21:57:02.939Z","3656.54","11.808","1403.635","2","gpt-4o-mini","SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS ModelCount 
+FROM car_makers cm 
+LEFT JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.FullName;",""
+"95","car_1","Which model of the car has the minimum horsepower?","completed","true","dail_server","2026-10-12T21:57:02.947Z","2026-10-12T21:57:06.405Z","3458.098","10.532","1105.856","2","gpt-4o-mini","SELECT cl.Model FROM cars_data AS cd 
+JOIN car_names AS cl ON cd.Id = cl.MakeId 
+ORDER BY cd.Horsepower ASC LIMIT 1;",""
+"96","car_1","What is the model of the car with the smallest amount of horsepower?","completed","true","dail_server","2026-10-12T21:57:06.410Z","2026-10-12T21:57:09.840Z","3430.385","10.971","1448.693","2","gpt-4o-mini","SELECT T2.Model FROM cars_data AS T1 
+JOIN car_names AS T2 ON T1.Id = T2.MakeId 
+JOIN model_list AS T3 ON T2.Model = T3.Model 
+ORDER BY T1.Horsepower ASC LIMIT 1",""
+"97","car_1","Find the model of the car whose weight is below the average weight.","completed","true","dail_server","2026-10-12T21:57:09.844Z","2026-10-12T21:57:13.266Z","3421.822","7.067","1281.46","2","gpt-4o-mini","SELECT ml.Model 
+FROM cars_data cd 
+JOIN car_names cn ON cd.Id = cn.MakeId 
+JOIN model_list ml ON cn.Model = ml.Model 
+WHERE cd.Weight < (SELECT avg(Weight) FROM cars_data)",""
+"98","car_1","What is the model for the car with a weight smaller than the average?","completed","true","dail_server","2026-10-12T21:57:13.270Z","2026-10-12T21:57:17.030Z","3759.637","9.834","1283.735","2","gpt-4o-mini","SELECT M.Model 
+FROM cars_data AS C 
+JOIN car_names AS N ON C.Id = N.MakeId 
+JOIN model_list AS M ON N.Model = M.Model 
+WHERE C.Weight < (SELECT avg(Weight) FROM cars_data)",""
+"99","car_1","Find the name of the makers that produced some cars in the year of 1970?","completed","true","dail_server","2026-10-12T21:57:17.035Z","2026-10-12T21:57:21.143Z","4107.972","16.305","2038.307","3","gpt-4o-mini","SELECT DISTINCT cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.ModelId = cn.Model 
+JOIN cars_data cd ON cn.MakeId = cd.Id 
+WHERE cd.Year = 1970;",""
+"100","car_1","What is the name of the different car makers who produced a car in 1970?","completed","true","dail_server","2026-10-12T21:57:21.149Z","2026-10-12T21:57:24.464Z","3315.171","12.816","635.195","1","gpt-4o-mini","SELECT DISTINCT Maker FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id WHERE T2.Year = 1970;",""
+"101","car_1","Find the make and production time of the cars that were produced in the earliest year?","completed","true","dail_server","2026-10-12T21:57:24.468Z","2026-10-12T21:57:27.152Z","2684.46","8.821","734.88","1","gpt-4o-mini","SELECT T1.Maker, T2.Year FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id ORDER BY T2.Year ASC LIMIT 1",""
+"102","car_1","What is the maker of the carr produced in the earliest year and what year was it?","completed","true","dail_server","2026-10-12T21:57:27.159Z","2026-10-12T21:57:30.213Z","3054.263","12.63","729.08","1","gpt-4o-mini","SELECT T1.Maker, T2.Year 
+FROM car_makers AS T1 
+JOIN cars_data AS T2 ON T1.Id = T2.Id 
+ORDER BY T2.Year ASC LIMIT 1",""
+"103","car_1","Which distinct car models are the produced after 1980?","completed","true","dail_server","2026-10-12T21:57:30.216Z","2026-10-12T21:57:34.705Z","4488.122","5.606","2030.589","3","gpt-4o-mini","SELECT DISTINCT ml.Model 
+FROM model_list AS ml 
+JOIN car_names AS cn ON ml.Model = cn.Model 
+JOIN cars_data AS cd ON cn.MakeId = cd.Id 
+WHERE cd.Year > 1980;",""
+"104","car_1","What are the different models for the cards produced after 1980?","completed","true","dail_server","2026-10-12T21:57:34.709Z","2026-10-12T21:57:37.174Z","2464.621","8.42","533.542","1","gpt-4o-mini","SELECT DISTINCT Model FROM cars_data WHERE Year > 1980;",""
+"105","car_1","How many car makers are there in each continents? List the continent name and the count.","completed","true","dail_server","2026-10-12T21:57:37.178Z","2026-10-12T21:57:40.618Z","3439.528","12.784","745.765","1","gpt-4o-mini","SELECT C.Continent, COUNT(DISTINCT CM.Id) 
+FROM continents AS C 
+JOIN countries AS CO ON C.ContId = CO.Continent 
+JOIN car_makers AS CM ON CO.CountryId = CM.Country 
+GROUP BY C.Continent;",""
+"106","car_1","What is the name of each continent and how many car makers are there in each one?","completed","true","dail_server","2026-10-12T21:57:40.623Z","2026-10-12T21:57:43.445Z","2821.86","11.675","795.623","1","gpt-4o-mini","SELECT C.Continent, COUNT(DISTINCT CM.Id) AS NumberOfCarMakers 
+FROM continents AS C 
+JOIN countries AS CO ON C.ContId = CO.Continent 
+JOIN car_makers AS CM ON CO.CountryId = CM.Country 
+GROUP BY C.Continent;",""
+"107","car_1","Which of the countries has the most car makers? List the country name.","completed","true","dail_server","2026-10-12T21:57:43.450Z","2026-10-12T21:57:46.364Z","2914.106","12.584","692.292","1","gpt-4o-mini","SELECT t2.CountryName FROM car_makers AS t1 JOIN countries AS t2 ON t1.Country = t2.CountryId GROUP BY t2.CountryName ORDER BY COUNT(*) DESC LIMIT 1",""
+"108","car_1","What is the name of the country with the most car makers?","completed","true","dail_server","2026-10-12T21:57:46.371Z","2026-10-12T21:57:50.038Z","3666.61","16.168","1323.76","2","gpt-4o-mini","SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country GROUP BY T1.CountryId ORDER BY count(*) DESC LIMIT 1",""
+"109","car_1","How many car models are produced by each maker ? Only list the count and the maker full name .","completed","true","dail_server","2026-10-12T21:57:50.042Z","2026-10-12T21:57:52.972Z","2929.849","8.541","722.426","1","gpt-4o-mini","SELECT COUNT(*) AS model_count, T1.FullName 
+FROM car_makers AS T1 
+JOIN model_list AS T2 ON T1.Id = T2.Maker 
+GROUP BY T1.FullName;",""
+"110","car_1","What is the number of car models that are produced by each maker and what is the id and full name of each maker?","completed","true","dail_server","2026-10-12T21:57:52.988Z","2026-10-12T21:57:57.078Z","4090.031","15.84","1403.34","2","gpt-4o-mini","SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS ModelCount 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.FullName;",""
+"111","car_1","What is the accelerate of the car make amc hornet sportabout (sw)?","completed","true","dail_server","2026-10-12T21:57:57.084Z","2026-10-12T21:57:59.879Z","2795.18","15.665","773.696","1","gpt-4o-mini","SELECT Accelerate FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE T3.Maker = 'amc' AND T3.Model = 'hornet sportabout (sw)';",""
+"112","car_1","How much does the car accelerate that makes amc hornet sportabout (sw)?","completed","true","dail_server","2026-10-12T21:57:59.889Z","2026-10-12T21:58:02.982Z","3092.157","16.763","783.311","1","gpt-4o-mini","SELECT Accelerate FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE T3.Maker = 'amc' AND T3.Model = 'hornet sportabout (sw)';",""
+"113","car_1","How many car makers are there in france?","completed","true","dail_server","2026-10-12T21:58:02.987Z","2026-10-12T21:58:06.023Z","3035.649","11.688","612.446","1","gpt-4o-mini","SELECT count(*) FROM car_makers WHERE Country = 'France'",""
+"114","car_1","What is the number of makers of care in France?","completed","true","dail_server","2026-10-12T21:58:06.027Z","2026-10-12T21:58:08.574Z","2547.319","8.324","593.922","1","gpt-4o-mini","SELECT COUNT(DISTINCT Maker) FROM car_makers WHERE Country = 'France'",""
+"115","car_1","How many car models are produced in the usa?","completed","true","dail_server","2026-10-12T21:58:08.579Z","2026-10-12T21:58:12.028Z","3449.12","9.349","1091.769","2","gpt-4o-mini","SELECT COUNT(*) 
+FROM model_list 
+WHERE Maker IN (SELECT Id FROM car_makers WHERE Country = 'USA');",""
+"116","car_1","What is the count of the car models produced in the United States?","completed","true","dail_server","2026-10-12T21:58:12.032Z","2026-10-12T21:58:14.792Z","2759.696","8.007","783.326","1","gpt-4o-mini","SELECT count(DISTINCT T2.Model) FROM model_list AS T2 JOIN car_makers AS T1 ON T2.Maker = T1.Id WHERE T1.Country = 'United States'",""
+"117","car_1","What is the average miles per gallon(mpg) of the cars with 4 cylinders?","completed","true","dail_server","2026-10-12T21:58:14.797Z","2026-10-12T21:58:17.500Z","2703.311","8.652","493.743","1","gpt-4o-mini","SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4",""
+"118","car_1","What is the average miles per gallon of all the cards with 4 cylinders?","completed","true","dail_server","2026-10-12T21:58:17.505Z","2026-10-12T21:58:20.495Z","2990.201","8.313","538.491","1","gpt-4o-mini","SELECT avg(MPG) FROM cars_data WHERE Cylinders = 4;",""
+"119","car_1","What is the smallest weight of the car produced with 8 cylinders on 1974 ?","completed","true","dail_server","2026-10-12T21:58:20.499Z","2026-10-12T21:58:22.979Z","2479.431","7.453","619.914","1","gpt-4o-mini","SELECT MIN(Weight) FROM cars_data WHERE Cylinders = 8 AND Year = 1974;",""
+"120","car_1","What is the minimum weight of the car with 8 cylinders produced in 1974 ?","completed","true","dail_server","2026-10-12T21:58:22.983Z","2026-10-12T21:58:26.002Z","3018.574","8.184","584.679","1","gpt-4o-mini","SELECT min(Weight) FROM cars_data WHERE Cylinders = 8 AND Year = 1974;",""
+"121","car_1","What are all the makers and models?","completed","true","dail_server","2026-10-12T21:58:26.010Z","2026-10-12T21:58:28.996Z","2985.446","11.968","1185.34","2","gpt-4o-mini","SELECT car_makers.Maker, model_list.Model 
+FROM model_list 
+JOIN car_makers ON model_list.Maker = car_makers.Id;",""
+"122","car_1","What are the makers and models?","completed","true","dail_server","2026-10-12T21:58:29.000Z","2026-10-12T21:58:32.225Z","3225.508","8.399","1201.577","2","gpt-4o-mini","SELECT car_makers.Maker, model_list.Model 
+FROM car_makers 
+JOIN model_list ON car_makers.Id = model_list.Maker",""
+"123","car_1","What are the countries having at least one car maker? List name and id.","completed","true","dail_server","2026-10-12T21:58:32.230Z","2026-10-12T21:58:35.270Z","3039.639","9.32","598.57","1","gpt-4o-mini","SELECT CountryId, CountryName FROM countries WHERE CountryId IN (SELECT DISTINCT Country FROM car_makers);",""
+"124","car_1","What are the names and ids of all countries with at least one car maker?","completed","true","dail_server","2026-10-12T21:58:35.274Z","2026-10-12T21:58:37.835Z","2560.323","8.06","615.287","1","gpt-4o-mini","SELECT DISTINCT T2.CountryId, T2.CountryName FROM car_makers AS T1 JOIN countries AS T2 ON T1.Country = T2.CountryId",""
+"125","car_1","What is the number of the cars with horsepower more than 150?","completed","true","dail_server","2026-10-12T21:58:37.839Z","2026-10-12T21:58:40.852Z","3013.222","9.393","531.513","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Horsepower > 150",""
+"126","car_1","What is the number of cars with a horsepower greater than 150?","completed","true","dail_server","2026-10-12T21:58:40.856Z","2026-10-12T21:58:43.209Z","2352.307","8.587","527.359","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Horsepower > 150;",""
+"127","car_1","What is the average weight of cars each year?","completed","true","dail_server","2026-10-12T21:58:43.213Z","2026-10-12T21:58:45.953Z","2739.896","8.728","568.359","1","gpt-4o-mini","SELECT avg(Weight), Year FROM cars_data GROUP BY Year",""
+"128","car_1","What is the average weight and year for each year?","completed","true","dail_server","2026-10-12T21:58:45.958Z","2026-10-12T21:58:48.914Z","2955.252","9.865","511.055","1","gpt-4o-mini","SELECT avg(Weight), avg(Year) FROM cars_data GROUP BY Year",""
+"129","car_1","Which countries in europe have at least 3 car manufacturers?","completed","true","dail_server","2026-10-12T21:58:48.918Z","2026-10-12T21:58:51.611Z","2692.571","10.002","786.761","1","gpt-4o-mini","SELECT T1.CountryName FROM countries AS T1 
+JOIN car_makers AS T2 ON T1.CountryId = T2.Country 
+WHERE T1.Continent = 'Europe' 
+GROUP BY T1.CountryName 
+HAVING COUNT(T2.Id) >= 3;",""
+"130","car_1","What are the names of all European countries with at least 3 manufacturers?","completed","true","dail_server","2026-10-12T21:58:51.615Z","2026-10-12T21:58:55.000Z","3385.187","7.503","809.368","1","gpt-4o-mini","SELECT c.CountryName 
+FROM countries AS c 
+JOIN car_makers AS m ON c.CountryId = m.Country 
+WHERE c.Continent = (SELECT ContId FROM continents WHERE Continent = 'Europe') 
+GROUP BY c.CountryName 
+HAVING COUNT(m.Id) >= 3;",""
+"131","car_1","What is the maximum horsepower and the make of the car models with 3 cylinders?","completed","true","dail_server","2026-10-12T21:58:55.005Z","2026-10-12T21:58:57.571Z","2565.784","7.76","605.992","1","gpt-4o-mini","SELECT max(Horsepower), Make FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE cars_data.Cylinders = 3 GROUP BY Make",""
+"132","car_1","What is the largest amount of horsepower for the models with 3 cylinders and what make is it?","completed","true","dail_server","2026-10-12T21:58:57.577Z","2026-10-12T21:59:02.266Z","4688.723","9.88","2297.665","3","gpt-4o-mini","SELECT max(cars_data.Horsepower), car_makers.Maker 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Id 
+WHERE cars_data.Cylinders = 3;",""
+"133","car_1","Which model saves the most gasoline? That is to say, have the maximum miles per gallon.","completed","true","dail_server","2026-10-12T21:59:02.270Z","2026-10-12T21:59:06.013Z","3742.905","10.146","1172.653","2","gpt-4o-mini","SELECT cl.Model, cd.MPG 
+FROM cars_data cd 
+JOIN car_names cl ON cd.Id = cl.MakeId 
+ORDER BY cd.MPG DESC LIMIT 1;",""
+"134","car_1","What is the car model with the highest mpg ?","completed","true","dail_server","2026-10-12T21:59:06.017Z","2026-10-12T21:59:09.860Z","3842.369","9.392","1833.034","3","gpt-4o-mini","SELECT ml.Model 
+FROM cars_data cd 
+JOIN car_names cn ON cd.Id = cn.MakeId 
+JOIN model_list ml ON cn.Model = ml.Model 
+ORDER BY cd.MPG DESC 
+LIMIT 1",""
+"135","car_1","What is the average horsepower of the cars before 1980?","completed","true","dail_server","2026-10-12T21:59:09.871Z","2026-10-12T21:59:12.715Z","2844.079","9.42","551.957","1","gpt-4o-mini","SELECT avg(Horsepower) FROM cars_data WHERE Year < 1980",""
+"136","car_1","What is the average horsepower for all cars produced before 1980 ?","completed","true","dail_server","2026-10-12T21:59:12.718Z","2026-10-12T21:59:15.204Z","2486.029","11.14","515.934","1","gpt-4o-mini","SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980;",""
+"137","car_1","What is the average edispl of the cars of model volvo?","completed","true","dail_server","2026-10-12T21:59:15.209Z","2026-10-12T21:59:18.662Z","3453.834","11.399","1342.355","2","gpt-4o-mini","SELECT avg(Edispl) FROM cars_data WHERE Id IN (SELECT car_names.MakeId FROM car_names JOIN model_list ON car_names.Model = model_list.Model WHERE model_list.Maker = 'Volvo')",""
+"138","car_1","What is the average edispl for all volvos?","completed","true","dail_server","2026-10-12T21:59:18.666Z","2026-10-12T21:59:21.770Z","3104.33","11.512","671.96","1","gpt-4o-mini","SELECT avg(Edispl) FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId WHERE T2.Make = 'Volvo'",""
+"139","car_1","What is the maximum accelerate for different number of cylinders?","completed","true","dail_server","2026-10-12T21:59:21.775Z","2026-10-12T21:59:24.164Z","2389.299","9.324","551.762","1","gpt-4o-mini","SELECT Cylinders, max(Accelerate) FROM cars_data GROUP BY Cylinders",""
+"140","car_1","What is the maximum accelerate for all the different cylinders?","completed","true","dail_server","2026-10-12T21:59:24.168Z","2026-10-12T21:59:27.276Z","3108.479","10.44","523.516","1","gpt-4o-mini","SELECT max(Accelerate), Cylinders FROM cars_data GROUP BY Cylinders",""
+"141","car_1","Which model has the most version(make) of cars?","completed","true","dail_server","2026-10-12T21:59:27.280Z","2026-10-12T21:59:29.654Z","2374.299","11.123","494.819","1","gpt-4o-mini","SELECT Model FROM car_names GROUP BY Model ORDER BY COUNT(MakeId) DESC LIMIT 1",""
+"142","car_1","What model has the most different versions?","completed","true","dail_server","2026-10-12T21:59:29.659Z","2026-10-12T21:59:32.430Z","2771.363","13.025","674.884","1","gpt-4o-mini","SELECT Model, COUNT(DISTINCT MakeId) AS VersionCount 
+FROM car_names 
+GROUP BY Model 
+ORDER BY VersionCount DESC 
+LIMIT 1;",""
+"143","car_1","How many cars have more than 4 cylinders?","completed","true","dail_server","2026-10-12T21:59:32.437Z","2026-10-12T21:59:35.231Z","2794.264","17.079","532.194","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Cylinders > 4",""
+"144","car_1","What is the number of cars with more than 4 cylinders?","completed","true","dail_server","2026-10-12T21:59:35.234Z","2026-10-12T21:59:37.640Z","2405.723","10.035","503.077","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Cylinders > 4;",""
+"145","car_1","how many cars were produced in 1980?","completed","true","dail_server","2026-10-12T21:59:37.644Z","2026-10-12T21:59:40.621Z","2976.948","8.95","519.44","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Year = 1980;",""
+"146","car_1","In 1980, how many cars were made?","completed","true","dail_server","2026-10-12T21:59:40.628Z","2026-10-12T21:59:43.045Z","2416.951","17.674","489.896","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Year = 1980;",""
+"147","car_1","How many car models were produced by the maker with full name American Motor Company?","completed","true","dail_server","2026-10-12T21:59:43.050Z","2026-10-12T21:59:46.208Z","3158.158","15.164","696.211","1","gpt-4o-mini","SELECT count(*) FROM model_list AS M JOIN car_makers AS C ON M.Maker = C.Id WHERE C.FullName = 'American Motor Company'",""
+"148","car_1","What is the number of car models created by the car maker American Motor Company?","completed","true","dail_server","2026-10-12T21:59:46.213Z","2026-10-12T21:59:49.329Z","3116.424","8.734","536.291","1","gpt-4o-mini","SELECT COUNT(*) FROM model_list WHERE Maker = 'American Motor Company'",""
+"149","car_1","Which makers designed more than 3 car models? List full name and the id.","completed","true","dail_server","2026-10-12T21:59:49.333Z","2026-10-12T21:59:53.439Z","4105.531","9.378","1993.698","3","gpt-4o-mini","SELECT FullName, Id 
+FROM car_makers 
+WHERE Id IN (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(ModelId) > 3
+);",""
+"150","car_1","What are the names and ids of all makers with more than 3 models?","completed","true","dail_server","2026-10-12T21:59:53.445Z","2026-10-12T21:59:56.821Z","3376.506","12.056","760.505","1","gpt-4o-mini","SELECT T1.Id, T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id HAVING count(T2.ModelId) > 3;",""
+"151","car_1","Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?","completed","true","dail_server","2026-10-12T21:59:56.829Z","2026-10-12T21:59:59.546Z","2717.047","9.517","712.26","1","gpt-4o-mini","SELECT DISTINCT Model FROM model_list AS M JOIN car_makers AS C ON M.Maker = C.Id WHERE C.FullName = 'General Motors' OR M.Model IN (SELECT Model FROM cars_data WHERE Weight > 3500);",""
+"152","car_1","What are the different models created by either the car maker General Motors or weighed more than 3500?","completed","true","dail_server","2026-10-12T21:59:59.551Z","2026-10-12T22:00:02.666Z","3114.507","11.019","671.499","1","gpt-4o-mini","SELECT DISTINCT Model FROM model_list WHERE Maker = 'General Motors' OR ModelId IN (SELECT Id FROM cars_data WHERE Weight > 3500)",""
+"153","car_1","In which years cars were produced weighing no less than 3000 and no more than 4000 ?","completed","true","dail_server","2026-10-12T22:00:02.670Z","2026-10-12T22:00:05.829Z","3159.535","9.323","586.789","1","gpt-4o-mini","SELECT DISTINCT Year FROM cars_data WHERE Weight >= 3000 AND Weight <= 4000;",""
+"154","car_1","What are the different years in which there were cars produced that weighed less than 4000 and also cars that weighted more than 3000 ?","completed","true","dail_server","2026-10-12T22:00:05.835Z","2026-10-12T22:00:08.631Z","2796.605","11.799","578.608","1","gpt-4o-mini","SELECT DISTINCT Year FROM cars_data WHERE Weight < 4000 OR Weight > 3000;",""
+"155","car_1","What is the horsepower of the car with the largest accelerate?","completed","true","dail_server","2026-10-12T22:00:08.644Z","2026-10-12T22:00:11.859Z","3214.989","20.782","625.245","1","gpt-4o-mini","SELECT Horsepower FROM cars_data ORDER BY Accelerate DESC LIMIT 1",""
+"156","car_1","What is the horsepower of the car with the greatest accelerate?","completed","true","dail_server","2026-10-12T22:00:11.870Z","2026-10-12T22:00:14.576Z","2705.378","11.563","711.366","1","gpt-4o-mini","SELECT Horsepower FROM cars_data ORDER BY Accelerate DESC LIMIT 1",""
+"157","car_1","For model volvo, how many cylinders does the car with the least accelerate have?","completed","true","dail_server","2026-10-12T22:00:14.581Z","2026-10-12T22:00:24.840Z","10259.081","10.767","703.059","1","gpt-4o-mini","SELECT Cylinders FROM cars_data WHERE Id IN (SELECT MakeId FROM car_names WHERE Model = 'volvo') ORDER BY Accelerate LIMIT 1",""
+"158","car_1","For a volvo model, how many cylinders does the version with least accelerate have?","completed","true","dail_server","2026-10-12T22:00:24.845Z","2026-10-12T22:00:29.599Z","4754.141","6.89","2116.109","3","gpt-4o-mini","SELECT Cylinders 
+FROM cars_data 
+WHERE Id IN (SELECT Id FROM car_names WHERE MakeId IN (SELECT ModelId FROM model_list WHERE Maker IN (SELECT Id FROM car_makers WHERE Maker = 'Volvo'))) 
+ORDER BY Accelerate 
+LIMIT 1",""
+"159","car_1","How many cars have a larger accelerate than the car with the largest horsepower?","completed","true","dail_server","2026-10-12T22:00:29.604Z","2026-10-12T22:00:32.277Z","2673.343","7.131","597.337","1","gpt-4o-mini","SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)",""
+"160","car_1","What is the number of cars with a greater accelerate than the one with the most horsepower?","completed","true","dail_server","2026-10-12T22:00:32.286Z","2026-10-12T22:00:35.510Z","3224.727","15.806","611.966","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Accelerate > (SELECT max(Horsepower) FROM cars_data)",""
+"161","car_1","How many countries has more than 2 car makers ?","completed","true","dail_server","2026-10-12T22:00:35.514Z","2026-10-12T22:00:39.325Z","3810.925","10.577","1788.48","3","gpt-4o-mini","SELECT count(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING count(*) > 2)",""
+"162","car_1","What is the number of countries with more than 2 car makers ?","completed","true","dail_server","2026-10-12T22:00:39.330Z","2026-10-12T22:00:43.450Z","4120.563","10.097","1775.807","3","gpt-4o-mini","SELECT count(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING count(*) > 2);",""
+"163","car_1","How many cars has over 6 cylinders?","completed","true","dail_server","2026-10-12T22:00:43.456Z","2026-10-12T22:00:46.524Z","3068.055","10.056","659.626","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Cylinders > 6",""
+"164","car_1","What is the number of carsw ith over 6 cylinders?","completed","true","dail_server","2026-10-12T22:00:46.529Z","2026-10-12T22:00:49.077Z","2548.252","10.958","548.154","1","gpt-4o-mini","SELECT count(*) FROM cars_data WHERE Cylinders > 6",""
+"165","car_1","For the cars with 4 cylinders, which model has the largest horsepower?","completed","true","dail_server","2026-10-12T22:00:49.081Z","2026-10-12T22:00:53.165Z","4083.57","13.527","1416.727","2","gpt-4o-mini","SELECT model_list.Model 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+WHERE cars_data.Cylinders = 4 
+ORDER BY cars_data.Horsepower DESC 
+LIMIT 1;",""
+"166","car_1","For all of the 4 cylinder cars, which model has the most horsepower?","completed","true","dail_server","2026-10-12T22:00:53.170Z","2026-10-12T22:00:56.725Z","3554.854","9.844","1516.067","2","gpt-4o-mini","SELECT T2.Model FROM cars_data AS T1 
+JOIN car_names AS T2 ON T1.Id = T2.MakeId 
+JOIN model_list AS T3 ON T2.Model = T3.Model 
+WHERE T1.Cylinders = 4 
+ORDER BY T1.Horsepower DESC 
+LIMIT 1",""
+"167","car_1","Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.","completed","true","dail_server","2026-10-12T22:00:56.742Z","2026-10-12T22:01:01.899Z","5157.258","21.578","2492.944","3","gpt-4o-mini","SELECT CN.MakeId, CM.Maker 
+FROM car_names AS CN 
+JOIN model_list AS ML ON CN.Model = ML.ModelId 
+JOIN car_makers AS CM ON ML.Maker = CM.Id 
+JOIN cars_data AS CD ON CN.MakeId = CD.Id 
+WHERE CD.Horsepower > (SELECT MIN(Horsepower) FROM cars_data) 
+AND CD.Cylinders <= 3;",""
+"168","car_1","Among the cars that do not have the minimum horsepower , what are the make ids and names of all those with less than 4 cylinders ?","completed","true","dail_server","2026-10-12T22:01:01.904Z","2026-10-12T22:01:07.074Z","5170.119","18.619","2284.607","3","gpt-4o-mini","SELECT cn.MakeId, cn.Model 
+FROM car_names cn 
+JOIN cars_data cd ON cn.MakeId = cd.Id 
+WHERE cd.Horsepower < (SELECT MIN(Horsepower) FROM cars_data) 
+AND cd.Cylinders < 4;",""
+"169","car_1","What is the maximum miles per gallon of the car with 8 cylinders or produced before 1980 ?","completed","true","dail_server","2026-10-12T22:01:07.080Z","2026-10-12T22:01:09.744Z","2663.943","13.943","558.137","1","gpt-4o-mini","SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980;",""
+"170","car_1","What is the maximum mpg of the cars that had 8 cylinders or that were produced before 1980 ?","completed","true","dail_server","2026-10-12T22:01:09.748Z","2026-10-12T22:01:13.022Z","3274.155","17.022","560.809","1","gpt-4o-mini","SELECT max(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980",""
+"171","car_1","Which models are lighter than 3500 but not built by the 'Ford Motor Company'?","completed","true","dail_server","2026-10-12T22:01:13.026Z","2026-10-12T22:01:17.604Z","4577.448","9.797","2575.734","3","gpt-4o-mini","SELECT M.Model 
+FROM model_list AS M 
+JOIN car_makers AS C ON M.Maker = C.Id 
+JOIN car_names AS CN ON C.Id = CN.MakeId 
+JOIN cars_data AS D ON CN.MakeId = D.Id 
+WHERE D.Weight < 3500 AND C.FullName != 'Ford Motor Company'",""
+"172","car_1","What are the different models wthat are lighter than 3500 but were not built by the Ford Motor Company?","completed","true","dail_server","2026-10-12T22:01:17.616Z","2026-10-12T22:01:22.287Z","4671.705","12.347","2370.656","3","gpt-4o-mini","SELECT ml.Model 
+FROM model_list AS ml 
+JOIN car_makers AS cm ON ml.Maker = cm.Id 
+JOIN car_names AS cn ON ml.Model = cn.Model 
+JOIN cars_data AS cd ON cn.MakeId = cd.Id 
+WHERE cd.Weight < 3500 AND cm.Maker != 'Ford Motor Company'",""
+"173","car_1","What are the name of the countries where there is not a single car maker?","completed","true","dail_server","2026-10-12T22:01:22.292Z","2026-10-12T22:01:25.351Z","3057.831","9.922","523.874","1","gpt-4o-mini","SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT DISTINCT Country FROM car_makers)",""
+"174","car_1","What are the names of the countries with no car makers?","completed","true","dail_server","2026-10-12T22:01:25.355Z","2026-10-12T22:01:27.794Z","2438.751","9.542","520.588","1","gpt-4o-mini","SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT Country FROM car_makers)",""
+"175","car_1","Which are the car makers which produce at least 2 models and more than 3 car makers ? List the id and the maker .","completed","true","dail_server","2026-10-12T22:01:27.801Z","2026-10-12T22:01:32.734Z","4933.831","13.51","2316.424","3","gpt-4o-mini","SELECT Id, Maker 
+FROM car_makers 
+WHERE Id IN (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(ModelId) >= 2
+) 
+GROUP BY Id 
+HAVING COUNT(DISTINCT Id) > 3;",""
+"176","car_1","What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?","completed","true","dail_server","2026-10-12T22:21:40.398Z","2026-10-12T22:21:45.824Z","5426.676","7.409","3224.378","3","gpt-4o-mini","SELECT cm.Id, cm.Maker 
+FROM car_makers AS cm 
+JOIN model_list AS ml ON cm.Id = ml.Maker 
+JOIN car_names AS cn ON ml.Model = cn.Model 
+JOIN cars_data AS cd ON cn.MakeId = cd.Id 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(cd.Id) > 3;",""
+"177","car_1","What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?","completed","true","dail_server","2026-10-12T22:21:45.828Z","2026-10-12T22:21:48.753Z","2924.516","11.118","849.834","1","gpt-4o-mini","SELECT CountryId, CountryName 
+FROM countries 
+WHERE CountryId IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    HAVING COUNT(Id) > 3
+) OR CountryId IN (
+    SELECT DISTINCT MakeId 
+    FROM car_names 
+    WHERE Model = 'fiat'
+);",""
+"178","car_1","What are the ids and names of all countries that either have more than 3 car makers or produce fiat model ?","completed","true","dail_server","2026-10-12T22:21:48.768Z","2026-10-12T22:21:51.938Z","3169.354","12.28","1002.726","1","gpt-4o-mini","SELECT CountryId, CountryName 
+FROM countries 
+WHERE CountryId IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    HAVING COUNT(Id) > 3
+) OR CountryId IN (
+    SELECT DISTINCT CountryId 
+    FROM model_list 
+    WHERE Model = 'Fiat'
+);",""
+"179","flight_2","Which country does Airline ""JetBlue Airways"" belong to?","completed","true","dail_server","2026-10-12T22:21:51.954Z","2026-10-12T22:21:54.905Z","2951.388","7.44","541.372","1","gpt-4o-mini","SELECT Country FROM airlines WHERE Airline = ""JetBlue Airways""",""
+"180","flight_2","What country is Jetblue Airways affiliated with?","completed","true","dail_server","2026-10-12T22:21:54.909Z","2026-10-12T22:21:57.552Z","2642.35","5.201","559.593","1","gpt-4o-mini","SELECT Country FROM airlines WHERE Airline = ""Jetblue Airways"";",""
+"181","flight_2","What is the abbreviation of Airline ""JetBlue Airways""?","completed","true","dail_server","2026-10-12T22:21:57.556Z","2026-10-12T22:21:59.828Z","2272.663","6.2","484.933","1","gpt-4o-mini","SELECT Abbreviation FROM airlines WHERE Airline = ""JetBlue Airways""",""
+"182","flight_2","Which abbreviation corresponds to Jetblue Airways?","completed","true","dail_server","2026-10-12T22:21:59.833Z","2026-10-12T22:22:02.259Z","2425.249","6.447","599.447","1","gpt-4o-mini","SELECT Abbreviation FROM airlines WHERE Airline = ""Jetblue Airways"";",""
+"183","flight_2","List all airline names and their abbreviations in ""USA"".","completed","true","dail_server","2026-10-12T22:22:02.262Z","2026-10-12T22:22:04.896Z","2633.436","7.453","526.82","1","gpt-4o-mini","SELECT Airline, Abbreviation FROM airlines WHERE Country = ""USA""",""
+"184","flight_2","What are the airline names and abbreviations for airlines in the USA?","completed","true","dail_server","2026-10-12T22:22:04.901Z","2026-10-12T22:22:07.135Z","2234.654","5.786","536.995","1","gpt-4o-mini","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA'",""
+"185","flight_2","List the airport code and name in the city of Anthony.","completed","true","dail_server","2026-10-12T22:22:07.140Z","2026-10-12T22:22:09.913Z","2773.41","6.48","581.154","1","gpt-4o-mini","SELECT AirportCode, AirportName FROM airports WHERE City = ""Anthony"";",""
+"186","flight_2","Give the airport code and airport name corresonding to the city Anthony.","completed","true","dail_server","2026-10-12T22:22:09.918Z","2026-10-12T22:22:12.190Z","2272.008","4.684","576.811","1","gpt-4o-mini","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'",""
+"187","flight_2","How many airlines do we have?","completed","true","dail_server","2026-10-12T22:22:12.194Z","2026-10-12T22:22:14.627Z","2433.409","6.724","493.249","1","gpt-4o-mini","SELECT count(*) FROM airlines;",""
+"188","flight_2","What is the total number of airlines?","completed","true","dail_server","2026-10-12T22:22:14.631Z","2026-10-12T22:22:17.227Z","2595.713","3.959","577.667","1","gpt-4o-mini","SELECT count(*) FROM airlines;",""
+"189","flight_2","How many airports do we have?","completed","true","dail_server","2026-10-12T22:22:17.232Z","2026-10-12T22:22:19.376Z","2144.01","6.087","488.963","1","gpt-4o-mini","SELECT count(*) FROM airports;",""
+"190","flight_2","Return the number of  airports.","completed","true","dail_server","2026-10-12T22:22:19.380Z","2026-10-12T22:22:21.915Z","2534.822","5.004","521.29","1","gpt-4o-mini","SELECT COUNT(*) FROM airports;",""
+"191","flight_2","How many flights do we have?","completed","true","dail_server","2026-10-12T22:22:21.919Z","2026-10-12T22:22:24.143Z","2224.003","5.942","515.458","1","gpt-4o-mini","SELECT count(*) FROM flights;",""
+"192","flight_2","Return the number of flights.","completed","true","dail_server","2026-10-12T22:22:24.156Z","2026-10-12T22:22:33.421Z","9265.168","14.056","566.087","1","gpt-4o-mini","SELECT COUNT(*) FROM flights;",""
+"193","flight_2","Which airline has abbreviation 'UAL'?","completed","true","dail_server","2026-10-12T22:22:33.425Z","2026-10-12T22:22:36.044Z","2618.825","4.727","524.651","1","gpt-4o-mini","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'",""
+"194","flight_2","Give the airline with abbreviation 'UAL'.","completed","true","dail_server","2026-10-12T22:22:36.050Z","2026-10-12T22:22:38.218Z","2168.883","9.272","500.832","1","gpt-4o-mini","SELECT * FROM airlines WHERE Abbreviation = 'UAL'",""
+"195","flight_2","How many airlines are from USA?","completed","true","dail_server","2026-10-12T22:22:38.222Z","2026-10-12T22:22:40.826Z","2603.802","4.75","505.949","1","gpt-4o-mini","SELECT count(*) FROM airlines WHERE Country = 'USA'",""
+"196","flight_2","Return the number of airlines in the USA.","completed","true","dail_server","2026-10-12T22:22:40.830Z","2026-10-12T22:22:43.011Z","2181.557","4.556","481.803","1","gpt-4o-mini","SELECT count(*) FROM airlines WHERE Country = 'USA';",""
+"197","flight_2","Which city and country is the Alton airport at?","completed","true","dail_server","2026-10-12T22:22:43.020Z","2026-10-12T22:22:45.490Z","2470.101","11.315","578.298","1","gpt-4o-mini","SELECT City, Country FROM airports WHERE AirportName = ""Alton"";",""
+"198","flight_2","Give the city and country for the Alton airport.","completed","true","dail_server","2026-10-12T22:22:45.494Z","2026-10-12T22:22:48.171Z","2676.903","5.108","534.975","1","gpt-4o-mini","SELECT City, Country FROM airports WHERE AirportName = ""Alton""",""
+"199","flight_2","What is the airport name for airport 'AKO'?","completed","true","dail_server","2026-10-12T22:22:48.175Z","2026-10-12T22:22:50.533Z","2358.616","6.289","579.801","1","gpt-4o-mini","SELECT AirportName FROM airports WHERE AirportCode = 'AKO'",""

@@ -1,0 +1,22 @@
+{
+  "format_version": 5,
+  "prompt_log_format": 1,
+  "use_server": true,
+  "use_dail_prompt": true,
+  "use_rule_validation": true,
+  "generation_mode": "full",
+  "direct_prompt_version": null,
+  "dataset_sha256": "30d64a3fccde493226df79687aed9e4a1c0129525baf44f29c0573d914d758a4",
+  "database_root": "C:\\Users\\grizz\\OneDrive\\Desktop\\COSC448\\ideas\\model\\DAIL-SQL\\dataset\\spider\\database",
+  "ai_provider": "kimi",
+  "model_id": "kimi-k3",
+  "kimi_base_url": "https://api.moonshot.ai/v1",
+  "kimi_thinking": "default",
+  "history_few_shots": 0,
+  "general_few_shots": 3,
+  "few_shot_pool_sha256": "e8e5dfc42c6815b825e5eb7c990829c623efff3084bec086cd756088e2f6cdad",
+  "backend_url": "http://localhost:8000",
+  "max_attempts": 3,
+  "ablation_notes": null,
+  "timing_scope": "schema loading through final SQL; includes rule validation and retries iff enabled; excludes file writes"
+}

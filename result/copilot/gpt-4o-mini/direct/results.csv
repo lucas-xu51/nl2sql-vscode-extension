@@ -1,0 +1,786 @@
+﻿index,db_id,question,status,use_server,generation_mode,started_at,finished_at,total_ms,schema_ms,copilot_ms,attempts,model_id,sql,error
+"0","concert_singer","How many singers do we have?","completed","false","schema_copilot","2026-10-07T17:37:07.283Z","2026-10-07T17:37:08.202Z","918.958","24.4","892.628","1","gpt-4o-mini","SELECT COUNT(*) FROM singer;",""
+"1","concert_singer","What is the total number of singers?","completed","false","schema_copilot","2026-10-07T17:37:08.209Z","2026-10-07T17:37:08.706Z","497.184","6.402","489.533","1","gpt-4o-mini","SELECT COUNT(*) FROM singer;",""
+"2","concert_singer","Show name, country, age for all singers ordered by age from the oldest to the youngest.","completed","false","schema_copilot","2026-10-07T17:37:08.710Z","2026-10-07T17:37:09.250Z","540.397","8.04","530.449","1","gpt-4o-mini","SELECT Name, Country, Age FROM singer ORDER BY Age DESC;",""
+"3","concert_singer","What are the names, countries, and ages for every singer in descending order of age?","completed","false","schema_copilot","2026-10-07T17:37:09.258Z","2026-10-07T17:37:09.788Z","530.818","6.316","522.948","1","gpt-4o-mini","SELECT Name, Country, Age FROM singer ORDER BY Age DESC;",""
+"4","concert_singer","What is the average, minimum, and maximum age of all singers from France?","completed","false","schema_copilot","2026-10-07T17:37:09.792Z","2026-10-07T17:37:10.449Z","657.703","9.404","647.076","1","gpt-4o-mini","SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age 
+FROM singer 
+WHERE Country = 'France';",""
+"5","concert_singer","What is the average, minimum, and maximum age for all French singers?","completed","false","schema_copilot","2026-10-07T17:37:10.452Z","2026-10-07T17:37:11.168Z","716.186","7.061","707.81","1","gpt-4o-mini","SELECT AVG(Age) AS Average_Age, MIN(Age) AS Minimum_Age, MAX(Age) AS Maximum_Age 
+FROM singer 
+WHERE Country = 'France';",""
+"6","concert_singer","Show the name and the release year of the song by the youngest singer.","completed","false","schema_copilot","2026-10-07T17:37:11.175Z","2026-10-07T17:37:14.530Z","3355.068","4.701","3348.904","1","gpt-4o-mini","SELECT Song_Name, Song_release_year 
+FROM singer 
+WHERE Age = (SELECT MIN(Age) FROM singer);",""
+"7","concert_singer","What are the names and release years for all the songs of the youngest singer?","completed","false","schema_copilot","2026-10-07T17:37:14.533Z","2026-10-07T17:37:15.367Z","834.103","4.004","829.031","1","gpt-4o-mini","SELECT Song_Name, Song_release_year 
+FROM singer 
+JOIN singer_in_concert ON singer.Singer_ID = singer_in_concert.Singer_ID 
+WHERE Age = (SELECT MIN(Age) FROM singer);",""
+"8","concert_singer","What are all distinct countries where singers above age 20 are from?","completed","false","schema_copilot","2026-10-07T17:37:15.369Z","2026-10-07T17:37:15.902Z","532.571","7.482","523.326","1","gpt-4o-mini","SELECT DISTINCT Country 
+FROM singer 
+WHERE Age > 20;",""
+"9","concert_singer","What are  the different countries with singers above age 20?","completed","false","schema_copilot","2026-10-07T17:37:15.904Z","2026-10-07T17:37:16.417Z","512.331","5.664","505.32","1","gpt-4o-mini","SELECT DISTINCT Country 
+FROM singer 
+WHERE Age > 20;",""
+"10","concert_singer","Show all countries and the number of singers in each country.","completed","false","schema_copilot","2026-10-12T22:22:55.531Z","2026-10-12T22:22:56.130Z","598.984","4.115","593.647","1","gpt-4o-mini","SELECT Country, COUNT(*) AS Number_of_Singers
+FROM singer
+GROUP BY Country;",""
+"11","concert_singer","How many singers are from each country?","completed","false","schema_copilot","2026-10-12T22:22:56.133Z","2026-10-12T22:22:56.697Z","563.753","3.101","559.587","1","gpt-4o-mini","SELECT Country, COUNT(*) AS Number_of_Singers
+FROM singer
+GROUP BY Country;",""
+"12","concert_singer","List all song names by singers above the average age.","completed","false","schema_copilot","2026-10-12T22:22:56.700Z","2026-10-12T22:22:57.309Z","608.144","4.04","602.498","1","gpt-4o-mini","SELECT Song_Name 
+FROM singer 
+WHERE Age > (SELECT AVG(Age) FROM singer);",""
+"13","concert_singer","What are all the song names by singers who are older than average?","completed","false","schema_copilot","2026-10-12T22:22:57.311Z","2026-10-12T22:22:57.886Z","574.876","5.423","568.314","1","gpt-4o-mini","SELECT Song_Name 
+FROM singer 
+WHERE Age > (SELECT AVG(Age) FROM singer);",""
+"14","concert_singer","Show location and name for all stadiums with a capacity between 5000 and 10000.","completed","false","schema_copilot","2026-10-12T22:22:57.889Z","2026-10-12T22:22:58.437Z","547.647","4.397","541.891","1","gpt-4o-mini","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000;",""
+"15","concert_singer","What are the locations and names of all stations with capacity between 5000 and 10000?","completed","false","schema_copilot","2026-10-12T22:22:58.445Z","2026-10-12T22:22:59.040Z","594.774","9.307","583.201","1","gpt-4o-mini","SELECT Location, Name 
+FROM stadium 
+WHERE Capacity BETWEEN 5000 AND 10000;",""
+"16","concert_singer","What is the maximum capacity and the average of all stadiums ?","completed","false","schema_copilot","2026-10-12T22:22:59.046Z","2026-10-12T22:22:59.616Z","570.054","4.793","564.149","1","gpt-4o-mini","SELECT MAX(Capacity) AS Max_Capacity, AVG(Capacity) AS Average_Capacity FROM stadium;",""
+"17","concert_singer","What is the average and maximum capacities for all stadiums ?","completed","false","schema_copilot","2026-10-12T22:22:59.619Z","2026-10-12T22:23:00.223Z","603.721","4.258","598.378","1","gpt-4o-mini","SELECT AVG(Capacity) AS Average_Capacity, MAX(Capacity) AS Maximum_Capacity FROM stadium;",""
+"18","concert_singer","What is the name and capacity for the stadium with highest average attendance?","completed","false","schema_copilot","2026-10-12T22:23:00.228Z","2026-10-12T22:23:00.804Z","576.605","4.76","570.067","1","gpt-4o-mini","SELECT Name, Capacity 
+FROM stadium 
+WHERE Average = (SELECT MAX(Average) FROM stadium);",""
+"19","concert_singer","What is the name and capacity for the stadium with the highest average attendance?","completed","false","schema_copilot","2026-10-12T22:23:00.808Z","2026-10-12T22:23:01.383Z","575.127","5.505","568.461","1","gpt-4o-mini","SELECT Name, Capacity 
+FROM stadium 
+WHERE Average = (SELECT MAX(Average) FROM stadium);",""
+"20","concert_singer","How many concerts are there in year 2014 or 2015?","completed","false","schema_copilot","2026-10-12T22:23:01.386Z","2026-10-12T22:23:01.984Z","597.623","11.178","583.642","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM concert 
+WHERE Year IN (2014, 2015);",""
+"21","concert_singer","How many concerts occurred in 2014 or 2015?","completed","false","schema_copilot","2026-10-12T22:23:01.987Z","2026-10-12T22:23:02.542Z","554.553","6.191","546.708","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM concert 
+WHERE Year IN (2014, 2015);",""
+"22","concert_singer","Show the stadium name and the number of concerts in each stadium.","completed","false","schema_copilot","2026-10-12T22:23:02.546Z","2026-10-12T22:23:03.251Z","704.666","6.772","696.053","1","gpt-4o-mini","SELECT s.Name, COUNT(c.concert_ID) AS Number_of_Concerts
+FROM stadium s
+LEFT JOIN concert c ON s.Stadium_ID = c.Stadium_ID
+GROUP BY s.Stadium_ID;",""
+"23","concert_singer","For each stadium, how many concerts play there?","completed","false","schema_copilot","2026-10-12T22:23:03.253Z","2026-10-12T22:23:03.865Z","611.809","6.978","603.122","1","gpt-4o-mini","SELECT Stadium_ID, COUNT(concert_ID) AS Concert_Count
+FROM concert
+GROUP BY Stadium_ID;",""
+"24","concert_singer","Show the stadium name and capacity with most number of concerts in year 2014 or after.","completed","false","schema_copilot","2026-10-12T22:23:03.868Z","2026-10-12T22:23:04.701Z","832.55","5.53","825.926","1","gpt-4o-mini","SELECT s.Name, s.Capacity
+FROM stadium s
+JOIN concert c ON s.Stadium_ID = c.Stadium_ID
+WHERE c.Year >= 2014
+GROUP BY s.Stadium_ID
+ORDER BY COUNT(c.concert_ID) DESC
+LIMIT 1;",""
+"25","concert_singer","What is the name and capacity of the stadium with the most concerts after 2013 ?","completed","false","schema_copilot","2026-10-12T22:23:04.710Z","2026-10-12T22:23:05.716Z","1006.725","15.77","989.214","1","gpt-4o-mini","SELECT Name, Capacity 
+FROM stadium 
+WHERE Stadium_ID = (
+    SELECT Stadium_ID 
+    FROM concert 
+    WHERE Year > 2013 
+    GROUP BY Stadium_ID 
+    ORDER BY COUNT(concert_ID) DESC 
+    LIMIT 1
+);",""
+"26","concert_singer","Which year has most number of concerts?","completed","false","schema_copilot","2026-10-12T22:23:05.725Z","2026-10-12T22:23:06.335Z","610.458","6.958","601.513","1","gpt-4o-mini","SELECT Year, COUNT(*) as Concert_Count
+FROM concert
+GROUP BY Year
+ORDER BY Concert_Count DESC
+LIMIT 1;",""
+"27","concert_singer","What is the year that had the most concerts?","completed","false","schema_copilot","2026-10-12T22:23:06.339Z","2026-10-12T22:23:07.370Z","1031.15","7.898","1021.435","1","gpt-4o-mini","SELECT Year, COUNT(*) AS concert_count
+FROM concert
+GROUP BY Year
+ORDER BY concert_count DESC
+LIMIT 1;",""
+"28","concert_singer","Show the stadium names without any concert.","completed","false","schema_copilot","2026-10-12T22:23:07.373Z","2026-10-12T22:23:08.045Z","672.775","7.739","663.607","1","gpt-4o-mini","SELECT Name 
+FROM stadium 
+WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert);",""
+"29","concert_singer","What are the names of the stadiums without any concerts?","completed","false","schema_copilot","2026-10-12T22:23:08.050Z","2026-10-12T22:23:08.618Z","568.039","9.523","556.809","1","gpt-4o-mini","SELECT Name 
+FROM stadium 
+WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert);",""
+"30","concert_singer","Show countries where a singer above age 40 and a singer below 30 are from.","completed","false","schema_copilot","2026-10-12T22:23:08.622Z","2026-10-12T22:23:09.344Z","722.031","4.956","715.81","1","gpt-4o-mini","SELECT DISTINCT s1.Country
+FROM singer s1
+JOIN singer s2 ON s1.concert_ID = s2.concert_ID
+WHERE s1.Age > 40 AND s2.Age < 30;",""
+"31","concert_singer","Show names for all stadiums except for stadiums having a concert in year 2014.","completed","false","schema_copilot","2026-10-12T22:23:09.348Z","2026-10-12T22:23:10.009Z","660.158","6.086","652.64","1","gpt-4o-mini","SELECT Name 
+FROM stadium 
+WHERE Stadium_ID NOT IN (
+    SELECT Stadium_ID 
+    FROM concert 
+    WHERE Year = 2014
+);",""
+"32","concert_singer","What are the names of all stadiums that did not have a concert in 2014?","completed","false","schema_copilot","2026-10-12T22:23:10.015Z","2026-10-12T22:23:10.680Z","665.01","7.394","656.034","1","gpt-4o-mini","SELECT Name 
+FROM stadium 
+WHERE Stadium_ID NOT IN (
+    SELECT Stadium_ID 
+    FROM concert 
+    WHERE Year = 2014
+);",""
+"33","concert_singer","Show the name and theme for all concerts and the number of singers in each concert.","completed","false","schema_copilot","2026-10-12T22:23:10.686Z","2026-10-12T22:23:11.453Z","766.505","16.911","747.555","1","gpt-4o-mini","SELECT c.concert_Name, c.Theme, COUNT(sic.Singer_ID) AS Number_of_Singers
+FROM concert c
+LEFT JOIN singer_in_concert sic ON c.concert_ID = sic.concert_ID
+GROUP BY c.concert_ID;",""
+"34","concert_singer","What are the names , themes , and number of singers for every concert ?","completed","false","schema_copilot","2026-10-12T22:23:11.460Z","2026-10-12T22:23:12.259Z","799.585","11.511","786.541","1","gpt-4o-mini","SELECT c.concert_Name, c.Theme, COUNT(sic.Singer_ID) AS Number_of_Singers
+FROM concert c
+LEFT JOIN singer_in_concert sic ON c.concert_ID = sic.concert_ID
+GROUP BY c.concert_ID;",""
+"35","concert_singer","List singer names and number of concerts for each singer.","completed","false","schema_copilot","2026-10-12T22:23:12.266Z","2026-10-12T22:23:13.007Z","741.048","8.793","730.461","1","gpt-4o-mini","SELECT s.Name, COUNT(sic.concert_ID) AS Number_of_Concerts
+FROM singer s
+LEFT JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID
+GROUP BY s.Singer_ID;",""
+"36","concert_singer","What are the names of the singers and number of concerts for each person?","completed","false","schema_copilot","2026-10-12T22:23:13.013Z","2026-10-12T22:23:13.745Z","731.888","7.803","722.031","1","gpt-4o-mini","SELECT s.Name, COUNT(sic.concert_ID) AS Number_of_Concerts
+FROM singer s
+LEFT JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID
+GROUP BY s.Singer_ID;",""
+"37","concert_singer","List all singer names in concerts in year 2014.","completed","false","schema_copilot","2026-10-12T22:23:13.748Z","2026-10-12T22:23:14.483Z","734.688","7.941","725.314","1","gpt-4o-mini","SELECT DISTINCT s.Name 
+FROM singer s 
+JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID 
+JOIN concert c ON sic.concert_ID = c.concert_ID 
+WHERE c.Year = 2014;",""
+"38","concert_singer","What are the names of the singers who performed in a concert in 2014?","completed","false","schema_copilot","2026-10-12T22:23:14.486Z","2026-10-12T22:23:15.395Z","909.157","7.179","900.155","1","gpt-4o-mini","SELECT DISTINCT s.Name 
+FROM singer s 
+JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID 
+JOIN concert c ON sic.concert_ID = c.concert_ID 
+WHERE c.Year = 2014;",""
+"39","concert_singer","what is the name and nation of the singer who have a song having 'Hey' in its name?","completed","false","schema_copilot","2026-10-12T22:23:15.402Z","2026-10-12T22:23:15.970Z","568.671","7.429","559.534","1","gpt-4o-mini","SELECT Name, Country 
+FROM singer 
+WHERE Song_Name LIKE '%Hey%';",""
+"40","concert_singer","What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?","completed","false","schema_copilot","2026-10-12T22:23:15.975Z","2026-10-12T22:23:16.543Z","568.108","8.208","558.46","1","gpt-4o-mini","SELECT Name, Country 
+FROM singer 
+WHERE Song_Name LIKE '%Hey%';",""
+"41","concert_singer","Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.","completed","false","schema_copilot","2026-10-12T22:23:16.548Z","2026-10-12T22:23:17.460Z","911.581","4.846","905.368","1","gpt-4o-mini","SELECT DISTINCT s.Name, s.Location
+FROM stadium s
+JOIN concert c ON s.Stadium_ID = c.Stadium_ID
+WHERE c.Year IN (2014, 2015)
+GROUP BY s.Stadium_ID
+HAVING COUNT(DISTINCT c.Year) = 2;",""
+"42","concert_singer","What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?","completed","false","schema_copilot","2026-10-12T22:23:17.464Z","2026-10-12T22:23:18.239Z","774.769","4.946","768.464","1","gpt-4o-mini","SELECT DISTINCT s.Name, s.Location
+FROM stadium s
+JOIN concert c ON s.Stadium_ID = c.Stadium_ID
+WHERE c.Year IN (2014, 2015)
+GROUP BY s.Stadium_ID
+HAVING COUNT(DISTINCT c.Year) = 2;",""
+"43","concert_singer","Find the number of concerts happened in the stadium with the highest capacity .","completed","false","schema_copilot","2026-10-12T22:23:18.242Z","2026-10-12T22:23:18.932Z","689.362","9.111","678.985","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM concert 
+WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1);",""
+"44","concert_singer","What are the number of concerts that occurred in the stadium with the largest capacity ?","completed","false","schema_copilot","2026-10-12T22:23:18.936Z","2026-10-12T22:23:19.529Z","593.032","5.15","586.683","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM concert 
+WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1);",""
+"45","pets_1","Find the number of pets whose weight is heavier than 10.","completed","false","schema_copilot","2026-10-12T22:23:19.533Z","2026-10-12T22:23:20.081Z","547.854","4.319","541.788","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Pets 
+WHERE weight > 10;",""
+"46","pets_1","How many pets have a greater weight than 10?","completed","false","schema_copilot","2026-10-12T22:23:20.086Z","2026-10-12T22:23:20.741Z","655.141","6.26","647.185","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Pets 
+WHERE weight > 10;",""
+"47","pets_1","Find the weight of the youngest dog.","completed","false","schema_copilot","2026-10-12T22:23:20.749Z","2026-10-12T22:23:21.510Z","761.556","7.685","749.793","1","gpt-4o-mini","SELECT weight 
+FROM Pets 
+WHERE PetType = 'dog' 
+ORDER BY pet_age ASC 
+LIMIT 1;",""
+"48","pets_1","How much does the youngest dog weigh?","completed","false","schema_copilot","2026-10-12T22:23:21.514Z","2026-10-12T22:23:22.092Z","577.784","3.692","572.685","1","gpt-4o-mini","SELECT weight 
+FROM Pets 
+WHERE PetType = 'Dog' 
+ORDER BY pet_age ASC 
+LIMIT 1;",""
+"49","pets_1","Find the maximum weight for each type of pet. List the maximum weight and pet type.","completed","false","schema_copilot","2026-10-12T22:23:22.096Z","2026-10-12T22:23:22.655Z","559.513","4.269","553.901","1","gpt-4o-mini","SELECT PetType, MAX(weight) AS MaxWeight
+FROM Pets
+GROUP BY PetType;",""
+"50","pets_1","List the maximum weight and type for each type of pet.","completed","false","schema_copilot","2026-10-12T22:23:22.661Z","2026-10-12T22:23:23.231Z","569.828","6.104","562.065","1","gpt-4o-mini","SELECT PetType, MAX(weight) AS MaxWeight
+FROM Pets
+GROUP BY PetType;",""
+"51","pets_1","Find number of pets owned by students who are older than 20.","completed","false","schema_copilot","2026-10-12T22:23:23.234Z","2026-10-12T22:23:23.817Z","583.492","4.664","577.524","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Has_Pet 
+WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20);",""
+"52","pets_1","How many pets are owned by students that have an age greater than 20?","completed","false","schema_copilot","2026-10-12T22:23:23.821Z","2026-10-12T22:23:24.522Z","700.203","5.603","692.638","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Has_Pet 
+WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20);",""
+"53","pets_1","Find the number of dog pets that are raised by female students (with sex F).","completed","false","schema_copilot","2026-10-12T22:23:24.527Z","2026-10-12T22:23:25.532Z","1005.277","5.187","998.654","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Has_Pet hp 
+JOIN Pets p ON hp.PetID = p.PetID 
+JOIN Student s ON hp.StuID = s.StuID 
+WHERE p.PetType = 'dog' AND s.Sex = 'F';",""
+"54","pets_1","How many dog pets are raised by female students?","completed","false","schema_copilot","2026-10-12T22:23:25.570Z","2026-10-12T22:23:26.419Z","848.964","8.4","838.107","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM Has_Pet HP 
+JOIN Pets P ON HP.PetID = P.PetID 
+JOIN Student S ON HP.StuID = S.StuID 
+WHERE P.PetType = 'Dog' AND S.Sex = 'Female';",""
+"55","pets_1","Find the number of distinct type of pets.","completed","false","schema_copilot","2026-10-12T22:23:26.428Z","2026-10-12T22:23:26.951Z","522.699","7.221","513.545","1","gpt-4o-mini","SELECT COUNT(DISTINCT PetType) FROM Pets;",""
+"56","pets_1","How many different types of pet are there?","completed","false","schema_copilot","2026-10-12T22:23:26.963Z","2026-10-12T22:23:27.567Z","603.538","11.351","587.926","1","gpt-4o-mini","SELECT COUNT(DISTINCT PetType) AS DifferentPetTypes FROM Pets;",""
+"57","pets_1","Find the first name of students who have cat or dog pet.","completed","false","schema_copilot","2026-10-12T22:23:27.572Z","2026-10-12T22:23:28.336Z","763.88","8.601","753.298","1","gpt-4o-mini","SELECT Fname 
+FROM Student 
+WHERE StuID IN (
+    SELECT StuID 
+    FROM Has_Pet 
+    JOIN Pets ON Has_Pet.PetID = Pets.PetID 
+    WHERE PetType IN ('cat', 'dog')
+);",""
+"58","pets_1","What are the first names of every student who has a cat or dog as a pet?","completed","false","schema_copilot","2026-10-12T22:23:28.340Z","2026-10-12T22:23:29.098Z","758.312","6.661","750.253","1","gpt-4o-mini","SELECT Fname 
+FROM Student 
+WHERE StuID IN (
+    SELECT StuID 
+    FROM Has_Pet 
+    WHERE PetID IN (
+        SELECT PetID 
+        FROM Pets 
+        WHERE PetType IN ('cat', 'dog')
+    )
+);",""
+"59","pets_1","Find the first name of students who have both cat and dog pets .","completed","false","schema_copilot","2026-10-12T22:23:29.103Z","2026-10-12T22:23:30.104Z","1000.852","6.327","992.625","1","gpt-4o-mini","SELECT S.Fname 
+FROM Student S 
+JOIN Has_Pet HP1 ON S.StuID = HP1.StuID 
+JOIN Pets P1 ON HP1.PetID = P1.PetID AND P1.PetType = 'cat' 
+JOIN Has_Pet HP2 ON S.StuID = HP2.StuID 
+JOIN Pets P2 ON HP2.PetID = P2.PetID AND P2.PetType = 'dog';",""
+"60","pets_1","What are the students' first names who have both cats and dogs as pets?","completed","false","schema_copilot","2026-10-12T22:23:30.109Z","2026-10-12T22:23:31.024Z","914.792","5.667","907.815","1","gpt-4o-mini","SELECT DISTINCT s.Fname 
+FROM Student s
+JOIN Has_Pet hp ON s.StuID = hp.StuID
+JOIN Pets p ON hp.PetID = p.PetID
+WHERE p.PetType IN ('cat', 'dog')
+GROUP BY s.StuID
+HAVING COUNT(DISTINCT p.PetType) = 2;",""
+"61","pets_1","Find the major and age of students who do not have a cat pet.","completed","false","schema_copilot","2026-10-12T22:23:31.028Z","2026-10-12T22:23:32.221Z","1193.022","6.763","1184.706","1","gpt-4o-mini","SELECT S.Major, S.Age 
+FROM Student S 
+LEFT JOIN Has_Pet HP ON S.StuID = HP.StuID 
+LEFT JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType != 'cat' OR P.PetType IS NULL;",""
+"62","pets_1","What major is every student who does not own a cat as a pet, and also how old are they?","completed","false","schema_copilot","2026-10-12T22:23:32.224Z","2026-10-12T22:23:33.084Z","859.92","6.309","851.889","1","gpt-4o-mini","SELECT S.Major, S.Age 
+FROM Student S 
+LEFT JOIN Has_Pet HP ON S.StuID = HP.StuID 
+LEFT JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType != 'cat' OR P.PetType IS NULL;",""
+"63","pets_1","Find the id of students who do not have a cat pet.","completed","false","schema_copilot","2026-10-12T22:23:33.089Z","2026-10-12T22:23:33.852Z","762.24","6.05","754.707","1","gpt-4o-mini","SELECT StuID 
+FROM Student 
+WHERE StuID NOT IN (
+    SELECT StuID 
+    FROM Has_Pet 
+    JOIN Pets ON Has_Pet.PetID = Pets.PetID 
+    WHERE Pets.PetType = 'cat'
+);",""
+"64","pets_1","What are the ids of the students who do not own cats as pets?","completed","false","schema_copilot","2026-10-12T22:23:33.856Z","2026-10-12T22:23:34.687Z","831.393","5.6","823.979","1","gpt-4o-mini","SELECT StuID 
+FROM Student 
+WHERE StuID NOT IN (
+    SELECT StuID 
+    FROM Has_Pet 
+    JOIN Pets ON Has_Pet.PetID = Pets.PetID 
+    WHERE Pets.PetType = 'cat'
+);",""
+"65","pets_1","Find the first name and age of students who have a dog but do not have a cat as a pet.","completed","false","schema_copilot","2026-10-12T22:23:34.691Z","2026-10-12T22:23:35.760Z","1068.481","10.714","1056.073","1","gpt-4o-mini","SELECT S.Fname, S.Age 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType = 'dog' 
+AND S.StuID NOT IN (
+    SELECT HP2.StuID 
+    FROM Has_Pet HP2 
+    JOIN Pets P2 ON HP2.PetID = P2.PetID 
+    WHERE P2.PetType = 'cat'
+);",""
+"66","pets_1","What is the first name of every student who has a dog but does not have a cat?","completed","false","schema_copilot","2026-10-12T22:23:35.764Z","2026-10-12T22:23:36.808Z","1043.74","16.276","1025.176","1","gpt-4o-mini","SELECT S.Fname
+FROM Student S
+JOIN Has_Pet HP ON S.StuID = HP.StuID
+JOIN Pets P ON HP.PetID = P.PetID
+WHERE P.PetType = 'dog' AND S.StuID NOT IN (
+    SELECT HP2.StuID
+    FROM Has_Pet HP2
+    JOIN Pets P2 ON HP2.PetID = P2.PetID
+    WHERE P2.PetType = 'cat'
+);",""
+"67","pets_1","Find the type and weight of the youngest pet.","completed","false","schema_copilot","2026-10-12T22:23:36.812Z","2026-10-12T22:23:37.509Z","696.806","5.508","689.673","1","gpt-4o-mini","SELECT PetType, weight 
+FROM Pets 
+WHERE PetID = (SELECT PetID FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student) ORDER BY pet_age ASC LIMIT 1);",""
+"68","pets_1","What type of pet is the youngest animal, and how much does it weigh?","completed","false","schema_copilot","2026-10-12T22:23:37.513Z","2026-10-12T22:23:38.084Z","570.869","5.42","563.83","1","gpt-4o-mini","SELECT PetType, weight 
+FROM Pets 
+WHERE pet_age = (SELECT MIN(pet_age) FROM Pets);",""
+"69","pets_1","Find the id and weight of all pets whose age is older than 1.","completed","false","schema_copilot","2026-10-12T22:23:38.089Z","2026-10-12T22:23:38.625Z","535.881","5.628","527.076","1","gpt-4o-mini","SELECT PetID, weight FROM Pets WHERE pet_age > 1;",""
+"70","pets_1","What is the id and weight of every pet who is older than 1?","completed","false","schema_copilot","2026-10-12T22:23:38.629Z","2026-10-12T22:23:39.202Z","572.841","3.363","568.471","1","gpt-4o-mini","SELECT PetID, weight 
+FROM Pets 
+WHERE pet_age > 1;",""
+"71","pets_1","Find the average and maximum age for each type of pet.","completed","false","schema_copilot","2026-10-12T22:23:39.206Z","2026-10-12T22:23:40.050Z","843.76","7.17","834.42","1","gpt-4o-mini","SELECT P.PetType, AVG(P.pet_age) AS AverageAge, MAX(P.pet_age) AS MaxAge
+FROM Pets P
+JOIN Has_Pet HP ON P.PetID = HP.PetID
+JOIN Student S ON HP.StuID = S.StuID
+GROUP BY P.PetType;",""
+"72","pets_1","What is the average and maximum age for each pet type?","completed","false","schema_copilot","2026-10-12T22:23:40.053Z","2026-10-12T22:23:40.661Z","608.055","7.97","598.502","1","gpt-4o-mini","SELECT PetType, AVG(pet_age) AS Average_Age, MAX(pet_age) AS Maximum_Age
+FROM Pets
+GROUP BY PetType;",""
+"73","pets_1","Find the average weight for each pet type.","completed","false","schema_copilot","2026-10-12T22:23:40.665Z","2026-10-12T22:23:41.333Z","667.474","5.299","660.818","1","gpt-4o-mini","SELECT PetType, AVG(weight) AS average_weight
+FROM Pets
+GROUP BY PetType;",""
+"74","pets_1","What is the average weight for each type of pet?","completed","false","schema_copilot","2026-10-12T22:23:41.343Z","2026-10-12T22:23:42.049Z","705.778","10.531","691.496","1","gpt-4o-mini","SELECT PetType, AVG(weight) AS average_weight
+FROM Pets
+GROUP BY PetType;",""
+"75","pets_1","Find the first name and age of students who have a pet.","completed","false","schema_copilot","2026-10-12T22:23:42.054Z","2026-10-12T22:23:42.818Z","763.367","8.139","753.177","1","gpt-4o-mini","SELECT Fname, Age 
+FROM Student 
+WHERE StuID IN (SELECT StuID FROM Has_Pet);",""
+"76","pets_1","What are the different first names and ages of the students who do have pets?","completed","false","schema_copilot","2026-10-12T22:23:42.823Z","2026-10-12T22:23:43.384Z","561.023","5.045","554.66","1","gpt-4o-mini","SELECT DISTINCT Fname, Age 
+FROM Student 
+WHERE StuID IN (SELECT StuID FROM Has_Pet);",""
+"77","pets_1","Find the id of the pet owned by student whose last name is ‘Smith’.","completed","false","schema_copilot","2026-10-12T22:23:43.388Z","2026-10-12T22:23:43.981Z","592.846","4.031","587.142","1","gpt-4o-mini","SELECT PetID 
+FROM Has_Pet 
+WHERE StuID IN (SELECT StuID FROM Student WHERE LName = 'Smith');",""
+"78","pets_1","What is the id of the pet owned by the student whose last name is 'Smith'?","completed","false","schema_copilot","2026-10-12T22:23:43.984Z","2026-10-12T22:23:44.634Z","649.732","3.171","645.521","1","gpt-4o-mini","SELECT h.PetID 
+FROM Student s 
+JOIN Has_Pet h ON s.StuID = h.StuID 
+WHERE s.LName = 'Smith';",""
+"79","pets_1","Find the number of pets for each student who has any pet and student id.","completed","false","schema_copilot","2026-10-12T22:23:44.638Z","2026-10-12T22:23:45.349Z","710.936","4.632","704.972","1","gpt-4o-mini","SELECT Student.StuID, COUNT(Has_Pet.PetID) AS NumberOfPets
+FROM Student
+JOIN Has_Pet ON Student.StuID = Has_Pet.StuID
+GROUP BY Student.StuID;",""
+"80","pets_1","For students who have pets , how many pets does each student have ? list their ids instead of names .","completed","false","schema_copilot","2026-10-12T22:23:45.351Z","2026-10-12T22:23:46.228Z","876.61","4.857","870.524","1","gpt-4o-mini","SELECT h.StuID, COUNT(h.PetID) AS PetCount
+FROM Has_Pet h
+GROUP BY h.StuID;",""
+"81","pets_1","Find the first name and gender of student who have more than one pet.","completed","false","schema_copilot","2026-10-12T22:23:46.235Z","2026-10-12T22:23:46.958Z","723.338","5.162","716.857","1","gpt-4o-mini","SELECT S.Fname, S.Sex 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+GROUP BY S.StuID 
+HAVING COUNT(HP.PetID) > 1;",""
+"82","pets_1","What is the first name and gender of the all the students who have more than one pet?","completed","false","schema_copilot","2026-10-12T22:23:46.963Z","2026-10-12T22:23:47.705Z","742.095","5.108","735.533","1","gpt-4o-mini","SELECT S.Fname, S.Sex 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+GROUP BY S.StuID 
+HAVING COUNT(HP.PetID) > 1;",""
+"83","pets_1","Find the last name of the student who has a cat that is age 3.","completed","false","schema_copilot","2026-10-12T22:23:47.708Z","2026-10-12T22:23:48.504Z","795.914","5.803","788.72","1","gpt-4o-mini","SELECT Student.LName 
+FROM Student 
+JOIN Has_Pet ON Student.StuID = Has_Pet.StuID 
+JOIN Pets ON Has_Pet.PetID = Pets.PetID 
+WHERE Pets.PetType = 'cat' AND Pets.pet_age = 3;",""
+"84","pets_1","What is the last name of the student who has a cat that is 3 years old?","completed","false","schema_copilot","2026-10-12T22:23:48.510Z","2026-10-12T22:23:49.424Z","914.268","4.947","907.908","1","gpt-4o-mini","SELECT S.LName 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType = 'cat' AND P.pet_age = 3;",""
+"85","pets_1","Find the average age of students who do not have any pet .","completed","false","schema_copilot","2026-10-12T22:23:49.428Z","2026-10-12T22:23:50.057Z","629.03","3.654","624.235","1","gpt-4o-mini","SELECT AVG(Age) 
+FROM Student 
+WHERE StuID NOT IN (SELECT StuID FROM Has_Pet);",""
+"86","pets_1","What is the average age for all students who do not own any pets ?","completed","false","schema_copilot","2026-10-12T22:23:50.062Z","2026-10-12T22:23:50.778Z","716.557","3.042","711.946","1","gpt-4o-mini","SELECT AVG(Age) 
+FROM Student 
+WHERE StuID NOT IN (SELECT StuID FROM Has_Pet);",""
+"87","car_1","How many continents are there?","completed","false","schema_copilot","2026-10-12T22:23:50.792Z","2026-10-12T22:23:51.447Z","654.132","9.942","634.94","1","gpt-4o-mini","SELECT COUNT(*) FROM continents;",""
+"88","car_1","What is the number of continents?","completed","false","schema_copilot","2026-10-12T22:23:51.450Z","2026-10-12T22:23:52.057Z","606.844","9.736","595.623","1","gpt-4o-mini","SELECT COUNT(*) FROM continents;",""
+"89","car_1","How many countries does each continent have? List the continent id, continent name and the number of countries.","completed","false","schema_copilot","2026-10-12T22:23:52.061Z","2026-10-12T22:23:52.851Z","790.202","7.505","781.656","1","gpt-4o-mini","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS CountryCount
+FROM continents c
+LEFT JOIN countries co ON c.ContId = co.Continent
+GROUP BY c.ContId, c.Continent;",""
+"90","car_1","For each continent, list its id, name, and how many countries it has?","completed","false","schema_copilot","2026-10-12T22:23:52.855Z","2026-10-12T22:23:53.749Z","893.976","11.533","881.517","1","gpt-4o-mini","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS CountryCount
+FROM continents c
+LEFT JOIN countries co ON c.ContId = co.Continent
+GROUP BY c.ContId, c.Continent;",""
+"91","car_1","How many countries are listed?","completed","false","schema_copilot","2026-10-12T22:23:53.753Z","2026-10-12T22:23:54.215Z","462.081","8.24","452.558","1","gpt-4o-mini","SELECT COUNT(*) FROM countries;",""
+"92","car_1","How many countries exist?","completed","false","schema_copilot","2026-10-12T22:23:54.217Z","2026-10-12T22:23:54.738Z","520.97","12.746","507.098","1","gpt-4o-mini","SELECT COUNT(*) FROM countries;",""
+"93","car_1","How many models does each car maker produce? List maker full name, id and the number.","completed","false","schema_copilot","2026-10-12T22:23:54.742Z","2026-10-12T22:23:55.468Z","726.443","8.738","716.306","1","gpt-4o-mini","SELECT cm.FullName, cm.Id, COUNT(ml.ModelId) AS ModelCount
+FROM car_makers cm
+JOIN model_list ml ON cm.Maker = ml.Maker
+GROUP BY cm.FullName, cm.Id;",""
+"94","car_1","What is the full name of each car maker, along with its id and how many models it produces?","completed","false","schema_copilot","2026-10-12T22:23:55.471Z","2026-10-12T22:23:56.324Z","853.254","10.255","841.67","1","gpt-4o-mini","SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS ModelCount
+FROM car_makers cm
+LEFT JOIN model_list ml ON cm.Maker = ml.Maker
+GROUP BY cm.Id, cm.FullName;",""
+"95","car_1","Which model of the car has the minimum horsepower?","completed","false","schema_copilot","2026-10-12T22:23:56.328Z","2026-10-12T22:23:57.168Z","839.545","8.995","829.09","1","gpt-4o-mini","SELECT Model 
+FROM cars_data 
+JOIN model_list ON cars_data.Id = model_list.ModelId 
+JOIN car_names ON model_list.Maker = car_names.Make 
+JOIN car_makers ON car_names.MakeId = car_makers.Id 
+ORDER BY Horsepower ASC 
+LIMIT 1;",""
+"96","car_1","What is the model of the car with the smallest amount of horsepower?","completed","false","schema_copilot","2026-10-12T22:23:57.172Z","2026-10-12T22:23:57.919Z","746.644","9.102","736.075","1","gpt-4o-mini","SELECT Model FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+ORDER BY Horsepower ASC LIMIT 1;",""
+"97","car_1","Find the model of the car whose weight is below the average weight.","completed","false","schema_copilot","2026-10-12T22:23:57.922Z","2026-10-12T22:23:58.637Z","715.449","11.111","702.986","1","gpt-4o-mini","SELECT ml.Model 
+FROM cars_data cd 
+JOIN car_names cn ON cd.Id = cn.MakeId 
+JOIN model_list ml ON cn.Model = ml.Model 
+WHERE cd.Weight < (SELECT AVG(Weight) FROM cars_data);",""
+"98","car_1","What is the model for the car with a weight smaller than the average?","completed","false","schema_copilot","2026-10-12T22:23:58.641Z","2026-10-12T22:23:59.462Z","821.229","8.129","811.901","1","gpt-4o-mini","SELECT model_list.Model 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+WHERE cars_data.Weight < (SELECT AVG(Weight) FROM cars_data);",""
+"99","car_1","Find the name of the makers that produced some cars in the year of 1970?","completed","false","schema_copilot","2026-10-12T22:23:59.466Z","2026-10-12T22:24:00.182Z","716.027","9.881","704.737","1","gpt-4o-mini","SELECT DISTINCT Maker 
+FROM car_makers 
+JOIN cars_data ON car_makers.Country = cars_data.Id 
+WHERE cars_data.Year = 1970;",""
+"100","car_1","What is the name of the different car makers who produced a car in 1970?","completed","false","schema_copilot","2026-10-12T22:24:00.186Z","2026-10-12T22:24:00.981Z","795.224","9.029","784.944","1","gpt-4o-mini","SELECT DISTINCT cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.ModelId = cn.Model 
+JOIN cars_data cd ON cn.MakeId = cd.Id 
+WHERE cd.Year = 1970;",""
+"101","car_1","Find the make and production time of the cars that were produced in the earliest year?","completed","false","schema_copilot","2026-10-12T22:24:00.991Z","2026-10-12T22:24:01.685Z","693.807","10.757","679.091","1","gpt-4o-mini","SELECT car_names.Make, cars_data.Year 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+WHERE cars_data.Year = (SELECT MIN(Year) FROM cars_data);",""
+"102","car_1","What is the maker of the carr produced in the earliest year and what year was it?","completed","false","schema_copilot","2026-10-12T22:24:01.690Z","2026-10-12T22:24:02.461Z","770.167","10.15","758.64","1","gpt-4o-mini","SELECT cm.Maker, cd.Year 
+FROM cars_data cd 
+JOIN model_list ml ON cd.Id = ml.ModelId 
+JOIN car_names cn ON ml.Model = cn.Model 
+JOIN car_makers cm ON cn.MakeId = cm.Id 
+ORDER BY cd.Year ASC 
+LIMIT 1;",""
+"103","car_1","Which distinct car models are the produced after 1980?","completed","false","schema_copilot","2026-10-12T22:24:02.465Z","2026-10-12T22:24:03.121Z","655.765","6.974","647.333","1","gpt-4o-mini","SELECT DISTINCT Model 
+FROM model_list 
+JOIN cars_data ON model_list.ModelId = cars_data.Id 
+WHERE cars_data.Year > 1980;",""
+"104","car_1","What are the different models for the cards produced after 1980?","completed","false","schema_copilot","2026-10-12T22:24:03.127Z","2026-10-12T22:24:03.860Z","733.003","8.687","723.433","1","gpt-4o-mini","SELECT DISTINCT ml.Model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Maker 
+JOIN cars_data cd ON cd.Id = cm.Id 
+WHERE cd.Year > 1980;",""
+"105","car_1","How many car makers are there in each continents? List the continent name and the count.","completed","false","schema_copilot","2026-10-12T22:24:03.865Z","2026-10-12T22:24:04.626Z","760.61","7.996","751.213","1","gpt-4o-mini","SELECT c.Continent, COUNT(DISTINCT cm.Maker) AS MakerCount
+FROM continents c
+JOIN countries co ON c.ContId = co.Continent
+JOIN car_makers cm ON co.CountryName = cm.Country
+GROUP BY c.Continent;",""
+"106","car_1","What is the name of each continent and how many car makers are there in each one?","completed","false","schema_copilot","2026-10-12T22:24:04.630Z","2026-10-12T22:24:05.478Z","847.91","6.864","840.07","1","gpt-4o-mini","SELECT c.Continent, COUNT(DISTINCT cm.Maker) AS CarMakersCount
+FROM continents c
+JOIN countries co ON c.ContId = co.Continent
+JOIN car_makers cm ON co.CountryName = cm.Country
+GROUP BY c.Continent;",""
+"107","car_1","Which of the countries has the most car makers? List the country name.","completed","false","schema_copilot","2026-10-12T22:24:05.483Z","2026-10-12T22:24:06.171Z","687.707","8.706","677.487","1","gpt-4o-mini","SELECT CountryName 
+FROM countries 
+WHERE CountryId IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    ORDER BY COUNT(*) DESC 
+    LIMIT 1
+);",""
+"108","car_1","What is the name of the country with the most car makers?","completed","false","schema_copilot","2026-10-12T22:24:06.175Z","2026-10-12T22:24:06.790Z","615.315","9.855","604.038","1","gpt-4o-mini","SELECT Country 
+FROM car_makers 
+GROUP BY Country 
+ORDER BY COUNT(*) DESC 
+LIMIT 1;",""
+"109","car_1","How many car models are produced by each maker ? Only list the count and the maker full name .","completed","false","schema_copilot","2026-10-12T22:24:06.797Z","2026-10-12T22:24:07.510Z","712.051","13.582","696.237","1","gpt-4o-mini","SELECT COUNT(m.Model) AS ModelCount, cm.FullName 
+FROM model_list m 
+JOIN car_makers cm ON m.Maker = cm.Maker 
+GROUP BY cm.FullName;",""
+"110","car_1","What is the number of car models that are produced by each maker and what is the id and full name of each maker?","completed","false","schema_copilot","2026-10-12T22:24:07.513Z","2026-10-12T22:24:08.251Z","737.918","7.532","728.796","1","gpt-4o-mini","SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS NumberOfModels
+FROM car_makers cm
+LEFT JOIN model_list ml ON cm.Maker = ml.Maker
+GROUP BY cm.Id, cm.FullName;",""
+"111","car_1","What is the accelerate of the car make amc hornet sportabout (sw)?","completed","false","schema_copilot","2026-10-12T22:24:08.257Z","2026-10-12T22:24:09.162Z","904.337","12.093","889.062","1","gpt-4o-mini","SELECT Accelerate 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+WHERE car_makers.FullName = 'AMC Hornet Sportabout';",""
+"112","car_1","How much does the car accelerate that makes amc hornet sportabout (sw)?","completed","false","schema_copilot","2026-10-12T22:24:09.166Z","2026-10-12T22:24:10.125Z","958.96","7.476","950.063","1","gpt-4o-mini","SELECT Accelerate 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+WHERE car_makers.FullName = 'AMC Hornet Sportabout';",""
+"113","car_1","How many car makers are there in france?","completed","false","schema_copilot","2026-10-12T22:24:10.129Z","2026-10-12T22:24:11.088Z","959.377","8.536","949.863","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM car_makers 
+WHERE Country = 'France';",""
+"114","car_1","What is the number of makers of care in France?","completed","false","schema_copilot","2026-10-12T22:24:11.092Z","2026-10-12T22:24:11.729Z","637.067","8.288","627.412","1","gpt-4o-mini","SELECT COUNT(DISTINCT cm.Id) 
+FROM car_makers cm 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'France';",""
+"115","car_1","How many car models are produced in the usa?","completed","false","schema_copilot","2026-10-12T22:24:11.735Z","2026-10-12T22:24:12.511Z","775.451","10.516","763.598","1","gpt-4o-mini","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Maker 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'United States';",""
+"116","car_1","What is the count of the car models produced in the United States?","completed","false","schema_copilot","2026-10-12T22:24:12.517Z","2026-10-12T22:24:13.151Z","633.974","8.825","624.199","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM model_list 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+WHERE car_makers.Country = 'United States';",""
+"117","car_1","What is the average miles per gallon(mpg) of the cars with 4 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:13.154Z","2026-10-12T22:24:13.772Z","617.091","9.203","606.341","1","gpt-4o-mini","SELECT AVG(MPG) AS AverageMPG
+FROM cars_data
+WHERE Cylinders = 4;",""
+"118","car_1","What is the average miles per gallon of all the cards with 4 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:13.776Z","2026-10-12T22:24:14.331Z","555.175","8.691","545.153","1","gpt-4o-mini","SELECT AVG(MPG) AS AverageMPG 
+FROM cars_data 
+WHERE Cylinders = 4;",""
+"119","car_1","What is the smallest weight of the car produced with 8 cylinders on 1974 ?","completed","false","schema_copilot","2026-10-12T22:24:14.336Z","2026-10-12T22:24:15.112Z","776.214","8.842","765.827","1","gpt-4o-mini","SELECT MIN(Weight) 
+FROM cars_data 
+JOIN car_makers ON cars_data.Id = car_makers.Id 
+JOIN model_list ON car_makers.Id = model_list.Maker 
+WHERE Cylinders = 8 AND Year = 1974;",""
+"120","car_1","What is the minimum weight of the car with 8 cylinders produced in 1974 ?","completed","false","schema_copilot","2026-10-12T22:24:15.117Z","2026-10-12T22:24:15.736Z","619.64","13.012","605.123","1","gpt-4o-mini","SELECT MIN(Weight) 
+FROM cars_data 
+WHERE Cylinders = 8 AND Year = 1974;",""
+"121","car_1","What are all the makers and models?","completed","false","schema_copilot","2026-10-12T22:24:15.744Z","2026-10-12T22:24:16.343Z","599.68","13.741","584.724","1","gpt-4o-mini","SELECT Maker, Model FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker;",""
+"122","car_1","What are the makers and models?","completed","false","schema_copilot","2026-10-12T22:24:16.347Z","2026-10-12T22:24:17.031Z","684.043","8.831","673.662","1","gpt-4o-mini","SELECT cm.Maker, ml.Model 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker;",""
+"123","car_1","What are the countries having at least one car maker? List name and id.","completed","false","schema_copilot","2026-10-12T22:24:17.036Z","2026-10-12T22:24:17.637Z","600.683","12.257","587.261","1","gpt-4o-mini","SELECT DISTINCT c.CountryId, c.CountryName
+FROM countries c
+JOIN car_makers cm ON c.CountryName = cm.Country;",""
+"124","car_1","What are the names and ids of all countries with at least one car maker?","completed","false","schema_copilot","2026-10-12T22:24:17.643Z","2026-10-12T22:24:18.277Z","634.428","7.351","625.654","1","gpt-4o-mini","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+JOIN car_makers cm ON c.CountryName = cm.Country;",""
+"125","car_1","What is the number of the cars with horsepower more than 150?","completed","false","schema_copilot","2026-10-12T22:24:18.281Z","2026-10-12T22:24:18.827Z","545.796","8.58","536.151","1","gpt-4o-mini","SELECT COUNT(*) FROM cars_data WHERE Horsepower > 150;",""
+"126","car_1","What is the number of cars with a horsepower greater than 150?","completed","false","schema_copilot","2026-10-12T22:24:18.832Z","2026-10-12T22:24:19.409Z","576.699","13.956","561.128","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Horsepower > 150;",""
+"127","car_1","What is the average weight of cars each year?","completed","false","schema_copilot","2026-10-12T22:24:19.413Z","2026-10-12T22:24:19.976Z","562.146","11.323","549.192","1","gpt-4o-mini","SELECT Year, AVG(Weight) AS AverageWeight
+FROM cars_data
+GROUP BY Year;",""
+"128","car_1","What is the average weight and year for each year?","completed","false","schema_copilot","2026-10-12T22:24:19.983Z","2026-10-12T22:24:20.652Z","668.754","18.2","648.052","1","gpt-4o-mini","SELECT Year, AVG(Weight) AS AverageWeight, AVG(Year) AS AverageYear
+FROM cars_data
+GROUP BY Year;",""
+"129","car_1","Which countries in europe have at least 3 car manufacturers?","completed","false","schema_copilot","2026-10-12T22:24:20.656Z","2026-10-12T22:24:21.531Z","875.025","9.111","864.666","1","gpt-4o-mini","SELECT c.CountryName 
+FROM countries c 
+JOIN car_makers cm ON c.CountryId = cm.Country 
+WHERE c.Continent = 'Europe' 
+GROUP BY c.CountryName 
+HAVING COUNT(cm.Id) >= 3;",""
+"130","car_1","What are the names of all European countries with at least 3 manufacturers?","completed","false","schema_copilot","2026-10-12T22:24:21.535Z","2026-10-12T22:24:22.288Z","753.057","12.043","739.891","1","gpt-4o-mini","SELECT c.CountryName 
+FROM countries c
+JOIN car_makers cm ON c.CountryId = cm.Country
+WHERE c.Continent = 'Europe'
+GROUP BY c.CountryName
+HAVING COUNT(cm.Id) >= 3;",""
+"131","car_1","What is the maximum horsepower and the make of the car models with 3 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:22.293Z","2026-10-12T22:24:23.248Z","955.082","9.05","944.512","1","gpt-4o-mini","SELECT MAX(cd.Horsepower) AS MaxHorsepower, cm.Make
+FROM cars_data cd
+JOIN model_list ml ON cd.Id = ml.ModelId
+JOIN car_names cn ON ml.Maker = cn.Model
+JOIN car_makers cm ON cn.MakeId = cm.Id
+WHERE cd.Cylinders = 3;",""
+"132","car_1","What is the largest amount of horsepower for the models with 3 cylinders and what make is it?","completed","false","schema_copilot","2026-10-12T22:24:23.253Z","2026-10-12T22:24:24.031Z","778.136","10.714","766.185","1","gpt-4o-mini","SELECT MAX(cars_data.Horsepower) AS MaxHorsepower, car_names.Make
+FROM cars_data
+JOIN model_list ON cars_data.Id = model_list.ModelId
+JOIN car_names ON model_list.Maker = car_names.Model
+WHERE cars_data.Cylinders = 3;",""
+"133","car_1","Which model saves the most gasoline? That is to say, have the maximum miles per gallon.","completed","false","schema_copilot","2026-10-12T22:24:24.035Z","2026-10-12T22:24:24.612Z","577.319","8.622","567.415","1","gpt-4o-mini","SELECT Model, MPG 
+FROM cars_data 
+ORDER BY MPG DESC 
+LIMIT 1;",""
+"134","car_1","What is the car model with the highest mpg ?","completed","false","schema_copilot","2026-10-12T22:24:24.615Z","2026-10-12T22:24:25.311Z","695.94","9.391","685.141","1","gpt-4o-mini","SELECT Model 
+FROM cars_data 
+JOIN model_list ON cars_data.Id = model_list.ModelId 
+ORDER BY MPG DESC 
+LIMIT 1;",""
+"135","car_1","What is the average horsepower of the cars before 1980?","completed","false","schema_copilot","2026-10-12T22:24:25.316Z","2026-10-12T22:24:25.910Z","594.572","9.845","583.326","1","gpt-4o-mini","SELECT AVG(Horsepower) 
+FROM cars_data 
+WHERE Year < 1980;",""
+"136","car_1","What is the average horsepower for all cars produced before 1980 ?","completed","false","schema_copilot","2026-10-12T22:24:25.917Z","2026-10-12T22:24:26.628Z","710.744","13.714","695.576","1","gpt-4o-mini","SELECT AVG(Horsepower) 
+FROM cars_data 
+WHERE Year < 1980;",""
+"137","car_1","What is the average edispl of the cars of model volvo?","completed","false","schema_copilot","2026-10-12T22:24:26.633Z","2026-10-12T22:24:27.405Z","771.868","8.695","761.708","1","gpt-4o-mini","SELECT AVG(Edispl) 
+FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+WHERE car_makers.FullName = 'Volvo';",""
+"138","car_1","What is the average edispl for all volvos?","completed","false","schema_copilot","2026-10-12T22:24:27.409Z","2026-10-12T22:24:28.245Z","835.911","10.647","824.248","1","gpt-4o-mini","SELECT AVG(Edispl) FROM cars_data 
+JOIN car_names ON cars_data.Id = car_names.MakeId 
+JOIN model_list ON car_names.Model = model_list.Model 
+JOIN car_makers ON model_list.Maker = car_makers.Maker 
+WHERE car_makers.FullName LIKE 'Volvo%';",""
+"139","car_1","What is the maximum accelerate for different number of cylinders?","completed","false","schema_copilot","2026-10-12T22:24:28.249Z","2026-10-12T22:24:28.892Z","643.792","9.022","633.293","1","gpt-4o-mini","SELECT Cylinders, MAX(Accelerate) AS MaxAccelerate
+FROM cars_data
+GROUP BY Cylinders;",""
+"140","car_1","What is the maximum accelerate for all the different cylinders?","completed","false","schema_copilot","2026-10-12T22:24:28.896Z","2026-10-12T22:24:29.487Z","591.025","7.618","582.484","1","gpt-4o-mini","SELECT Cylinders, MAX(Accelerate) AS MaxAccelerate
+FROM cars_data
+GROUP BY Cylinders;",""
+"141","car_1","Which model has the most version(make) of cars?","completed","false","schema_copilot","2026-10-12T22:24:29.491Z","2026-10-12T22:24:30.114Z","622.742","8.802","613.037","1","gpt-4o-mini","SELECT Model, COUNT(Make) AS VersionCount
+FROM car_names
+GROUP BY Model
+ORDER BY VersionCount DESC
+LIMIT 1;",""
+"142","car_1","What model has the most different versions?","completed","false","schema_copilot","2026-10-12T22:24:30.121Z","2026-10-12T22:24:30.773Z","651.796","13.002","637.553","1","gpt-4o-mini","SELECT Model, COUNT(DISTINCT Make) AS VersionCount
+FROM model_list
+GROUP BY Model
+ORDER BY VersionCount DESC
+LIMIT 1;",""
+"143","car_1","How many cars have more than 4 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:30.776Z","2026-10-12T22:24:31.330Z","554.265","7.844","544.838","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Cylinders > 4;",""
+"144","car_1","What is the number of cars with more than 4 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:31.334Z","2026-10-12T22:24:31.867Z","533.337","12.096","520.187","1","gpt-4o-mini","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 4;",""
+"145","car_1","how many cars were produced in 1980?","completed","false","schema_copilot","2026-10-12T22:24:31.877Z","2026-10-12T22:24:32.443Z","566.521","10.521","554.261","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Year = 1980;",""
+"146","car_1","In 1980, how many cars were made?","completed","false","schema_copilot","2026-10-12T22:24:32.447Z","2026-10-12T22:24:33.071Z","623.515","11.265","610.707","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Year = 1980;",""
+"147","car_1","How many car models were produced by the maker with full name American Motor Company?","completed","false","schema_copilot","2026-10-12T22:24:33.075Z","2026-10-12T22:24:33.716Z","640.567","5.744","633.575","1","gpt-4o-mini","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+WHERE cm.FullName = 'American Motor Company';",""
+"148","car_1","What is the number of car models created by the car maker American Motor Company?","completed","false","schema_copilot","2026-10-12T22:24:33.728Z","2026-10-12T22:24:34.448Z","720.604","7.771","710.765","1","gpt-4o-mini","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Maker 
+WHERE cm.FullName = 'American Motor Company';",""
+"149","car_1","Which makers designed more than 3 car models? List full name and the id.","completed","false","schema_copilot","2026-10-12T22:24:34.452Z","2026-10-12T22:24:35.187Z","734.595","9.415","723.961","1","gpt-4o-mini","SELECT cm.FullName, cm.Id
+FROM car_makers cm
+JOIN model_list ml ON cm.Maker = ml.Maker
+GROUP BY cm.Id
+HAVING COUNT(ml.ModelId) > 3;",""
+"150","car_1","What are the names and ids of all makers with more than 3 models?","completed","false","schema_copilot","2026-10-12T22:24:35.191Z","2026-10-12T22:24:35.937Z","746.224","15.461","729.467","1","gpt-4o-mini","SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(ml.ModelId) > 3;",""
+"151","car_1","Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?","completed","false","schema_copilot","2026-10-12T22:24:35.941Z","2026-10-12T22:24:36.731Z","789.237","7.751","780.274","1","gpt-4o-mini","SELECT DISTINCT ml.Model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN cars_data cd ON ml.ModelId = cd.Id 
+WHERE cm.FullName = 'General Motors' OR cd.Weight > 3500;",""
+"152","car_1","What are the different models created by either the car maker General Motors or weighed more than 3500?","completed","false","schema_copilot","2026-10-12T22:24:36.735Z","2026-10-12T22:24:37.444Z","708.414","11.492","695.991","1","gpt-4o-mini","SELECT DISTINCT ml.Model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN cars_data cd ON ml.ModelId = cd.Id 
+WHERE cm.Maker = 'General Motors' OR cd.Weight > 3500;",""
+"153","car_1","In which years cars were produced weighing no less than 3000 and no more than 4000 ?","completed","false","schema_copilot","2026-10-12T22:24:37.447Z","2026-10-12T22:24:38.122Z","674.508","8.657","663.977","1","gpt-4o-mini","SELECT DISTINCT Year 
+FROM cars_data 
+WHERE Weight BETWEEN 3000 AND 4000;",""
+"154","car_1","What are the different years in which there were cars produced that weighed less than 4000 and also cars that weighted more than 3000 ?","completed","false","schema_copilot","2026-10-12T22:24:38.127Z","2026-10-12T22:24:38.855Z","727.81","9.194","717.316","1","gpt-4o-mini","SELECT DISTINCT Year 
+FROM cars_data 
+WHERE Weight < 4000 
+   OR Weight > 3000;",""
+"155","car_1","What is the horsepower of the car with the largest accelerate?","completed","false","schema_copilot","2026-10-12T22:24:38.867Z","2026-10-12T22:24:39.599Z","732.212","14.401","716.564","1","gpt-4o-mini","SELECT Horsepower 
+FROM cars_data 
+ORDER BY Accelerate DESC 
+LIMIT 1;",""
+"156","car_1","What is the horsepower of the car with the greatest accelerate?","completed","false","schema_copilot","2026-10-12T22:24:39.602Z","2026-10-12T22:24:40.215Z","612.441","6.905","604.599","1","gpt-4o-mini","SELECT Horsepower 
+FROM cars_data 
+WHERE Accelerate = (SELECT MAX(Accelerate) FROM cars_data);",""
+"157","car_1","For model volvo, how many cylinders does the car with the least accelerate have?","completed","false","schema_copilot","2026-10-12T22:24:40.218Z","2026-10-12T22:24:41.129Z","910.463","8.385","900.609","1","gpt-4o-mini","SELECT Cylinders 
+FROM cars_data 
+WHERE Id = (
+    SELECT Id 
+    FROM cars_data 
+    JOIN model_list ON cars_data.Id = model_list.ModelId 
+    JOIN car_makers ON model_list.Maker = car_makers.Maker 
+    WHERE car_makers.FullName = 'Volvo' 
+    ORDER BY Accelerate ASC 
+    LIMIT 1
+);",""
+"158","car_1","For a volvo model, how many cylinders does the version with least accelerate have?","completed","false","schema_copilot","2026-10-12T22:24:41.132Z","2026-10-12T22:24:41.985Z","852.423","8.255","842.514","1","gpt-4o-mini","SELECT Cylinders 
+FROM cars_data 
+WHERE Id = (SELECT Id FROM cars_data 
+             JOIN model_list ON cars_data.Id = model_list.ModelId 
+             JOIN car_makers ON model_list.Maker = car_makers.Maker 
+             WHERE car_makers.FullName LIKE '%Volvo%' 
+             ORDER BY Accelerate ASC 
+             LIMIT 1);",""
+"159","car_1","How many cars have a larger accelerate than the car with the largest horsepower?","completed","false","schema_copilot","2026-10-12T22:24:41.989Z","2026-10-12T22:24:42.573Z","584.077","9.725","572.951","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data);",""
+"160","car_1","What is the number of cars with a greater accelerate than the one with the most horsepower?","completed","false","schema_copilot","2026-10-12T22:24:42.577Z","2026-10-12T22:24:43.166Z","589.073","11.289","576.015","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data);",""
+"161","car_1","How many countries has more than 2 car makers ?","completed","false","schema_copilot","2026-10-12T22:24:43.170Z","2026-10-12T22:24:43.955Z","784.909","10.462","773.32","1","gpt-4o-mini","SELECT COUNT(DISTINCT c.CountryId) AS CountryCount
+FROM car_makers cm
+JOIN countries c ON cm.Country = c.CountryName
+GROUP BY c.CountryId
+HAVING COUNT(cm.Id) > 2;",""
+"162","car_1","What is the number of countries with more than 2 car makers ?","completed","false","schema_copilot","2026-10-12T22:24:43.961Z","2026-10-12T22:24:44.683Z","721.689","15.277","703.893","1","gpt-4o-mini","SELECT COUNT(DISTINCT c.CountryId) 
+FROM car_makers cm 
+JOIN countries c ON cm.Country = c.CountryName 
+GROUP BY c.CountryId 
+HAVING COUNT(cm.Id) > 2;",""
+"163","car_1","How many cars has over 6 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:44.686Z","2026-10-12T22:24:45.245Z","558.88","11.669","546.274","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Cylinders > 6;",""
+"164","car_1","What is the number of carsw ith over 6 cylinders?","completed","false","schema_copilot","2026-10-12T22:24:45.249Z","2026-10-12T22:24:46.027Z","777.615","7.879","768.501","1","gpt-4o-mini","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Cylinders > 6;",""
+"165","car_1","For the cars with 4 cylinders, which model has the largest horsepower?","completed","false","schema_copilot","2026-10-12T22:24:46.031Z","2026-10-12T22:24:47.045Z","1013.286","8.936","1003.046","1","gpt-4o-mini","SELECT Model, MAX(Horsepower) 
+FROM cars_data 
+JOIN model_list ON cars_data.Id = model_list.ModelId 
+JOIN car_makers ON model_list.Maker = car_makers.Id 
+JOIN countries ON car_makers.Country = countries.CountryId 
+WHERE cars_data.Cylinders = 4 
+GROUP BY Model 
+ORDER BY MAX(Horsepower) DESC 
+LIMIT 1;",""
+"166","car_1","For all of the 4 cylinder cars, which model has the most horsepower?","completed","false","schema_copilot","2026-10-12T22:24:47.051Z","2026-10-12T22:24:48.044Z","993.013","13.412","977.998","1","gpt-4o-mini","SELECT model_list.Model, MAX(cars_data.Horsepower) AS MaxHorsepower
+FROM cars_data
+JOIN model_list ON cars_data.Id = model_list.ModelId
+WHERE cars_data.Cylinders = 4
+GROUP BY model_list.Model
+ORDER BY MaxHorsepower DESC
+LIMIT 1;",""
+"167","car_1","Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.","completed","false","schema_copilot","2026-10-12T22:24:48.050Z","2026-10-12T22:24:48.828Z","777.866","18.811","757.255","1","gpt-4o-mini","SELECT cn.MakeId, cn.Make
+FROM cars_data cd
+JOIN car_names cn ON cd.Id = cn.Model
+WHERE cd.Horsepower > (SELECT MIN(Horsepower) FROM cars_data)
+AND cd.Cylinders <= 3;",""
+"168","car_1","Among the cars that do not have the minimum horsepower , what are the make ids and names of all those with less than 4 cylinders ?","completed","false","schema_copilot","2026-10-12T22:24:48.832Z","2026-10-12T22:24:49.587Z","755.239","8.667","744.997","1","gpt-4o-mini","SELECT car_names.MakeId, car_names.Make
+FROM cars_data
+JOIN car_names ON cars_data.Id = car_names.Model
+WHERE cars_data.Horsepower < (SELECT MIN(Horsepower) FROM cars_data)
+AND cars_data.Cylinders < 4;",""
+"169","car_1","What is the maximum miles per gallon of the car with 8 cylinders or produced before 1980 ?","completed","false","schema_copilot","2026-10-12T22:24:49.592Z","2026-10-12T22:24:50.217Z","625.551","5.772","618.584","1","gpt-4o-mini","SELECT MAX(MPG) 
+FROM cars_data 
+WHERE Cylinders = 8 OR Year < 1980;",""
+"170","car_1","What is the maximum mpg of the cars that had 8 cylinders or that were produced before 1980 ?","completed","false","schema_copilot","2026-10-12T22:24:50.226Z","2026-10-12T22:24:50.918Z","692.267","8.865","681.907","1","gpt-4o-mini","SELECT MAX(MPG) 
+FROM cars_data 
+WHERE Cylinders = 8 OR Year < 1980;",""
+"171","car_1","Which models are lighter than 3500 but not built by the 'Ford Motor Company'?","completed","false","schema_copilot","2026-10-12T22:24:50.925Z","2026-10-12T22:24:51.698Z","773.214","14.591","757.038","1","gpt-4o-mini","SELECT ml.Model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN cars_data cd ON ml.ModelId = cd.Id 
+WHERE cd.Weight < 3500 AND cm.FullName != 'Ford Motor Company';",""
+"172","car_1","What are the different models wthat are lighter than 3500 but were not built by the Ford Motor Company?","completed","false","schema_copilot","2026-10-12T22:24:51.708Z","2026-10-12T22:24:52.449Z","741.154","13.062","726.263","1","gpt-4o-mini","SELECT DISTINCT ml.Model 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN cars_data cd ON ml.ModelId = cd.Id 
+WHERE cd.Weight < 3500 AND cm.Maker != 'Ford Motor Company';",""
+"173","car_1","What are the name of the countries where there is not a single car maker?","completed","false","schema_copilot","2026-10-12T22:24:52.457Z","2026-10-12T22:24:53.066Z","609.067","10.88","596.689","1","gpt-4o-mini","SELECT CountryName 
+FROM countries 
+WHERE CountryId NOT IN (SELECT DISTINCT Country FROM car_makers);",""
+"174","car_1","What are the names of the countries with no car makers?","completed","false","schema_copilot","2026-10-12T22:24:53.070Z","2026-10-12T22:24:53.648Z","577.608","10.747","565.648","1","gpt-4o-mini","SELECT CountryName 
+FROM countries 
+WHERE CountryId NOT IN (SELECT DISTINCT Country FROM car_makers);",""
+"175","car_1","Which are the car makers which produce at least 2 models and more than 3 car makers ? List the id and the maker .","completed","false","schema_copilot","2026-10-12T22:24:53.651Z","2026-10-12T22:24:54.417Z","766.401","8.149","756.83","1","gpt-4o-mini","SELECT cm.Id, cm.Maker
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+GROUP BY cm.Id, cm.Maker
+HAVING COUNT(ml.ModelId) >= 2
+AND COUNT(DISTINCT cm.Id) > 3;",""
+"176","car_1","What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?","completed","false","schema_copilot","2026-10-12T22:24:54.422Z","2026-10-12T22:24:55.310Z","888.178","9.835","876.859","1","gpt-4o-mini","SELECT cm.Id, cm.Maker
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+JOIN car_names cn ON ml.ModelId = cn.Model
+JOIN cars_data cd ON cn.MakeId = cd.Id
+GROUP BY cm.Id, cm.Maker
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(cd.Id) > 3;",""
+"177","car_1","What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?","completed","false","schema_copilot","2026-10-12T22:24:55.315Z","2026-10-12T22:24:56.454Z","1138.894","8.947","1128.617","1","gpt-4o-mini","SELECT DISTINCT c.CountryId, c.CountryName
+FROM countries c
+JOIN car_makers cm ON c.CountryName = cm.Country
+WHERE cm.Id IN (
+    SELECT Maker
+    FROM car_makers
+    GROUP BY Maker
+    HAVING COUNT(*) > 3
+) OR c.CountryId IN (
+    SELECT DISTINCT c.CountryId
+    FROM countries c
+    JOIN car_names cn ON c.CountryName = cn.Make
+    JOIN model_list ml ON cn.Model = ml.Model
+    WHERE ml.Model = 'fiat'
+);",""
+"178","car_1","What are the ids and names of all countries that either have more than 3 car makers or produce fiat model ?","completed","false","schema_copilot","2026-10-12T22:24:56.458Z","2026-10-12T22:24:57.274Z","816.156","9.586","805.245","1","gpt-4o-mini","SELECT CountryId, CountryName 
+FROM countries 
+WHERE CountryId IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    HAVING COUNT(Id) > 3
+) OR CountryId IN (
+    SELECT DISTINCT Country 
+    FROM car_names 
+    WHERE Model = 'Fiat'
+);",""
+"179","flight_2","Which country does Airline ""JetBlue Airways"" belong to?","completed","false","schema_copilot","2026-10-12T22:24:57.279Z","2026-10-12T22:24:57.850Z","571.191","15.384","553.605","1","gpt-4o-mini","SELECT Country FROM airlines WHERE Airline = 'JetBlue Airways';",""
+"180","flight_2","What country is Jetblue Airways affiliated with?","completed","false","schema_copilot","2026-10-12T22:24:57.857Z","2026-10-12T22:24:58.379Z","521.668","10.301","510.101","1","gpt-4o-mini","SELECT Country FROM airlines WHERE Airline = 'Jetblue Airways';",""
+"181","flight_2","What is the abbreviation of Airline ""JetBlue Airways""?","completed","false","schema_copilot","2026-10-12T22:24:58.386Z","2026-10-12T22:24:58.924Z","538.424","5.976","531.18","1","gpt-4o-mini","SELECT Abbreviation FROM airlines WHERE Airline = 'JetBlue Airways';",""
+"182","flight_2","Which abbreviation corresponds to Jetblue Airways?","completed","false","schema_copilot","2026-10-12T22:24:58.927Z","2026-10-12T22:24:59.489Z","561.306","5.248","554.798","1","gpt-4o-mini","SELECT Abbreviation FROM airlines WHERE Airline = 'Jetblue Airways';",""
+"183","flight_2","List all airline names and their abbreviations in ""USA"".","completed","false","schema_copilot","2026-10-12T22:24:59.497Z","2026-10-12T22:25:00.044Z","546.931","7.686","536.966","1","gpt-4o-mini","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA';",""
+"184","flight_2","What are the airline names and abbreviations for airlines in the USA?","completed","false","schema_copilot","2026-10-12T22:25:00.050Z","2026-10-12T22:25:00.761Z","711.056","6.286","703.431","1","gpt-4o-mini","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA';",""
+"185","flight_2","List the airport code and name in the city of Anthony.","completed","false","schema_copilot","2026-10-12T22:25:00.766Z","2026-10-12T22:25:01.299Z","533.108","5.701","525.838","1","gpt-4o-mini","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony';",""
+"186","flight_2","Give the airport code and airport name corresonding to the city Anthony.","completed","false","schema_copilot","2026-10-12T22:25:01.306Z","2026-10-12T22:25:01.986Z","680.197","8.667","663.86","1","gpt-4o-mini","SELECT AirportCode, AirportName 
+FROM airports 
+WHERE City = 'Anthony';",""
+"187","flight_2","How many airlines do we have?","completed","false","schema_copilot","2026-10-12T22:25:01.989Z","2026-10-12T22:25:02.484Z","495.209","3.779","489.972","1","gpt-4o-mini","SELECT COUNT(*) FROM airlines;",""
+"188","flight_2","What is the total number of airlines?","completed","false","schema_copilot","2026-10-12T22:25:02.488Z","2026-10-12T22:25:03.083Z","595.014","3.626","590.152","1","gpt-4o-mini","SELECT COUNT(*) FROM airlines;",""
+"189","flight_2","How many airports do we have?","completed","false","schema_copilot","2026-10-12T22:25:03.087Z","2026-10-12T22:25:03.619Z","531.778","5.404","522.635","1","gpt-4o-mini","SELECT COUNT(*) FROM airports;",""
+"190","flight_2","Return the number of  airports.","completed","false","schema_copilot","2026-10-12T22:25:03.624Z","2026-10-12T22:25:04.097Z","473.311","3.95","468.184","1","gpt-4o-mini","SELECT COUNT(*) FROM airports;",""
+"191","flight_2","How many flights do we have?","completed","false","schema_copilot","2026-10-12T22:25:04.101Z","2026-10-12T22:25:04.641Z","540.2","4.993","533.864","1","gpt-4o-mini","SELECT COUNT(*) FROM flights;",""
+"192","flight_2","Return the number of flights.","completed","false","schema_copilot","2026-10-12T22:25:04.646Z","2026-10-12T22:25:05.205Z","559.212","6.337","551.262","1","gpt-4o-mini","SELECT COUNT(*) AS NumberOfFlights FROM flights;",""
+"193","flight_2","Which airline has abbreviation 'UAL'?","completed","false","schema_copilot","2026-10-12T22:25:05.211Z","2026-10-12T22:25:05.861Z","650.049","6.527","642.657","1","gpt-4o-mini","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL';",""
+"194","flight_2","Give the airline with abbreviation 'UAL'.","completed","false","schema_copilot","2026-10-12T22:25:05.864Z","2026-10-12T22:25:06.488Z","624.31","3.646","619.091","1","gpt-4o-mini","SELECT * FROM airlines WHERE Abbreviation = 'UAL';",""
+"195","flight_2","How many airlines are from USA?","completed","false","schema_copilot","2026-10-12T22:25:06.498Z","2026-10-12T22:25:07.070Z","572.515","8.803","560.617","1","gpt-4o-mini","SELECT COUNT(*) FROM airlines WHERE Country = 'USA';",""
+"196","flight_2","Return the number of airlines in the USA.","completed","false","schema_copilot","2026-10-12T22:25:07.077Z","2026-10-12T22:25:07.611Z","534.542","4.387","528.804","1","gpt-4o-mini","SELECT COUNT(*) FROM airlines WHERE Country = 'USA';",""
+"197","flight_2","Which city and country is the Alton airport at?","completed","false","schema_copilot","2026-10-12T22:25:07.616Z","2026-10-12T22:25:08.208Z","592.294","4.346","586.499","1","gpt-4o-mini","SELECT City, Country FROM airports WHERE AirportName = 'Alton';",""
+"198","flight_2","Give the city and country for the Alton airport.","completed","false","schema_copilot","2026-10-12T22:25:08.217Z","2026-10-12T22:25:08.820Z","603.336","14.683","587.262","1","gpt-4o-mini","SELECT City, Country FROM airports WHERE AirportName = 'Alton';",""
+"199","flight_2","What is the airport name for airport 'AKO'?","completed","false","schema_copilot","2026-10-12T22:25:08.826Z","2026-10-12T22:25:09.398Z","572.203","4.512","566.31","1","gpt-4o-mini","SELECT AirportName FROM airports WHERE AirportCode = 'AKO';",""

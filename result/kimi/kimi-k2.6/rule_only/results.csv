@@ -1,0 +1,575 @@
+﻿index,db_id,question,status,use_server,generation_mode,started_at,finished_at,total_ms,schema_ms,copilot_ms,llm_ms,attempts,model_id,ai_provider,prompt_tokens,completion_tokens,total_tokens,cached_tokens,actual_model_id,use_rule_validation,initial_sql,validation_calls,correction_requests,validation_passed,sql,error
+"0","concert_singer","How many singers do we have?","completed","false","rule_only","2026-10-28T16:57:24.073Z","2026-10-28T16:57:25.167Z","1094.223","6.522","821.39","821.39","1","kimi-k2.6","kimi","107","8","115","","kimi-k2.6","true","SELECT COUNT(*) FROM singer","1","0","true","SELECT COUNT(*) FROM singer",""
+"1","concert_singer","What is the total number of singers?","completed","false","rule_only","2026-10-28T16:57:25.171Z","2026-10-28T16:57:26.134Z","962.369","6.641","739.551","739.551","1","kimi-k2.6","kimi","108","8","116","","kimi-k2.6","true","SELECT COUNT(*) FROM singer","1","0","true","SELECT COUNT(*) FROM singer",""
+"2","concert_singer","Show name, country, age for all singers ordered by age from the oldest to the youngest.","completed","false","rule_only","2026-10-28T16:57:26.137Z","2026-10-28T16:57:27.292Z","1154.554","6.774","820.006","820.006","1","kimi-k2.6","kimi","119","15","134","","kimi-k2.6","true","SELECT Name, Country, Age FROM singer ORDER BY Age DESC","1","0","true","SELECT Name, Country, Age FROM singer ORDER BY Age DESC",""
+"3","concert_singer","What are the names, countries, and ages for every singer in descending order of age?","completed","false","rule_only","2026-10-28T16:57:27.296Z","2026-10-28T16:57:28.681Z","1384.802","6.972","863.149","863.149","1","kimi-k2.6","kimi","118","15","133","","kimi-k2.6","true","SELECT Name, Country, Age FROM singer ORDER BY Age DESC","1","0","true","SELECT Name, Country, Age FROM singer ORDER BY Age DESC",""
+"4","concert_singer","What is the average, minimum, and maximum age of all singers from France?","completed","false","rule_only","2026-10-28T16:57:28.685Z","2026-10-28T16:57:30.100Z","1414.761","6.779","957.806","957.806","1","kimi-k2.6","kimi","116","24","140","","kimi-k2.6","true","SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = 'France'","1","0","true","SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = 'France'",""
+"5","concert_singer","What is the average, minimum, and maximum age for all French singers?","completed","false","rule_only","2026-10-28T16:57:30.108Z","2026-10-28T16:57:31.583Z","1475.859","13.921","960.092","960.092","1","kimi-k2.6","kimi","115","24","139","","kimi-k2.6","true","SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = ""France""","1","0","true","SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = ""France""",""
+"6","concert_singer","Show the name and the release year of the song by the youngest singer.","completed","false","rule_only","2026-10-28T16:57:31.609Z","2026-10-28T16:57:35.017Z","3407.747","32.231","925.2","925.2","1","kimi-k2.6","kimi","115","24","139","","kimi-k2.6","true","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT MIN(Age) FROM singer)","1","0","true","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT MIN(Age) FROM singer)",""
+"7","concert_singer","What are the names and release years for all the songs of the youngest singer?","completed","false","rule_only","2026-10-28T16:57:35.023Z","2026-10-28T16:57:36.780Z","1757.345","12.306","900.525","900.525","1","kimi-k2.6","kimi","116","24","140","","kimi-k2.6","true","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT MIN(Age) FROM singer)","1","0","true","SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT MIN(Age) FROM singer)",""
+"8","concert_singer","What are all distinct countries where singers above age 20 are from?","completed","false","rule_only","2026-10-28T16:57:36.786Z","2026-10-28T16:57:38.579Z","1792.808","11.073","838.037","838.037","1","kimi-k2.6","kimi","114","13","127","","kimi-k2.6","true","SELECT DISTINCT Country FROM singer WHERE Age > 20","1","0","true","SELECT DISTINCT Country FROM singer WHERE Age > 20",""
+"9","concert_singer","What are  the different countries with singers above age 20?","completed","false","rule_only","2026-10-28T16:57:38.585Z","2026-10-28T16:57:40.579Z","1994.128","13.158","832.263","832.263","1","kimi-k2.6","kimi","113","13","126","","kimi-k2.6","true","SELECT DISTINCT Country FROM singer WHERE Age > 20","1","0","true","SELECT DISTINCT Country FROM singer WHERE Age > 20",""
+"10","concert_singer","Show all countries and the number of singers in each country.","completed","false","rule_only","2026-10-28T16:57:40.592Z","2026-10-28T16:57:42.344Z","1751.989","29.147","948.129","948.129","1","kimi-k2.6","kimi","112","18","130","","kimi-k2.6","true","SELECT Country, COUNT(*) as number_of_singers FROM singer GROUP BY Country","1","0","true","SELECT Country, COUNT(*) as number_of_singers FROM singer GROUP BY Country",""
+"11","concert_singer","How many singers are from each country?","completed","false","rule_only","2026-10-28T16:57:42.380Z","2026-10-28T16:57:43.858Z","1478.686","33.554","835.297","835.297","1","kimi-k2.6","kimi","108","13","121","","kimi-k2.6","true","SELECT Country, COUNT(*) FROM singer GROUP BY Country","1","0","true","SELECT Country, COUNT(*) FROM singer GROUP BY Country",""
+"12","concert_singer","List all song names by singers above the average age.","completed","false","rule_only","2026-10-28T16:57:43.862Z","2026-10-28T16:57:45.111Z","1248.664","7.019","898.61","898.61","1","kimi-k2.6","kimi","111","21","132","","kimi-k2.6","true","SELECT DISTINCT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)","1","0","true","SELECT DISTINCT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)",""
+"13","concert_singer","What are all the song names by singers who are older than average?","completed","false","rule_only","2026-10-28T16:57:45.132Z","2026-10-28T16:57:48.719Z","3587.526","39.95","915.492","915.492","1","kimi-k2.6","kimi","114","21","135","","kimi-k2.6","true","SELECT DISTINCT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)","1","0","true","SELECT DISTINCT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)",""
+"14","concert_singer","Show location and name for all stadiums with a capacity between 5000 and 10000.","completed","false","rule_only","2026-10-28T16:57:48.725Z","2026-10-28T16:57:50.052Z","1327.378","7.826","899.372","899.372","1","kimi-k2.6","kimi","120","20","140","","kimi-k2.6","true","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000;","1","0","true","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000;",""
+"15","concert_singer","What are the locations and names of all stations with capacity between 5000 and 10000?","completed","false","rule_only","2026-10-28T16:57:50.057Z","2026-10-28T16:57:51.456Z","1399.473","7.695","876.561","876.561","1","kimi-k2.6","kimi","120","19","139","","kimi-k2.6","true","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000","1","0","true","SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000",""
+"16","concert_singer","What is the maximum capacity and the average of all stadiums ?","completed","false","rule_only","2026-10-28T16:57:51.464Z","2026-10-28T16:57:53.120Z","1656.071","23.576","833.559","833.559","1","kimi-k2.6","kimi","113","15","128","","kimi-k2.6","true","SELECT MAX(Capacity), AVG(Average) FROM stadium","1","0","true","SELECT MAX(Capacity), AVG(Average) FROM stadium",""
+"17","concert_singer","What is the average and maximum capacities for all stadiums ?","completed","false","rule_only","2026-10-28T16:57:53.125Z","2026-10-28T16:57:54.415Z","1289.614","6.991","963.599","963.599","1","kimi-k2.6","kimi","112","27","139","","kimi-k2.6","true","SELECT AVG(Capacity) as Average_Capacity, MAX(Capacity) as Maximum_Capacity FROM stadium","1","0","true","SELECT AVG(Capacity) as Average_Capacity, MAX(Capacity) as Maximum_Capacity FROM stadium",""
+"18","concert_singer","What is the name and capacity for the stadium with highest average attendance?","completed","false","rule_only","2026-10-28T16:57:54.420Z","2026-10-28T16:57:55.719Z","1299.318","7.959","858.719","858.719","1","kimi-k2.6","kimi","114","16","130","","kimi-k2.6","true","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1","1","0","true","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1",""
+"19","concert_singer","What is the name and capacity for the stadium with the highest average attendance?","completed","false","rule_only","2026-10-28T16:57:55.726Z","2026-10-28T16:57:57.057Z","1331.162","7.827","837.934","837.934","1","kimi-k2.6","kimi","115","16","131","","kimi-k2.6","true","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1","1","0","true","SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1",""
+"20","concert_singer","How many concerts are there in year 2014 or 2015?","completed","false","rule_only","2026-10-28T16:57:57.067Z","2026-10-28T16:57:58.274Z","1207.354","16.41","864.371","864.371","1","kimi-k2.6","kimi","115","20","135","","kimi-k2.6","true","SELECT COUNT(*) FROM concert WHERE Year = 2014 OR Year = 2015","1","0","true","SELECT COUNT(*) FROM concert WHERE Year = 2014 OR Year = 2015",""
+"21","concert_singer","How many concerts occurred in 2014 or 2015?","completed","false","rule_only","2026-10-28T16:57:58.279Z","2026-10-28T16:57:59.481Z","1202.121","6.363","856.695","856.695","1","kimi-k2.6","kimi","113","19","132","","kimi-k2.6","true","SELECT COUNT(*) FROM concert WHERE Year IN (2014, 2015)","1","0","true","SELECT COUNT(*) FROM concert WHERE Year IN (2014, 2015)",""
+"22","concert_singer","Show the stadium name and the number of concerts in each stadium.","completed","false","rule_only","2026-10-28T16:57:59.488Z","2026-10-28T16:58:01.150Z","1661.713","8.824","1098.509","1098.509","1","kimi-k2.6","kimi","113","39","152","","kimi-k2.6","true","SELECT T2.Name, COUNT(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID","1","0","true","SELECT T2.Name, COUNT(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID",""
+"23","concert_singer","For each stadium, how many concerts play there?","completed","false","rule_only","2026-10-28T16:58:01.155Z","2026-10-28T16:58:06.377Z","5221.855","5.853","4813.303","4813.303","1","kimi-k2.6","kimi","110","46","156","","kimi-k2.6","true","SELECT stadium.Name, COUNT(concert.concert_ID) AS num_concerts
+FROM stadium
+LEFT JOIN concert ON stadium.Stadium_ID = concert.Stadium_ID
+GROUP BY stadium.Stadium_ID, stadium.Name","1","0","true","SELECT stadium.Name, COUNT(concert.concert_ID) AS num_concerts
+FROM stadium
+LEFT JOIN concert ON stadium.Stadium_ID = concert.Stadium_ID
+GROUP BY stadium.Stadium_ID, stadium.Name",""
+"24","concert_singer","Show the stadium name and capacity with most number of concerts in year 2014 or after.","completed","false","rule_only","2026-10-28T16:58:06.380Z","2026-10-28T16:58:08.115Z","1734.249","7.071","1358.672","1358.672","1","kimi-k2.6","kimi","119","58","177","","kimi-k2.6","true","SELECT T1.Name, T1.Capacity FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year >= 2014 GROUP BY T1.Stadium_ID ORDER BY COUNT(*) DESC LIMIT 1","1","0","true","SELECT T1.Name, T1.Capacity FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year >= 2014 GROUP BY T1.Stadium_ID ORDER BY COUNT(*) DESC LIMIT 1",""
+"25","concert_singer","What is the name and capacity of the stadium with the most concerts after 2013 ?","completed","false","rule_only","2026-10-28T16:58:08.118Z","2026-10-28T16:58:09.772Z","1653.1","6.582","1268.933","1268.933","1","kimi-k2.6","kimi","118","58","176","","kimi-k2.6","true","SELECT T1.Name, T1.Capacity FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year > 2013 GROUP BY T1.Stadium_ID ORDER BY COUNT(*) DESC LIMIT 1","1","0","true","SELECT T1.Name, T1.Capacity FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID WHERE T2.Year > 2013 GROUP BY T1.Stadium_ID ORDER BY COUNT(*) DESC LIMIT 1",""
+"26","concert_singer","Which year has most number of concerts?","completed","false","rule_only","2026-10-28T16:58:09.776Z","2026-10-28T16:58:10.900Z","1124.402","5.733","879.269","879.269","1","kimi-k2.6","kimi","108","18","126","","kimi-k2.6","true","SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1","1","0","true","SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1",""
+"27","concert_singer","What is the year that had the most concerts?","completed","false","rule_only","2026-10-28T16:58:10.904Z","2026-10-28T16:58:12.127Z","1222.593","5.224","923.789","923.789","1","kimi-k2.6","kimi","110","18","128","","kimi-k2.6","true","SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1","1","0","true","SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1",""
+"28","concert_singer","Show the stadium names without any concert.","completed","false","rule_only","2026-10-28T16:58:12.132Z","2026-10-28T16:58:13.418Z","1285.886","7.62","862.027","862.027","1","kimi-k2.6","kimi","108","19","127","","kimi-k2.6","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)","1","0","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)",""
+"29","concert_singer","What are the names of the stadiums without any concerts?","completed","false","rule_only","2026-10-28T16:58:13.421Z","2026-10-28T16:58:14.616Z","1194.076","7.406","895.281","895.281","1","kimi-k2.6","kimi","112","19","131","","kimi-k2.6","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)","1","0","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)",""
+"30","concert_singer","Show countries where a singer above age 40 and a singer below 30 are from.","completed","false","rule_only","2026-10-28T16:58:14.621Z","2026-10-28T16:58:16.095Z","1474.134","5.886","1153.795","1153.795","1","kimi-k2.6","kimi","118","45","163","","kimi-k2.6","true","SELECT DISTINCT T1.Country FROM singer AS T1 JOIN singer AS T2 ON T1.Country = T2.Country WHERE T1.Age > 40 AND T2.Age < 30","1","0","true","SELECT DISTINCT T1.Country FROM singer AS T1 JOIN singer AS T2 ON T1.Country = T2.Country WHERE T1.Age > 40 AND T2.Age < 30",""
+"31","concert_singer","Show names for all stadiums except for stadiums having a concert in year 2014.","completed","false","rule_only","2026-10-28T16:58:16.099Z","2026-10-28T16:58:17.361Z","1262.638","5.878","963.015","963.015","1","kimi-k2.6","kimi","119","25","144","","kimi-k2.6","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)","1","0","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)",""
+"32","concert_singer","What are the names of all stadiums that did not have a concert in 2014?","completed","false","rule_only","2026-10-28T16:58:17.366Z","2026-10-28T16:58:18.617Z","1251.425","5.841","920.563","920.563","1","kimi-k2.6","kimi","119","25","144","","kimi-k2.6","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)","1","0","true","SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)",""
+"33","concert_singer","Show the name and theme for all concerts and the number of singers in each concert.","completed","false","rule_only","2026-10-28T16:58:18.623Z","2026-10-28T16:58:20.246Z","1623.303","5.809","1286.896","1286.896","1","kimi-k2.6","kimi","117","57","174","","kimi-k2.6","true","SELECT T1.concert_Name, T1.Theme, COUNT(T2.Singer_ID) 
+FROM concert AS T1 
+JOIN singer_in_concert AS T2 ON T1.concert_ID = T2.concert_ID 
+GROUP BY T1.concert_ID","1","0","true","SELECT T1.concert_Name, T1.Theme, COUNT(T2.Singer_ID) 
+FROM concert AS T1 
+JOIN singer_in_concert AS T2 ON T1.concert_ID = T2.concert_ID 
+GROUP BY T1.concert_ID",""
+"34","concert_singer","What are the names , themes , and number of singers for every concert ?","completed","false","rule_only","2026-10-28T16:58:20.250Z","2026-10-28T16:58:21.912Z","1662.15","8.334","1291.564","1291.564","1","kimi-k2.6","kimi","115","54","169","","kimi-k2.6","true","SELECT T1.concert_Name, T1.Theme, COUNT(T2.Singer_ID) FROM concert AS T1 JOIN singer_in_concert AS T2 ON T1.concert_ID = T2.concert_ID GROUP BY T1.concert_ID","1","0","true","SELECT T1.concert_Name, T1.Theme, COUNT(T2.Singer_ID) FROM concert AS T1 JOIN singer_in_concert AS T2 ON T1.concert_ID = T2.concert_ID GROUP BY T1.concert_ID",""
+"35","concert_singer","List singer names and number of concerts for each singer.","completed","false","rule_only","2026-10-28T16:58:21.917Z","2026-10-28T16:58:23.527Z","1610.039","13.144","1266.279","1266.279","1","kimi-k2.6","kimi","111","54","165","","kimi-k2.6","true","SELECT singer.Name, COUNT(DISTINCT singer_in_concert.concert_ID) AS number_of_concerts FROM singer JOIN singer_in_concert ON singer.Singer_ID = singer_in_concert.Singer_ID GROUP BY singer.Singer_ID, singer.Name","1","0","true","SELECT singer.Name, COUNT(DISTINCT singer_in_concert.concert_ID) AS number_of_concerts FROM singer JOIN singer_in_concert ON singer.Singer_ID = singer_in_concert.Singer_ID GROUP BY singer.Singer_ID, singer.Name",""
+"36","concert_singer","What are the names of the singers and number of concerts for each person?","completed","false","rule_only","2026-10-28T16:58:23.531Z","2026-10-28T16:58:24.984Z","1452.518","6.933","1115.973","1115.973","1","kimi-k2.6","kimi","115","42","157","","kimi-k2.6","true","SELECT T1.Name, COUNT(*) FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.Singer_ID = T2.Singer_ID GROUP BY T1.Singer_ID","1","0","true","SELECT T1.Name, COUNT(*) FROM singer AS T1 JOIN singer_in_concert AS T2 ON T1.Singer_ID = T2.Singer_ID GROUP BY T1.Singer_ID",""
+"37","concert_singer","List all singer names in concerts in year 2014.","completed","false","rule_only","2026-10-28T16:58:24.988Z","2026-10-28T16:58:26.606Z","1618.015","4.806","1341.992","1341.992","1","kimi-k2.6","kimi","112","59","171","","kimi-k2.6","true","SELECT DISTINCT T2.Name FROM concert AS T1 JOIN singer_in_concert AS T3 ON T1.concert_ID = T3.concert_ID JOIN singer AS T2 ON T3.Singer_ID = T2.Singer_ID WHERE T1.Year = 2014","1","0","true","SELECT DISTINCT T2.Name FROM concert AS T1 JOIN singer_in_concert AS T3 ON T1.concert_ID = T3.concert_ID JOIN singer AS T2 ON T3.Singer_ID = T2.Singer_ID WHERE T1.Year = 2014",""
+"38","concert_singer","What are the names of the singers who performed in a concert in 2014?","completed","false","rule_only","2026-10-28T16:58:26.610Z","2026-10-28T16:58:28.242Z","1631.918","5.451","1299.736","1299.736","1","kimi-k2.6","kimi","117","50","167","","kimi-k2.6","true","SELECT DISTINCT singer.Name FROM singer JOIN singer_in_concert ON singer.Singer_ID = singer_in_concert.Singer_ID JOIN concert ON singer_in_concert.concert_ID = concert.concert_ID WHERE concert.Year = 2014","1","0","true","SELECT DISTINCT singer.Name FROM singer JOIN singer_in_concert ON singer.Singer_ID = singer_in_concert.Singer_ID JOIN concert ON singer_in_concert.concert_ID = concert.concert_ID WHERE concert.Year = 2014",""
+"39","concert_singer","what is the name and nation of the singer who have a song having 'Hey' in its name?","completed","false","rule_only","2026-10-28T16:58:28.245Z","2026-10-28T16:58:29.538Z","1292.576","4.359","879.26","879.26","1","kimi-k2.6","kimi","121","16","137","","kimi-k2.6","true","SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'","1","0","true","SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'",""
+"40","concert_singer","What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?","completed","false","rule_only","2026-10-28T16:58:29.542Z","2026-10-28T16:58:30.845Z","1302.67","5.197","866.085","866.085","1","kimi-k2.6","kimi","125","16","141","","kimi-k2.6","true","SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'","1","0","true","SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'",""
+"41","concert_singer","Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.","completed","false","rule_only","2026-10-28T16:58:30.848Z","2026-10-28T16:58:32.713Z","1864.347","5.21","1433.583","1433.583","1","kimi-k2.6","kimi","126","65","191","","kimi-k2.6","true","SELECT DISTINCT s.Name, s.Location FROM stadium s WHERE s.Stadium_ID IN (SELECT c1.Stadium_ID FROM concert c1 JOIN concert c2 ON c1.Stadium_ID = c2.Stadium_ID WHERE c1.Year = 2014 AND c2.Year = 2015)","1","0","true","SELECT DISTINCT s.Name, s.Location FROM stadium s WHERE s.Stadium_ID IN (SELECT c1.Stadium_ID FROM concert c1 JOIN concert c2 ON c1.Stadium_ID = c2.Stadium_ID WHERE c1.Year = 2014 AND c2.Year = 2015)",""
+"42","concert_singer","What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?","completed","false","rule_only","2026-10-28T16:58:32.717Z","2026-10-28T16:58:34.542Z","1824.657","4.611","1400.624","1400.624","1","kimi-k2.6","kimi","125","67","192","","kimi-k2.6","true","SELECT DISTINCT s.Name, s.Location FROM stadium s WHERE s.Stadium_ID IN (SELECT c1.Stadium_ID FROM concert c1 WHERE c1.Year = 2014) AND s.Stadium_ID IN (SELECT c2.Stadium_ID FROM concert c2 WHERE c2.Year = 2015)","1","0","true","SELECT DISTINCT s.Name, s.Location FROM stadium s WHERE s.Stadium_ID IN (SELECT c1.Stadium_ID FROM concert c1 WHERE c1.Year = 2014) AND s.Stadium_ID IN (SELECT c2.Stadium_ID FROM concert c2 WHERE c2.Year = 2015)",""
+"43","concert_singer","Find the number of concerts happened in the stadium with the highest capacity .","completed","false","rule_only","2026-10-28T16:58:34.546Z","2026-10-28T16:58:35.860Z","1314.644","6.149","982.925","982.925","1","kimi-k2.6","kimi","114","26","140","","kimi-k2.6","true","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)","1","0","true","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",""
+"44","concert_singer","What are the number of concerts that occurred in the stadium with the largest capacity ?","completed","false","rule_only","2026-10-28T16:58:35.864Z","2026-10-28T16:58:37.305Z","1440.679","5.709","1065.268","1065.268","1","kimi-k2.6","kimi","116","26","142","","kimi-k2.6","true","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)","1","0","true","SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)",""
+"45","pets_1","Find the number of pets whose weight is heavier than 10.","completed","false","rule_only","2026-10-28T16:58:37.309Z","2026-10-28T16:58:38.362Z","1053.642","12.645","788.264","788.264","1","kimi-k2.6","kimi","92","13","105","","kimi-k2.6","true","SELECT COUNT(*) FROM Pets WHERE weight > 10","1","0","true","SELECT COUNT(*) FROM Pets WHERE weight > 10",""
+"46","pets_1","How many pets have a greater weight than 10?","completed","false","rule_only","2026-10-28T16:58:38.367Z","2026-10-28T16:58:39.349Z","982.305","4.167","763.988","763.988","1","kimi-k2.6","kimi","90","13","103","","kimi-k2.6","true","SELECT COUNT(*) FROM Pets WHERE weight > 10","1","0","true","SELECT COUNT(*) FROM Pets WHERE weight > 10",""
+"47","pets_1","Find the weight of the youngest dog.","completed","false","rule_only","2026-10-28T16:58:39.353Z","2026-10-28T16:58:40.546Z","1192.986","4.573","998.044","998.044","1","kimi-k2.6","kimi","87","34","121","","kimi-k2.6","true","SELECT weight FROM Pets WHERE PetType = 'dog' AND pet_age = (SELECT MIN(pet_age) FROM Pets WHERE PetType = 'dog')","1","0","true","SELECT weight FROM Pets WHERE PetType = 'dog' AND pet_age = (SELECT MIN(pet_age) FROM Pets WHERE PetType = 'dog')",""
+"48","pets_1","How much does the youngest dog weigh?","completed","false","rule_only","2026-10-28T16:58:40.552Z","2026-10-28T16:58:41.620Z","1067.333","3.697","912.833","912.833","1","kimi-k2.6","kimi","87","23","110","","kimi-k2.6","true","SELECT weight FROM Pets WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1;","1","0","true","SELECT weight FROM Pets WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1;",""
+"49","pets_1","Find the maximum weight for each type of pet. List the maximum weight and pet type.","completed","false","rule_only","2026-10-28T16:58:41.626Z","2026-10-28T16:58:42.908Z","1282.05","5.591","863.593","863.593","1","kimi-k2.6","kimi","97","19","116","","kimi-k2.6","true","SELECT PetType, MAX(weight) as max_weight FROM Pets GROUP BY PetType","1","0","true","SELECT PetType, MAX(weight) as max_weight FROM Pets GROUP BY PetType",""
+"50","pets_1","List the maximum weight and type for each type of pet.","completed","false","rule_only","2026-10-28T16:58:42.912Z","2026-10-28T16:58:44.026Z","1113.833","3.429","852.645","852.645","1","kimi-k2.6","kimi","91","16","107","","kimi-k2.6","true","SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType","1","0","true","SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType",""
+"51","pets_1","Find number of pets owned by students who are older than 20.","completed","false","rule_only","2026-10-28T16:58:44.029Z","2026-10-28T16:58:46.178Z","2148.235","4.846","1916.517","1916.517","2","kimi-k2.6","kimi","294","59","353","","kimi-k2.6","true","SELECT COUNT(*) FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20)","2","1","true","SELECT COUNT(*) FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.Age > 20",""
+"52","pets_1","How many pets are owned by students that have an age greater than 20?","completed","false","rule_only","2026-10-28T16:58:46.182Z","2026-10-28T16:58:48.502Z","2319.94","3.973","2028.199","2028.199","2","kimi-k2.6","kimi","298","59","357","","kimi-k2.6","true","SELECT COUNT(*) FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20)","2","1","true","SELECT COUNT(*) FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.Age > 20",""
+"53","pets_1","Find the number of dog pets that are raised by female students (with sex F).","completed","false","rule_only","2026-10-28T16:58:48.506Z","2026-10-28T16:58:51.214Z","2708.772","2.803","2417.93","2417.93","2","kimi-k2.6","kimi","317","100","417","","kimi-k2.6","true","SELECT COUNT(*) FROM Pets WHERE PetType = 'dog' AND PetID IN (SELECT PetID FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Sex = 'F'))","2","1","true","SELECT COUNT(*) FROM Pets JOIN Has_Pet ON Pets.PetID = Has_Pet.PetID JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Pets.PetType = 'dog' AND Student.Sex = 'F'",""
+"54","pets_1","How many dog pets are raised by female students?","completed","false","rule_only","2026-10-28T16:58:51.219Z","2026-10-28T16:58:54.019Z","2799.555","4.672","2523.922","2523.922","2","kimi-k2.6","kimi","303","100","403","","kimi-k2.6","true","SELECT COUNT(*) FROM Pets WHERE PetType = 'dog' AND PetID IN (SELECT PetID FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Sex = 'F'))","2","1","true","SELECT COUNT(*) FROM Pets JOIN Has_Pet ON Pets.PetID = Has_Pet.PetID JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Pets.PetType = 'dog' AND Student.Sex = 'F'",""
+"55","pets_1","Find the number of distinct type of pets.","completed","false","rule_only","2026-10-28T16:58:54.022Z","2026-10-28T16:58:54.972Z","950.009","5.169","747.055","747.055","1","kimi-k2.6","kimi","88","13","101","","kimi-k2.6","true","SELECT COUNT(DISTINCT PetType) FROM Pets","1","0","true","SELECT COUNT(DISTINCT PetType) FROM Pets",""
+"56","pets_1","How many different types of pet are there?","completed","false","rule_only","2026-10-28T16:58:54.976Z","2026-10-28T16:58:55.999Z","1022.867","4.795","817.517","817.517","1","kimi-k2.6","kimi","88","13","101","","kimi-k2.6","true","SELECT COUNT(DISTINCT PetType) FROM Pets","1","0","true","SELECT COUNT(DISTINCT PetType) FROM Pets",""
+"57","pets_1","Find the first name of students who have cat or dog pet.","completed","false","rule_only","2026-10-28T16:58:56.004Z","2026-10-28T16:58:57.478Z","1474.107","5.158","1189.517","1189.517","1","kimi-k2.6","kimi","92","47","139","","kimi-k2.6","true","SELECT DISTINCT Fname FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat' OR PetType = 'dog'))","1","0","true","SELECT DISTINCT Fname FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat' OR PetType = 'dog'))",""
+"58","pets_1","What are the first names of every student who has a cat or dog as a pet?","completed","false","rule_only","2026-10-28T16:58:57.481Z","2026-10-28T16:58:58.941Z","1459.498","4.47","1149.469","1149.469","1","kimi-k2.6","kimi","97","47","144","","kimi-k2.6","true","SELECT DISTINCT Fname FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat' OR PetType = 'dog'))","1","0","true","SELECT DISTINCT Fname FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat' OR PetType = 'dog'))",""
+"59","pets_1","Find the first name of students who have both cat and dog pets .","completed","false","rule_only","2026-10-28T16:58:58.945Z","2026-10-28T16:59:01.113Z","2168.048","5.235","1864.393","1864.393","1","kimi-k2.6","kimi","93","101","194","","kimi-k2.6","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H1.StuID FROM Has_Pet H1 JOIN Pets P1 ON H1.PetID = P1.PetID WHERE P1.PetType = 'cat') AND S.StuID IN (SELECT H2.StuID FROM Has_Pet H2 JOIN Pets P2 ON H2.PetID = P2.PetID WHERE P2.PetType = 'dog')","1","0","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H1.StuID FROM Has_Pet H1 JOIN Pets P1 ON H1.PetID = P1.PetID WHERE P1.PetType = 'cat') AND S.StuID IN (SELECT H2.StuID FROM Has_Pet H2 JOIN Pets P2 ON H2.PetID = P2.PetID WHERE P2.PetType = 'dog')",""
+"60","pets_1","What are the students' first names who have both cats and dogs as pets?","completed","false","rule_only","2026-10-28T16:59:01.117Z","2026-10-28T16:59:03.206Z","2088.506","5.905","1750.542","1750.542","1","kimi-k2.6","kimi","95","97","192","","kimi-k2.6","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H1.StuID FROM Has_Pet H1 JOIN Pets P1 ON H1.PetID = P1.PetID WHERE P1.PetType = 'cat' INTERSECT SELECT H2.StuID FROM Has_Pet H2 JOIN Pets P2 ON H2.PetID = P2.PetID WHERE P2.PetType = 'dog')","1","0","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H1.StuID FROM Has_Pet H1 JOIN Pets P1 ON H1.PetID = P1.PetID WHERE P1.PetType = 'cat' INTERSECT SELECT H2.StuID FROM Has_Pet H2 JOIN Pets P2 ON H2.PetID = P2.PetID WHERE P2.PetType = 'dog')",""
+"61","pets_1","Find the major and age of students who do not have a cat pet.","completed","false","rule_only","2026-10-28T16:59:03.210Z","2026-10-28T16:59:04.835Z","1625.046","3.391","1345.597","1345.597","1","kimi-k2.6","kimi","94","55","149","","kimi-k2.6","true","SELECT DISTINCT S.Major, S.Age FROM Student S WHERE S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')","1","0","true","SELECT DISTINCT S.Major, S.Age FROM Student S WHERE S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')",""
+"62","pets_1","What major is every student who does not own a cat as a pet, and also how old are they?","completed","false","rule_only","2026-10-28T16:59:04.839Z","2026-10-28T16:59:06.448Z","1608.459","4.057","1290.957","1290.957","1","kimi-k2.6","kimi","101","55","156","","kimi-k2.6","true","SELECT DISTINCT S.Major, S.Age FROM Student S WHERE S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'Cat')","1","0","true","SELECT DISTINCT S.Major, S.Age FROM Student S WHERE S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'Cat')",""
+"63","pets_1","Find the id of students who do not have a cat pet.","completed","false","rule_only","2026-10-28T16:59:06.453Z","2026-10-28T16:59:07.861Z","1407.816","4.591","1173.777","1173.777","1","kimi-k2.6","kimi","92","45","137","","kimi-k2.6","true","SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')","1","0","true","SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')",""
+"64","pets_1","What are the ids of the students who do not own cats as pets?","completed","false","rule_only","2026-10-28T16:59:07.865Z","2026-10-28T16:59:09.449Z","1584.081","4.454","1285.098","1285.098","1","kimi-k2.6","kimi","94","45","139","","kimi-k2.6","true","SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat')","1","0","true","SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'Cat')",""
+"65","pets_1","Find the first name and age of students who have a dog but do not have a cat as a pet.","completed","false","rule_only","2026-10-28T16:59:09.453Z","2026-10-28T16:59:11.562Z","2108.572","4.451","1779.407","1779.407","1","kimi-k2.6","kimi","101","94","195","","kimi-k2.6","true","SELECT DISTINCT S.Fname, S.Age FROM Student S WHERE S.StuID IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'dog') AND S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')","1","0","true","SELECT DISTINCT S.Fname, S.Age FROM Student S WHERE S.StuID IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'dog') AND S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')",""
+"66","pets_1","What is the first name of every student who has a dog but does not have a cat?","completed","false","rule_only","2026-10-28T16:59:11.568Z","2026-10-28T16:59:13.826Z","2257.613","5.868","1914.898","1914.898","1","kimi-k2.6","kimi","98","90","188","","kimi-k2.6","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'dog') AND S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')","1","0","true","SELECT DISTINCT S.Fname FROM Student S WHERE S.StuID IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'dog') AND S.StuID NOT IN (SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'cat')",""
+"67","pets_1","Find the type and weight of the youngest pet.","completed","false","rule_only","2026-10-28T16:59:13.830Z","2026-10-28T16:59:15.642Z","1811.589","4.208","1583.675","1583.675","1","kimi-k2.6","kimi","89","24","113","","kimi-k2.6","true","SELECT PetType, weight FROM Pets WHERE pet_age = (SELECT MIN(pet_age) FROM Pets)","1","0","true","SELECT PetType, weight FROM Pets WHERE pet_age = (SELECT MIN(pet_age) FROM Pets)",""
+"68","pets_1","What type of pet is the youngest animal, and how much does it weigh?","completed","false","rule_only","2026-10-28T16:59:15.647Z","2026-10-28T16:59:16.930Z","1283.459","5.392","1008.9","1008.9","1","kimi-k2.6","kimi","95","24","119","","kimi-k2.6","true","SELECT PetType, weight FROM Pets WHERE pet_age = (SELECT MIN(pet_age) FROM Pets)","1","0","true","SELECT PetType, weight FROM Pets WHERE pet_age = (SELECT MIN(pet_age) FROM Pets)",""
+"69","pets_1","Find the id and weight of all pets whose age is older than 1.","completed","false","rule_only","2026-10-28T16:59:16.935Z","2026-10-28T16:59:18.054Z","1118.881","5.04","883.801","883.801","1","kimi-k2.6","kimi","95","16","111","","kimi-k2.6","true","SELECT PetID, weight FROM Pets WHERE pet_age > 1","1","0","true","SELECT PetID, weight FROM Pets WHERE pet_age > 1",""
+"70","pets_1","What is the id and weight of every pet who is older than 1?","completed","false","rule_only","2026-10-28T16:59:18.063Z","2026-10-28T16:59:19.210Z","1147.279","4.45","867.421","867.421","1","kimi-k2.6","kimi","95","16","111","","kimi-k2.6","true","SELECT PetID, weight FROM Pets WHERE pet_age > 1","1","0","true","SELECT PetID, weight FROM Pets WHERE pet_age > 1",""
+"71","pets_1","Find the average and maximum age for each type of pet.","completed","false","rule_only","2026-10-28T16:59:19.215Z","2026-10-28T16:59:20.636Z","1420.603","5.365","1151.459","1151.459","1","kimi-k2.6","kimi","91","31","122","","kimi-k2.6","true","SELECT PetType, AVG(pet_age) AS avg_age, MAX(pet_age) AS max_age FROM Pets GROUP BY PetType;","1","0","true","SELECT PetType, AVG(pet_age) AS avg_age, MAX(pet_age) AS max_age FROM Pets GROUP BY PetType;",""
+"72","pets_1","What is the average and maximum age for each pet type?","completed","false","rule_only","2026-10-28T16:59:20.640Z","2026-10-28T16:59:21.935Z","1294.236","3.929","1021.356","1021.356","1","kimi-k2.6","kimi","91","31","122","","kimi-k2.6","true","SELECT PetType, AVG(pet_age) AS avg_age, MAX(pet_age) AS max_age FROM Pets GROUP BY PetType;","1","0","true","SELECT PetType, AVG(pet_age) AS avg_age, MAX(pet_age) AS max_age FROM Pets GROUP BY PetType;",""
+"73","pets_1","Find the average weight for each pet type.","completed","false","rule_only","2026-10-28T16:59:21.940Z","2026-10-28T16:59:23.038Z","1098.872","5.29","835.835","835.835","1","kimi-k2.6","kimi","88","17","105","","kimi-k2.6","true","SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType;","1","0","true","SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType;",""
+"74","pets_1","What is the average weight for each type of pet?","completed","false","rule_only","2026-10-28T16:59:23.042Z","2026-10-28T16:59:24.238Z","1195.91","4.279","935.342","935.342","1","kimi-k2.6","kimi","90","17","107","","kimi-k2.6","true","SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType;","1","0","true","SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType;",""
+"75","pets_1","Find the first name and age of students who have a pet.","completed","false","rule_only","2026-10-28T16:59:24.242Z","2026-10-28T16:59:25.792Z","1549.72","4.427","1273.216","1273.216","1","kimi-k2.6","kimi","92","38","130","","kimi-k2.6","true","SELECT DISTINCT T1.Fname, T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID","1","0","true","SELECT DISTINCT T1.Fname, T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID",""
+"76","pets_1","What are the different first names and ages of the students who do have pets?","completed","false","rule_only","2026-10-28T16:59:25.799Z","2026-10-28T16:59:27.259Z","1459.557","4.645","1127.813","1127.813","1","kimi-k2.6","kimi","95","30","125","","kimi-k2.6","true","SELECT DISTINCT S.Fname, S.Age FROM Student S JOIN Has_Pet HP ON S.StuID = HP.StuID","1","0","true","SELECT DISTINCT S.Fname, S.Age FROM Student S JOIN Has_Pet HP ON S.StuID = HP.StuID",""
+"77","pets_1","Find the id of the pet owned by student whose last name is ‘Smith’.","completed","false","rule_only","2026-10-28T16:59:27.263Z","2026-10-28T16:59:28.629Z","1365.674","4.472","1082.23","1082.23","1","kimi-k2.6","kimi","95","36","131","","kimi-k2.6","true","SELECT Has_Pet.PetID FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.LName = 'Smith'","1","0","true","SELECT Has_Pet.PetID FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.LName = 'Smith'",""
+"78","pets_1","What is the id of the pet owned by the student whose last name is 'Smith'?","completed","false","rule_only","2026-10-28T16:59:28.634Z","2026-10-28T16:59:30.116Z","1482.038","4.775","1177.423","1177.423","1","kimi-k2.6","kimi","98","36","134","","kimi-k2.6","true","SELECT Has_Pet.PetID FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.LName = 'Smith'","1","0","true","SELECT Has_Pet.PetID FROM Has_Pet JOIN Student ON Has_Pet.StuID = Student.StuID WHERE Student.LName = 'Smith'",""
+"79","pets_1","Find the number of pets for each student who has any pet and student id.","completed","false","rule_only","2026-10-28T16:59:30.121Z","2026-10-28T16:59:31.772Z","1650.986","3.215","1205.331","1205.331","1","kimi-k2.6","kimi","95","46","141","","kimi-k2.6","true","SELECT Student.StuID, COUNT(Has_Pet.PetID) as num_pets FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID GROUP BY Student.StuID","1","0","true","SELECT Student.StuID, COUNT(Has_Pet.PetID) as num_pets FROM Student JOIN Has_Pet ON Student.StuID = Has_Pet.StuID GROUP BY Student.StuID",""
+"80","pets_1","For students who have pets , how many pets does each student have ? list their ids instead of names .","completed","false","rule_only","2026-10-28T16:59:31.788Z","2026-10-28T16:59:33.617Z","1828.924","8.629","1380.671","1380.671","1","kimi-k2.6","kimi","100","49","149","","kimi-k2.6","true","SELECT Student.StuID, COUNT(Has_Pet.PetID) AS num_pets
+FROM Student
+JOIN Has_Pet ON Student.StuID = Has_Pet.StuID
+GROUP BY Student.StuID","1","0","true","SELECT Student.StuID, COUNT(Has_Pet.PetID) AS num_pets
+FROM Student
+JOIN Has_Pet ON Student.StuID = Has_Pet.StuID
+GROUP BY Student.StuID",""
+"81","pets_1","Find the first name and gender of student who have more than one pet.","completed","false","rule_only","2026-10-28T16:59:33.621Z","2026-10-28T16:59:35.157Z","1536.532","5.551","1300.396","1300.396","1","kimi-k2.6","kimi","94","51","145","","kimi-k2.6","true","SELECT T1.Fname, T1.Sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID HAVING COUNT(*) > 1","1","0","true","SELECT T1.Fname, T1.Sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID HAVING COUNT(*) > 1",""
+"82","pets_1","What is the first name and gender of the all the students who have more than one pet?","completed","false","rule_only","2026-10-28T16:59:35.163Z","2026-10-28T16:59:36.644Z","1481.231","3.115","1176.328","1176.328","1","kimi-k2.6","kimi","98","37","135","","kimi-k2.6","true","SELECT Fname, Sex FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet GROUP BY StuID HAVING COUNT(*) > 1)","1","0","true","SELECT Fname, Sex FROM Student WHERE StuID IN (SELECT StuID FROM Has_Pet GROUP BY StuID HAVING COUNT(*) > 1)",""
+"83","pets_1","Find the last name of the student who has a cat that is age 3.","completed","false","rule_only","2026-10-28T16:59:36.648Z","2026-10-28T16:59:38.261Z","1612.354","4.532","1362.027","1362.027","1","kimi-k2.6","kimi","96","61","157","","kimi-k2.6","true","SELECT DISTINCT S.LName 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType = 'cat' AND P.pet_age = 3;","1","0","true","SELECT DISTINCT S.LName 
+FROM Student S 
+JOIN Has_Pet HP ON S.StuID = HP.StuID 
+JOIN Pets P ON HP.PetID = P.PetID 
+WHERE P.PetType = 'cat' AND P.pet_age = 3;",""
+"84","pets_1","What is the last name of the student who has a cat that is 3 years old?","completed","false","rule_only","2026-10-28T16:59:38.264Z","2026-10-28T16:59:39.984Z","1719.653","3.551","1455.851","1455.851","1","kimi-k2.6","kimi","98","56","154","","kimi-k2.6","true","SELECT DISTINCT S.LName FROM Student S JOIN Has_Pet HP ON S.StuID = HP.StuID JOIN Pets P ON HP.PetID = P.PetID WHERE P.PetType = 'cat' AND P.pet_age = 3","1","0","true","SELECT DISTINCT S.LName FROM Student S JOIN Has_Pet HP ON S.StuID = HP.StuID JOIN Pets P ON HP.PetID = P.PetID WHERE P.PetType = 'cat' AND P.pet_age = 3",""
+"85","pets_1","Find the average age of students who do not have any pet .","completed","false","rule_only","2026-10-28T16:59:39.988Z","2026-10-28T16:59:41.162Z","1174.249","4.74","925.163","925.163","1","kimi-k2.6","kimi","92","26","118","","kimi-k2.6","true","SELECT AVG(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)","1","0","true","SELECT AVG(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)",""
+"86","pets_1","What is the average age for all students who do not own any pets ?","completed","false","rule_only","2026-10-28T16:59:41.166Z","2026-10-28T16:59:42.503Z","1337.323","4.122","1015.851","1015.851","1","kimi-k2.6","kimi","94","26","120","","kimi-k2.6","true","SELECT AVG(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)","1","0","true","SELECT AVG(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)",""
+"87","car_1","How many continents are there?","completed","false","rule_only","2026-10-28T16:59:42.510Z","2026-10-28T16:59:43.629Z","1118.707","18.854","842.689","842.689","1","kimi-k2.6","kimi","117","9","126","","kimi-k2.6","true","SELECT COUNT(*) FROM continents;","1","0","true","SELECT COUNT(*) FROM continents;",""
+"88","car_1","What is the number of continents?","completed","false","rule_only","2026-10-28T16:59:43.635Z","2026-10-28T16:59:44.644Z","1009.171","6.968","738.832","738.832","1","kimi-k2.6","kimi","118","8","126","","kimi-k2.6","true","SELECT COUNT(*) FROM continents","1","0","true","SELECT COUNT(*) FROM continents",""
+"89","car_1","How many countries does each continent have? List the continent id, continent name and the number of countries.","completed","false","rule_only","2026-10-28T16:59:44.648Z","2026-10-28T16:59:46.462Z","1813.856","11.018","1329.025","1329.025","1","kimi-k2.6","kimi","132","54","186","","kimi-k2.6","true","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS NumCountries
+FROM continents c
+LEFT JOIN countries co ON c.ContId = co.Continent
+GROUP BY c.ContId, c.Continent","1","0","true","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS NumCountries
+FROM continents c
+LEFT JOIN countries co ON c.ContId = co.Continent
+GROUP BY c.ContId, c.Continent",""
+"90","car_1","For each continent, list its id, name, and how many countries it has?","completed","false","rule_only","2026-10-28T16:59:46.467Z","2026-10-28T16:59:49.246Z","2779.242","9.093","2401.87","2401.87","2","kimi-k2.6","kimi","376","102","478","","kimi-k2.6","true","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS CountryCount FROM continents c LEFT JOIN countries co ON c.Continent = co.Continent GROUP BY c.ContId, c.Continent","2","1","true","SELECT c.ContId, c.Continent, COUNT(co.CountryId) AS CountryCount FROM continents c LEFT JOIN countries co ON c.ContId = co.Continent GROUP BY c.ContId, c.Continent",""
+"91","car_1","How many countries are listed?","completed","false","rule_only","2026-10-28T16:59:49.253Z","2026-10-28T16:59:50.301Z","1048.084","6.797","823.641","823.641","1","kimi-k2.6","kimi","117","8","125","","kimi-k2.6","true","SELECT COUNT(*) FROM countries","1","0","true","SELECT COUNT(*) FROM countries",""
+"92","car_1","How many countries exist?","completed","false","rule_only","2026-10-28T16:59:50.305Z","2026-10-28T16:59:51.393Z","1087.819","6.584","832.084","832.084","1","kimi-k2.6","kimi","116","9","125","","kimi-k2.6","true","SELECT COUNT(*) FROM countries;","1","0","true","SELECT COUNT(*) FROM countries;",""
+"93","car_1","How many models does each car maker produce? List maker full name, id and the number.","completed","false","rule_only","2026-10-28T16:59:51.397Z","2026-10-28T16:59:53.525Z","2127.801","10.14","1493.173","1493.173","1","kimi-k2.6","kimi","130","57","187","","kimi-k2.6","true","SELECT T1.FullName, T1.Id, COUNT(DISTINCT T2.Model) as NumberOfModels FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id, T1.FullName","1","0","true","SELECT T1.FullName, T1.Id, COUNT(DISTINCT T2.Model) as NumberOfModels FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id, T1.FullName",""
+"94","car_1","What is the full name of each car maker, along with its id and how many models it produces?","completed","false","rule_only","2026-10-28T16:59:53.530Z","2026-10-28T16:59:55.369Z","1839.593","9.968","1442.887","1442.887","1","kimi-k2.6","kimi","132","56","188","","kimi-k2.6","true","SELECT T1.Id, T1.FullName, COUNT(DISTINCT T2.Model) 
+FROM car_makers AS T1 
+JOIN model_list AS T2 ON T1.Id = T2.Maker 
+GROUP BY T1.Id, T1.FullName","1","0","true","SELECT T1.Id, T1.FullName, COUNT(DISTINCT T2.Model) 
+FROM car_makers AS T1 
+JOIN model_list AS T2 ON T1.Id = T2.Maker 
+GROUP BY T1.Id, T1.FullName",""
+"95","car_1","Which model of the car has the minimum horsepower?","completed","false","rule_only","2026-10-28T16:59:55.374Z","2026-10-28T16:59:56.984Z","1610.062","6.829","1314.421","1314.421","1","kimi-k2.6","kimi","121","60","181","","kimi-k2.6","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Horsepower = (SELECT MIN(Horsepower) FROM cars_data)","1","0","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Horsepower = (SELECT MIN(Horsepower) FROM cars_data)",""
+"96","car_1","What is the model of the car with the smallest amount of horsepower?","completed","false","rule_only","2026-10-28T16:59:56.989Z","2026-10-28T16:59:58.726Z","1736.999","7.591","1373.067","1373.067","1","kimi-k2.6","kimi","125","62","187","","kimi-k2.6","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Horsepower IS NOT NULL ORDER BY T3.Horsepower ASC LIMIT 1","1","0","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Horsepower IS NOT NULL ORDER BY T3.Horsepower ASC LIMIT 1",""
+"97","car_1","Find the model of the car whose weight is below the average weight.","completed","false","rule_only","2026-10-28T16:59:58.729Z","2026-10-28T17:00:00.481Z","1751.434","6.389","1391.294","1391.294","1","kimi-k2.6","kimi","125","59","184","","kimi-k2.6","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Weight < (SELECT AVG(Weight) FROM cars_data)","1","0","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Weight < (SELECT AVG(Weight) FROM cars_data)",""
+"98","car_1","What is the model for the car with a weight smaller than the average?","completed","false","rule_only","2026-10-28T17:00:00.485Z","2026-10-28T17:00:05.306Z","4820.783","8.744","4424.294","4424.294","1","kimi-k2.6","kimi","126","44","170","","kimi-k2.6","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Weight < (SELECT AVG(Weight) FROM cars_data)","1","0","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Weight < (SELECT AVG(Weight) FROM cars_data)",""
+"99","car_1","Find the name of the makers that produced some cars in the year of 1970?","completed","false","rule_only","2026-10-28T17:00:05.312Z","2026-10-28T17:00:07.312Z","1999.89","8.896","1581.637","1581.637","1","kimi-k2.6","kimi","129","59","188","","kimi-k2.6","true","SELECT DISTINCT car_makers.Maker FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker JOIN car_names ON model_list.Model = car_names.Model JOIN cars_data ON car_names.MakeId = cars_data.Id WHERE cars_data.Year = 1970","1","0","true","SELECT DISTINCT car_makers.Maker FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker JOIN car_names ON model_list.Model = car_names.Model JOIN cars_data ON car_names.MakeId = cars_data.Id WHERE cars_data.Year = 1970",""
+"100","car_1","What is the name of the different car makers who produced a car in 1970?","completed","false","rule_only","2026-10-28T17:00:07.317Z","2026-10-28T17:00:09.207Z","1889.461","8.12","1514.05","1514.05","1","kimi-k2.6","kimi","129","58","187","","kimi-k2.6","true","SELECT DISTINCT cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+JOIN cars_data cd ON cn.MakeId = cd.Id 
+WHERE cd.Year = 1970","1","0","true","SELECT DISTINCT cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+JOIN cars_data cd ON cn.MakeId = cd.Id 
+WHERE cd.Year = 1970",""
+"101","car_1","Find the make and production time of the cars that were produced in the earliest year?","completed","false","rule_only","2026-10-28T17:00:09.213Z","2026-10-28T17:00:11.093Z","1879.849","13.071","1431.262","1431.262","1","kimi-k2.6","kimi","128","49","177","","kimi-k2.6","true","SELECT T1.Make, T2.Year FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Year = (SELECT MIN(Year) FROM cars_data)","1","0","true","SELECT T1.Make, T2.Year FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Year = (SELECT MIN(Year) FROM cars_data)",""
+"102","car_1","What is the maker of the carr produced in the earliest year and what year was it?","completed","false","rule_only","2026-10-28T17:00:11.098Z","2026-10-28T17:00:13.225Z","2127.887","8.087","1676.255","1676.255","1","kimi-k2.6","kimi","130","72","202","","kimi-k2.6","true","SELECT cm.Maker, MIN(cd.Year) as Year
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+JOIN car_names cn ON ml.Model = cn.Model
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Year = (SELECT MIN(Year) FROM cars_data)","1","0","true","SELECT cm.Maker, MIN(cd.Year) as Year
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+JOIN car_names cn ON ml.Model = cn.Model
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Year = (SELECT MIN(Year) FROM cars_data)",""
+"103","car_1","Which distinct car models are the produced after 1980?","completed","false","rule_only","2026-10-28T17:00:13.230Z","2026-10-28T17:00:14.970Z","1739.515","10.092","1452.263","1452.263","1","kimi-k2.6","kimi","123","52","175","","kimi-k2.6","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Year > 1980","1","0","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model JOIN cars_data AS T3 ON T2.MakeId = T3.Id WHERE T3.Year > 1980",""
+"104","car_1","What are the different models for the cards produced after 1980?","completed","false","rule_only","2026-10-28T17:00:14.975Z","2026-10-28T17:00:16.914Z","1938.308","14.827","1480.645","1480.645","1","kimi-k2.6","kimi","125","58","183","","kimi-k2.6","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model  =  T2.Model JOIN cars_data AS T3 ON T2.MakeId  =  T3.Id WHERE T3.Year  >  1980","1","0","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model  =  T2.Model JOIN cars_data AS T3 ON T2.MakeId  =  T3.Id WHERE T3.Year  >  1980",""
+"105","car_1","How many car makers are there in each continents? List the continent name and the count.","completed","false","rule_only","2026-10-28T17:00:16.918Z","2026-10-28T17:00:19.077Z","2159.219","10.077","1670.911","1670.911","1","kimi-k2.6","kimi","129","65","194","","kimi-k2.6","true","SELECT c.Continent, COUNT(DISTINCT cm.Maker) as MakerCount
+FROM continents c
+JOIN countries cn ON c.ContId = cn.Continent
+JOIN car_makers cm ON cn.CountryId = cm.Country
+GROUP BY c.ContId, c.Continent","1","0","true","SELECT c.Continent, COUNT(DISTINCT cm.Maker) as MakerCount
+FROM continents c
+JOIN countries cn ON c.ContId = cn.Continent
+JOIN car_makers cm ON cn.CountryId = cm.Country
+GROUP BY c.ContId, c.Continent",""
+"106","car_1","What is the name of each continent and how many car makers are there in each one?","completed","false","rule_only","2026-10-28T17:00:19.082Z","2026-10-28T17:00:21.317Z","2234.681","10.08","1672.704","1672.704","1","kimi-k2.6","kimi","129","66","195","","kimi-k2.6","true","SELECT c.Continent, COUNT(DISTINCT cm.Id) AS num_makers
+FROM continents c
+JOIN countries co ON c.ContId = co.Continent
+JOIN car_makers cm ON co.CountryId = cm.Country
+GROUP BY c.ContId, c.Continent;","1","0","true","SELECT c.Continent, COUNT(DISTINCT cm.Id) AS num_makers
+FROM continents c
+JOIN countries co ON c.ContId = co.Continent
+JOIN car_makers cm ON co.CountryId = cm.Country
+GROUP BY c.ContId, c.Continent;",""
+"107","car_1","Which of the countries has the most car makers? List the country name.","completed","false","rule_only","2026-10-28T17:00:21.323Z","2026-10-28T17:00:23.613Z","2289.806","14.797","1475.507","1475.507","1","kimi-k2.6","kimi","126","53","179","","kimi-k2.6","true","SELECT c.CountryName, COUNT(cm.Id) as MakerCount
+FROM countries c
+JOIN car_makers cm ON c.CountryId = cm.Country
+GROUP BY c.CountryName
+ORDER BY MakerCount DESC
+LIMIT 1;","1","0","true","SELECT c.CountryName, COUNT(cm.Id) as MakerCount
+FROM countries c
+JOIN car_makers cm ON c.CountryId = cm.Country
+GROUP BY c.CountryName
+ORDER BY MakerCount DESC
+LIMIT 1;",""
+"108","car_1","What is the name of the country with the most car makers?","completed","false","rule_only","2026-10-28T17:00:23.619Z","2026-10-28T17:00:25.142Z","1522.605","10.123","1141.354","1141.354","1","kimi-k2.6","kimi","124","31","155","","kimi-k2.6","true","SELECT CountryName FROM countries WHERE CountryId = (SELECT Country FROM car_makers GROUP BY Country ORDER BY COUNT(*) DESC LIMIT 1)","1","0","true","SELECT CountryName FROM countries WHERE CountryId = (SELECT Country FROM car_makers GROUP BY Country ORDER BY COUNT(*) DESC LIMIT 1)",""
+"109","car_1","How many car models are produced by each maker ? Only list the count and the maker full name .","completed","false","rule_only","2026-10-28T17:00:25.147Z","2026-10-28T17:00:27.017Z","1870.359","9.832","1365.714","1365.714","1","kimi-k2.6","kimi","131","45","176","","kimi-k2.6","true","SELECT COUNT(DISTINCT ml.Model) as ModelCount, cm.FullName
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+GROUP BY cm.Id, cm.FullName","1","0","true","SELECT COUNT(DISTINCT ml.Model) as ModelCount, cm.FullName
+FROM car_makers cm
+JOIN model_list ml ON cm.Id = ml.Maker
+GROUP BY cm.Id, cm.FullName",""
+"110","car_1","What is the number of car models that are produced by each maker and what is the id and full name of each maker?","completed","false","rule_only","2026-10-28T17:00:27.022Z","2026-10-28T17:00:29.030Z","2008.233","9.828","1528.428","1528.428","1","kimi-k2.6","kimi","136","57","193","","kimi-k2.6","true","SELECT car_makers.Id, car_makers.FullName, COUNT(DISTINCT model_list.ModelId) AS NumberOfModels FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker GROUP BY car_makers.Id, car_makers.FullName","1","0","true","SELECT car_makers.Id, car_makers.FullName, COUNT(DISTINCT model_list.ModelId) AS NumberOfModels FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker GROUP BY car_makers.Id, car_makers.FullName",""
+"111","car_1","What is the accelerate of the car make amc hornet sportabout (sw)?","completed","false","rule_only","2026-10-28T17:00:29.034Z","2026-10-28T17:00:30.618Z","1583.08","8.099","1198.525","1198.525","1","kimi-k2.6","kimi","128","46","174","","kimi-k2.6","true","SELECT T2.Accelerate FROM car_names AS T1 INNER JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T1.Make = 'amc hornet sportabout (sw)'","1","0","true","SELECT T2.Accelerate FROM car_names AS T1 INNER JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T1.Make = 'amc hornet sportabout (sw)'",""
+"112","car_1","How much does the car accelerate that makes amc hornet sportabout (sw)?","completed","false","rule_only","2026-10-28T17:00:30.622Z","2026-10-28T17:00:32.174Z","1551.882","10.229","1129.88","1129.88","1","kimi-k2.6","kimi","128","36","164","","kimi-k2.6","true","SELECT Accelerate FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE car_names.Model = 'amc hornet sportabout (sw)'","1","0","true","SELECT Accelerate FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE car_names.Model = 'amc hornet sportabout (sw)'",""
+"113","car_1","How many car makers are there in france?","completed","false","rule_only","2026-10-28T17:00:32.179Z","2026-10-28T17:00:33.372Z","1193.443","8.206","891.932","891.932","1","kimi-k2.6","kimi","121","16","137","","kimi-k2.6","true","SELECT COUNT(*) FROM car_makers WHERE Country = 'France'","1","0","true","SELECT COUNT(*) FROM car_makers WHERE Country = 'France'",""
+"114","car_1","What is the number of makers of care in France?","completed","false","rule_only","2026-10-28T17:00:33.377Z","2026-10-28T17:00:34.971Z","1594.079","10.696","1253.808","1253.808","1","kimi-k2.6","kimi","122","40","162","","kimi-k2.6","true","SELECT COUNT(DISTINCT cm.Id) 
+FROM car_makers cm 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'France'","1","0","true","SELECT COUNT(DISTINCT cm.Id) 
+FROM car_makers cm 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'France'",""
+"115","car_1","How many car models are produced in the usa?","completed","false","rule_only","2026-10-28T17:00:34.976Z","2026-10-28T17:00:36.680Z","1704.229","8.053","1361.311","1361.311","1","kimi-k2.6","kimi","121","53","174","","kimi-k2.6","true","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'usa'","1","0","true","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'usa'",""
+"116","car_1","What is the count of the car models produced in the United States?","completed","false","rule_only","2026-10-28T17:00:36.686Z","2026-10-28T17:00:38.601Z","1915.406","14.556","1517.705","1517.705","1","kimi-k2.6","kimi","125","54","179","","kimi-k2.6","true","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'United States'","1","0","true","SELECT COUNT(DISTINCT ml.ModelId) 
+FROM model_list ml 
+JOIN car_makers cm ON ml.Maker = cm.Id 
+JOIN countries c ON cm.Country = c.CountryId 
+WHERE c.CountryName = 'United States'",""
+"117","car_1","What is the average miles per gallon(mpg) of the cars with 4 cylinders?","completed","false","rule_only","2026-10-28T17:00:38.606Z","2026-10-28T17:00:40.027Z","1420.673","11.049","942.62","942.62","1","kimi-k2.6","kimi","129","19","148","","kimi-k2.6","true","SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4;","1","0","true","SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4;",""
+"118","car_1","What is the average miles per gallon of all the cards with 4 cylinders?","completed","false","rule_only","2026-10-28T17:00:40.031Z","2026-10-28T17:00:41.249Z","1217.863","9.301","866.503","866.503","1","kimi-k2.6","kimi","127","18","145","","kimi-k2.6","true","SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4","1","0","true","SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4",""
+"119","car_1","What is the smallest weight of the car produced with 8 cylinders on 1974 ?","completed","false","rule_only","2026-10-28T17:00:41.253Z","2026-10-28T17:00:43.090Z","1836.137","12.912","1316.178","1316.178","1","kimi-k2.6","kimi","129","44","173","","kimi-k2.6","true","SELECT MIN(cars_data.Weight) FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE cars_data.Cylinders = 8 AND cars_data.Year = 1974","1","0","true","SELECT MIN(cars_data.Weight) FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE cars_data.Cylinders = 8 AND cars_data.Year = 1974",""
+"120","car_1","What is the minimum weight of the car with 8 cylinders produced in 1974 ?","completed","false","rule_only","2026-10-28T17:00:43.096Z","2026-10-28T17:00:44.790Z","1694.657","11","1312.054","1312.054","1","kimi-k2.6","kimi","129","40","169","","kimi-k2.6","true","SELECT MIN(c.Weight) FROM cars_data c JOIN car_names n ON c.Id = n.MakeId WHERE c.Cylinders = 8 AND c.Year = 1974","1","0","true","SELECT MIN(c.Weight) FROM cars_data c JOIN car_names n ON c.Id = n.MakeId WHERE c.Cylinders = 8 AND c.Year = 1974",""
+"121","car_1","What are all the makers and models?","completed","false","rule_only","2026-10-28T17:00:44.796Z","2026-10-28T17:00:46.524Z","1727.81","9.866","1203.714","1203.714","1","kimi-k2.6","kimi","119","36","155","","kimi-k2.6","true","SELECT T1.Maker, T2.Model FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker","1","0","true","SELECT T1.Maker, T2.Model FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker",""
+"122","car_1","What are the makers and models?","completed","false","rule_only","2026-10-28T17:00:46.533Z","2026-10-28T17:00:47.755Z","1222.431","9.672","991.825","991.825","1","kimi-k2.6","kimi","118","28","146","","kimi-k2.6","true","SELECT DISTINCT cm.Maker, ml.Model FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker;","1","0","true","SELECT DISTINCT cm.Maker, ml.Model FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker;",""
+"123","car_1","What are the countries having at least one car maker? List name and id.","completed","false","rule_only","2026-10-28T17:00:47.761Z","2026-10-28T17:00:49.334Z","1572.299","10.652","1090.636","1090.636","1","kimi-k2.6","kimi","127","33","160","","kimi-k2.6","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+JOIN car_makers cm ON c.CountryId = cm.Country","1","0","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+JOIN car_makers cm ON c.CountryId = cm.Country",""
+"124","car_1","What are the names and ids of all countries with at least one car maker?","completed","false","rule_only","2026-10-28T17:00:49.338Z","2026-10-28T17:00:50.851Z","1512.674","10.068","1026.948","1026.948","1","kimi-k2.6","kimi","127","36","163","","kimi-k2.6","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+INNER JOIN car_makers cm ON c.CountryId = cm.Country;","1","0","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+INNER JOIN car_makers cm ON c.CountryId = cm.Country;",""
+"125","car_1","What is the number of the cars with horsepower more than 150?","completed","false","rule_only","2026-10-28T17:00:50.857Z","2026-10-28T17:00:52.146Z","1288.846","10.018","888.39","888.39","1","kimi-k2.6","kimi","125","15","140","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Horsepower > 150","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Horsepower > 150",""
+"126","car_1","What is the number of cars with a horsepower greater than 150?","completed","false","rule_only","2026-10-28T17:00:52.153Z","2026-10-28T17:00:53.475Z","1322.412","18.666","832.363","832.363","1","kimi-k2.6","kimi","125","16","141","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Horsepower > 150;","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Horsepower > 150;",""
+"127","car_1","What is the average weight of cars each year?","completed","false","rule_only","2026-10-28T17:00:53.480Z","2026-10-28T17:00:54.673Z","1192.96","11.235","872.709","872.709","1","kimi-k2.6","kimi","121","20","141","","kimi-k2.6","true","SELECT Year, AVG(Weight) as AvgWeight FROM cars_data GROUP BY Year","1","0","true","SELECT Year, AVG(Weight) as AvgWeight FROM cars_data GROUP BY Year",""
+"128","car_1","What is the average weight and year for each year?","completed","false","rule_only","2026-10-28T17:00:54.679Z","2026-10-28T17:00:56.106Z","1426.942","12.349","1050.381","1050.381","1","kimi-k2.6","kimi","122","30","152","","kimi-k2.6","true","SELECT Year, AVG(Weight) AS AvgWeight, AVG(Year) AS AvgYear FROM cars_data GROUP BY Year;","1","0","true","SELECT Year, AVG(Weight) AS AvgWeight, AVG(Year) AS AvgYear FROM cars_data GROUP BY Year;",""
+"129","car_1","Which countries in europe have at least 3 car manufacturers?","completed","false","rule_only","2026-10-28T17:00:56.112Z","2026-10-28T17:00:57.764Z","1651.714","7.064","1300.611","1300.611","1","kimi-k2.6","kimi","123","56","179","","kimi-k2.6","true","SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country WHERE T1.Continent = 'Europe' GROUP BY T1.CountryName HAVING COUNT(*) >= 3","1","0","true","SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country WHERE T1.Continent = 'Europe' GROUP BY T1.CountryName HAVING COUNT(*) >= 3",""
+"130","car_1","What are the names of all European countries with at least 3 manufacturers?","completed","false","rule_only","2026-10-28T17:00:57.769Z","2026-10-28T17:00:59.750Z","1981.015","5.176","1618.04","1618.04","1","kimi-k2.6","kimi","126","81","207","","kimi-k2.6","true","SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId  =  T2.Country JOIN continents AS T3 ON T1.Continent  =  T3.ContId WHERE T3.Continent  =  'Europe' GROUP BY T1.CountryName HAVING COUNT(*)  >=  3","1","0","true","SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId  =  T2.Country JOIN continents AS T3 ON T1.Continent  =  T3.ContId WHERE T3.Continent  =  'Europe' GROUP BY T1.CountryName HAVING COUNT(*)  >=  3",""
+"131","car_1","What is the maximum horsepower and the make of the car models with 3 cylinders?","completed","false","rule_only","2026-10-28T17:00:59.754Z","2026-10-28T17:01:01.410Z","1655.888","10.785","1209.256","1209.256","1","kimi-k2.6","kimi","128","39","167","","kimi-k2.6","true","SELECT MAX(c.Horsepower), cn.Make 
+FROM cars_data c 
+JOIN car_names cn ON c.Id = cn.MakeId 
+WHERE c.Cylinders = 3;","1","0","true","SELECT MAX(c.Horsepower), cn.Make 
+FROM cars_data c 
+JOIN car_names cn ON c.Id = cn.MakeId 
+WHERE c.Cylinders = 3;",""
+"132","car_1","What is the largest amount of horsepower for the models with 3 cylinders and what make is it?","completed","false","rule_only","2026-10-28T17:01:01.414Z","2026-10-28T17:01:03.199Z","1784.207","10.479","1154.414","1154.414","1","kimi-k2.6","kimi","131","35","166","","kimi-k2.6","true","SELECT MAX(c.Horsepower), cn.Make FROM cars_data c JOIN car_names cn ON c.Id = cn.MakeId WHERE c.Cylinders = 3","1","0","true","SELECT MAX(c.Horsepower), cn.Make FROM cars_data c JOIN car_names cn ON c.Id = cn.MakeId WHERE c.Cylinders = 3",""
+"133","car_1","Which model saves the most gasoline? That is to say, have the maximum miles per gallon.","completed","false","rule_only","2026-10-28T17:01:03.203Z","2026-10-28T17:01:04.986Z","1782.238","8.636","1222.334","1222.334","1","kimi-k2.6","kimi","130","37","167","","kimi-k2.6","true","T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.MPG DESC LIMIT 1","1","0","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.MPG DESC LIMIT 1",""
+"134","car_1","What is the car model with the highest mpg ?","completed","false","rule_only","2026-10-28T17:01:04.991Z","2026-10-28T17:01:06.360Z","1369.125","8.777","1072.107","1072.107","1","kimi-k2.6","kimi","121","38","159","","kimi-k2.6","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.MPG DESC LIMIT 1","1","0","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id ORDER BY T2.MPG DESC LIMIT 1",""
+"135","car_1","What is the average horsepower of the cars before 1980?","completed","false","rule_only","2026-10-28T17:01:06.365Z","2026-10-28T17:01:07.605Z","1240.058","7.336","915.1","915.1","1","kimi-k2.6","kimi","124","18","142","","kimi-k2.6","true","SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980","1","0","true","SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980",""
+"136","car_1","What is the average horsepower for all cars produced before 1980 ?","completed","false","rule_only","2026-10-28T17:01:07.609Z","2026-10-28T17:01:08.877Z","1268.284","7.544","920.501","920.501","1","kimi-k2.6","kimi","125","19","144","","kimi-k2.6","true","SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980;","1","0","true","SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980;",""
+"137","car_1","What is the average edispl of the cars of model volvo?","completed","false","rule_only","2026-10-28T17:01:08.884Z","2026-10-28T17:01:13.326Z","4441.661","4.303","4089.923","4089.923","1","kimi-k2.6","kimi","126","33","159","","kimi-k2.6","true","SELECT AVG(c.Edispl) FROM cars_data c JOIN car_names cn ON c.Id = cn.MakeId WHERE cn.Model = 'volvo'","1","0","true","SELECT AVG(c.Edispl) FROM cars_data c JOIN car_names cn ON c.Id = cn.MakeId WHERE cn.Model = 'volvo'",""
+"138","car_1","What is the average edispl for all volvos?","completed","false","rule_only","2026-10-28T17:01:13.332Z","2026-10-28T17:01:14.639Z","1307.518","9.779","1031.203","1031.203","1","kimi-k2.6","kimi","123","36","159","","kimi-k2.6","true","SELECT AVG(c.Edispl) 
+FROM cars_data c 
+JOIN car_names cn ON c.Id = cn.MakeId 
+WHERE cn.Make = 'volvo'","1","0","true","SELECT AVG(c.Edispl) 
+FROM cars_data c 
+JOIN car_names cn ON c.Id = cn.MakeId 
+WHERE cn.Make = 'volvo'",""
+"139","car_1","What is the maximum accelerate for different number of cylinders?","completed","false","rule_only","2026-10-28T17:01:14.645Z","2026-10-28T17:01:16.006Z","1361.15","10.795","1039.909","1039.909","1","kimi-k2.6","kimi","122","21","143","","kimi-k2.6","true","SELECT Cylinders, MAX(Accelerate) FROM cars_data GROUP BY Cylinders","1","0","true","SELECT Cylinders, MAX(Accelerate) FROM cars_data GROUP BY Cylinders",""
+"140","car_1","What is the maximum accelerate for all the different cylinders?","completed","false","rule_only","2026-10-28T17:01:16.011Z","2026-10-28T17:01:17.223Z","1211.737","12.259","890.34","890.34","1","kimi-k2.6","kimi","122","21","143","","kimi-k2.6","true","SELECT Cylinders, MAX(Accelerate) FROM cars_data GROUP BY Cylinders","1","0","true","SELECT Cylinders, MAX(Accelerate) FROM cars_data GROUP BY Cylinders",""
+"141","car_1","Which model has the most version(make) of cars?","completed","false","rule_only","2026-10-28T17:01:17.228Z","2026-10-28T17:01:18.841Z","1613.453","10.626","1267.964","1267.964","1","kimi-k2.6","kimi","122","40","162","","kimi-k2.6","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model GROUP BY T1.Model ORDER BY COUNT(*) DESC LIMIT 1","1","0","true","SELECT T1.Model FROM model_list AS T1 JOIN car_names AS T2 ON T1.Model = T2.Model GROUP BY T1.Model ORDER BY COUNT(*) DESC LIMIT 1",""
+"142","car_1","What model has the most different versions?","completed","false","rule_only","2026-10-28T17:01:18.846Z","2026-10-28T17:01:20.125Z","1279.473","8.786","979.083","979.083","1","kimi-k2.6","kimi","119","24","143","","kimi-k2.6","true","SELECT Model FROM car_names GROUP BY Model ORDER BY COUNT(DISTINCT MakeId) DESC LIMIT 1","1","0","true","SELECT Model FROM car_names GROUP BY Model ORDER BY COUNT(DISTINCT MakeId) DESC LIMIT 1",""
+"143","car_1","How many cars have more than 4 cylinders?","completed","false","rule_only","2026-10-28T17:01:20.132Z","2026-10-28T17:01:21.318Z","1185.797","10.251","891.427","891.427","1","kimi-k2.6","kimi","121","16","137","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 4","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 4",""
+"144","car_1","What is the number of cars with more than 4 cylinders?","completed","false","rule_only","2026-10-28T17:01:21.323Z","2026-10-28T17:01:22.569Z","1245.896","9.934","905.61","905.61","1","kimi-k2.6","kimi","124","16","140","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 4","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 4",""
+"145","car_1","how many cars were produced in 1980?","completed","false","rule_only","2026-10-28T17:01:22.573Z","2026-10-28T17:01:23.673Z","1099.326","8.587","827.885","827.885","1","kimi-k2.6","kimi","121","15","136","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Year = 1980","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Year = 1980",""
+"146","car_1","In 1980, how many cars were made?","completed","false","rule_only","2026-10-28T17:01:23.677Z","2026-10-28T17:01:24.855Z","1177.839","8.868","896.524","896.524","1","kimi-k2.6","kimi","122","17","139","","kimi-k2.6","true","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Year = 1980","1","0","true","SELECT COUNT(*) 
+FROM cars_data 
+WHERE Year = 1980",""
+"147","car_1","How many car models were produced by the maker with full name American Motor Company?","completed","false","rule_only","2026-10-28T17:01:24.860Z","2026-10-28T17:01:26.720Z","1860.043","8.055","1404.064","1404.064","1","kimi-k2.6","kimi","127","47","174","","kimi-k2.6","true","SELECT COUNT(DISTINCT t2.ModelId) 
+FROM car_makers t1 
+JOIN model_list t2 ON t1.Id = t2.Maker 
+WHERE t1.FullName = 'American Motor Company'","1","0","true","SELECT COUNT(DISTINCT t2.ModelId) 
+FROM car_makers t1 
+JOIN model_list t2 ON t1.Id = t2.Maker 
+WHERE t1.FullName = 'American Motor Company'",""
+"148","car_1","What is the number of car models created by the car maker American Motor Company?","completed","false","rule_only","2026-10-28T17:01:26.726Z","2026-10-28T17:01:29.277Z","2551.122","8.726","2111.843","2111.843","2","kimi-k2.6","kimi","365","63","428","","kimi-k2.6","true","SELECT COUNT(*) FROM model_list WHERE Maker = (SELECT Id FROM car_makers WHERE FullName = 'American Motor Company')","2","1","true","SELECT COUNT(*) FROM model_list JOIN car_makers ON model_list.Maker = car_makers.Id WHERE car_makers.FullName = 'American Motor Company'",""
+"149","car_1","Which makers designed more than 3 car models? List full name and the id.","completed","false","rule_only","2026-10-28T17:01:29.284Z","2026-10-28T17:01:31.169Z","1885.307","8.135","1461.563","1461.563","1","kimi-k2.6","kimi","128","50","178","","kimi-k2.6","true","SELECT T1.FullName, T1.Id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING COUNT(*)  >  3","1","0","true","SELECT T1.FullName, T1.Id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING COUNT(*)  >  3",""
+"150","car_1","What are the names and ids of all makers with more than 3 models?","completed","false","rule_only","2026-10-28T17:01:31.174Z","2026-10-28T17:01:33.095Z","1920.549","8.894","1495.692","1495.692","1","kimi-k2.6","kimi","127","50","177","","kimi-k2.6","true","SELECT T1.Maker, T1.Id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING COUNT(*)  >  3","1","0","true","SELECT T1.Maker, T1.Id FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING COUNT(*)  >  3",""
+"151","car_1","Which distinctive models are produced by maker with the full name General Motors or weighing more than 3500?","completed","false","rule_only","2026-10-28T17:01:33.100Z","2026-10-28T17:01:35.323Z","2222.348","9.272","1796.357","1796.357","1","kimi-k2.6","kimi","132","78","210","","kimi-k2.6","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id JOIN car_names AS T3 ON T1.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T2.FullName = 'General Motors' OR T4.Weight > 3500","1","0","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id JOIN car_names AS T3 ON T1.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T2.FullName = 'General Motors' OR T4.Weight > 3500",""
+"152","car_1","What are the different models created by either the car maker General Motors or weighed more than 3500?","completed","false","rule_only","2026-10-28T17:01:35.328Z","2026-10-28T17:01:37.737Z","2408.119","9.033","1949.897","1949.897","1","kimi-k2.6","kimi","132","88","220","","kimi-k2.6","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker  =  T2.Id JOIN car_names AS T3 ON T1.Model  =  T3.Model JOIN cars_data AS T4 ON T3.MakeId  =  T4.Id WHERE T2.Maker  =  'General Motors' OR T4.Weight  >  3500","1","0","true","SELECT DISTINCT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker  =  T2.Id JOIN car_names AS T3 ON T1.Model  =  T3.Model JOIN cars_data AS T4 ON T3.MakeId  =  T4.Id WHERE T2.Maker  =  'General Motors' OR T4.Weight  >  3500",""
+"153","car_1","In which years cars were produced weighing no less than 3000 and no more than 4000 ?","completed","false","rule_only","2026-10-28T17:01:37.742Z","2026-10-28T17:01:39.158Z","1416.269","11.706","966.066","966.066","1","kimi-k2.6","kimi","132","19","151","","kimi-k2.6","true","SELECT DISTINCT Year FROM cars_data WHERE Weight BETWEEN 3000 AND 4000","1","0","true","SELECT DISTINCT Year FROM cars_data WHERE Weight BETWEEN 3000 AND 4000",""
+"154","car_1","What are the different years in which there were cars produced that weighed less than 4000 and also cars that weighted more than 3000 ?","completed","false","rule_only","2026-10-28T17:01:39.165Z","2026-10-28T17:01:41.020Z","1854.535","8.271","1329.657","1329.657","1","kimi-k2.6","kimi","140","48","188","","kimi-k2.6","true","SELECT DISTINCT c1.Year FROM cars_data c1 JOIN cars_data c2 WHERE c1.Year = c2.Year AND c1.Weight < 4000 AND c2.Weight > 3000;","1","0","true","SELECT DISTINCT c1.Year FROM cars_data c1 JOIN cars_data c2 WHERE c1.Year = c2.Year AND c1.Weight < 4000 AND c2.Weight > 3000;",""
+"155","car_1","What is the horsepower of the car with the largest accelerate?","completed","false","rule_only","2026-10-28T17:01:41.028Z","2026-10-28T17:01:42.358Z","1329.829","14.263","964.058","964.058","1","kimi-k2.6","kimi","123","24","147","","kimi-k2.6","true","SELECT Horsepower FROM cars_data WHERE Accelerate = (SELECT MAX(Accelerate) FROM cars_data)","1","0","true","SELECT Horsepower FROM cars_data WHERE Accelerate = (SELECT MAX(Accelerate) FROM cars_data)",""
+"156","car_1","What is the horsepower of the car with the greatest accelerate?","completed","false","rule_only","2026-10-28T17:01:42.368Z","2026-10-28T17:01:43.694Z","1326.394","10.106","975.617","975.617","1","kimi-k2.6","kimi","123","24","147","","kimi-k2.6","true","SELECT Horsepower FROM cars_data WHERE Accelerate = (SELECT MAX(Accelerate) FROM cars_data)","1","0","true","SELECT Horsepower FROM cars_data WHERE Accelerate = (SELECT MAX(Accelerate) FROM cars_data)",""
+"157","car_1","For model volvo, how many cylinders does the car with the least accelerate have?","completed","false","rule_only","2026-10-28T17:01:43.699Z","2026-10-28T17:01:46.296Z","2596.484","7.954","2198.566","2198.566","1","kimi-k2.6","kimi","128","99","227","","kimi-k2.6","true","SELECT MIN(c.Cylinders) FROM cars_data c JOIN car_names n ON c.Id = n.MakeId JOIN model_list m ON n.Model = m.Model WHERE m.Model = 'volvo' AND c.Accelerate = (SELECT MIN(c2.Accelerate) FROM cars_data c2 JOIN car_names n2 ON c2.Id = n2.MakeId JOIN model_list m2 ON n2.Model = m2.Model WHERE m2.Model = 'volvo')","1","0","true","SELECT MIN(c.Cylinders) FROM cars_data c JOIN car_names n ON c.Id = n.MakeId JOIN model_list m ON n.Model = m.Model WHERE m.Model = 'volvo' AND c.Accelerate = (SELECT MIN(c2.Accelerate) FROM cars_data c2 JOIN car_names n2 ON c2.Id = n2.MakeId JOIN model_list m2 ON n2.Model = m2.Model WHERE m2.Model = 'volvo')",""
+"158","car_1","For a volvo model, how many cylinders does the version with least accelerate have?","completed","false","rule_only","2026-10-28T17:01:46.301Z","2026-10-28T17:01:48.890Z","2588.86","9.415","2121.623","2121.623","1","kimi-k2.6","kimi","128","94","222","","kimi-k2.6","true","SELECT T1.Cylinders FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id  =  T2.MakeId JOIN model_list AS T3 ON T2.Model  =  T3.Model JOIN car_makers AS T4 ON T3.Maker  =  T4.Id WHERE T4.Maker  =  'Volvo' ORDER BY T1.Accelerate ASC LIMIT 1","1","0","true","SELECT T1.Cylinders FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id  =  T2.MakeId JOIN model_list AS T3 ON T2.Model  =  T3.Model JOIN car_makers AS T4 ON T3.Maker  =  T4.Id WHERE T4.Maker  =  'Volvo' ORDER BY T1.Accelerate ASC LIMIT 1",""
+"159","car_1","How many cars have a larger accelerate than the car with the largest horsepower?","completed","false","rule_only","2026-10-28T17:01:48.894Z","2026-10-28T17:01:53.062Z","4167.759","7.653","3748.404","3748.404","3","kimi-k2.6","kimi","729","124","853","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT Accelerate FROM cars_data WHERE Horsepower = (SELECT MAX(Horsepower) FROM cars_data))","3","2","false","SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT Accelerate FROM cars_data AS t1 JOIN (SELECT Id FROM cars_data ORDER BY Horsepower DESC LIMIT 1) AS t2 ON t1.Id = t2.Id)",""
+"160","car_1","What is the number of cars with a greater accelerate than the one with the most horsepower?","completed","false","rule_only","2026-10-28T17:01:53.067Z","2026-10-28T17:01:57.199Z","4131.27","9.148","3679.772","3679.772","3","kimi-k2.6","kimi","738","124","862","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT Accelerate FROM cars_data WHERE Horsepower = (SELECT MAX(Horsepower) FROM cars_data))","3","2","false","SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT Accelerate FROM cars_data AS t1 WHERE t1.Id = (SELECT t2.Id FROM cars_data AS t2 ORDER BY t2.Horsepower DESC LIMIT 1))",""
+"161","car_1","How many countries has more than 2 car makers ?","completed","false","rule_only","2026-10-28T17:01:57.205Z","2026-10-28T17:02:00.654Z","3449.086","7.66","3131.539","3131.539","3","kimi-k2.6","kimi","592","78","670","","kimi-k2.6","true","SELECT COUNT(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(*) > 2)","3","2","false","SELECT COUNT(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(*) > 2) t",""
+"162","car_1","What is the number of countries with more than 2 car makers ?","completed","false","rule_only","2026-10-28T17:02:00.658Z","2026-10-28T17:02:04.109Z","3451.357","7.393","3100.33","3100.33","3","kimi-k2.6","kimi","601","78","679","","kimi-k2.6","true","SELECT COUNT(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(*) > 2)","3","2","false","SELECT COUNT(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(*) > 2) t",""
+"163","car_1","How many cars has over 6 cylinders?","completed","false","rule_only","2026-10-28T17:02:04.114Z","2026-10-28T17:02:05.366Z","1252.12","9.045","926.488","926.488","1","kimi-k2.6","kimi","120","16","136","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 6","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 6",""
+"164","car_1","What is the number of carsw ith over 6 cylinders?","completed","false","rule_only","2026-10-28T17:02:05.372Z","2026-10-28T17:02:06.601Z","1229.169","10.16","894.407","894.407","1","kimi-k2.6","kimi","125","16","141","","kimi-k2.6","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 6","1","0","true","SELECT COUNT(*) FROM cars_data WHERE Cylinders > 6",""
+"165","car_1","For the cars with 4 cylinders, which model has the largest horsepower?","completed","false","rule_only","2026-10-28T17:02:06.607Z","2026-10-28T17:02:08.139Z","1531.961","8.727","1174.19","1174.19","1","kimi-k2.6","kimi","126","48","174","","kimi-k2.6","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.Horsepower DESC LIMIT 1","1","0","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.Horsepower DESC LIMIT 1",""
+"166","car_1","For all of the 4 cylinder cars, which model has the most horsepower?","completed","false","rule_only","2026-10-28T17:02:08.143Z","2026-10-28T17:02:09.730Z","1586.562","9.128","1217.368","1217.368","1","kimi-k2.6","kimi","127","48","175","","kimi-k2.6","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.Horsepower DESC LIMIT 1","1","0","true","SELECT T1.Model FROM car_names AS T1 JOIN cars_data AS T2 ON T1.MakeId = T2.Id WHERE T2.Cylinders = 4 ORDER BY T2.Horsepower DESC LIMIT 1",""
+"167","car_1","Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.","completed","false","rule_only","2026-10-28T17:02:09.734Z","2026-10-28T17:02:11.720Z","1986.359","6.36","1397.116","1397.116","1","kimi-k2.6","kimi","140","61","201","","kimi-k2.6","true","SELECT DISTINCT cn.MakeId, cn.Make
+FROM car_names cn
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Horsepower > (SELECT MIN(Horsepower) FROM cars_data WHERE Horsepower IS NOT NULL)
+AND cd.Cylinders <= 3;","1","0","true","SELECT DISTINCT cn.MakeId, cn.Make
+FROM car_names cn
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Horsepower > (SELECT MIN(Horsepower) FROM cars_data WHERE Horsepower IS NOT NULL)
+AND cd.Cylinders <= 3;",""
+"168","car_1","Among the cars that do not have the minimum horsepower , what are the make ids and names of all those with less than 4 cylinders ?","completed","false","rule_only","2026-10-28T17:02:11.726Z","2026-10-28T17:02:13.795Z","2069.189","11.004","1342.478","1342.478","1","kimi-k2.6","kimi","139","61","200","","kimi-k2.6","true","SELECT DISTINCT cn.MakeId, cn.Make
+FROM car_names cn
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Cylinders < 4
+AND cd.Horsepower > (SELECT MIN(Horsepower) FROM cars_data WHERE Horsepower IS NOT NULL)","1","0","true","SELECT DISTINCT cn.MakeId, cn.Make
+FROM car_names cn
+JOIN cars_data cd ON cn.MakeId = cd.Id
+WHERE cd.Cylinders < 4
+AND cd.Horsepower > (SELECT MIN(Horsepower) FROM cars_data WHERE Horsepower IS NOT NULL)",""
+"169","car_1","What is the maximum miles per gallon of the car with 8 cylinders or produced before 1980 ?","completed","false","rule_only","2026-10-28T17:02:13.800Z","2026-10-28T17:02:15.156Z","1356.059","8.374","907.888","907.888","1","kimi-k2.6","kimi","132","24","156","","kimi-k2.6","true","SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980","1","0","true","SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980",""
+"170","car_1","What is the maximum mpg of the cars that had 8 cylinders or that were produced before 1980 ?","completed","false","rule_only","2026-10-28T17:02:15.162Z","2026-10-28T17:02:16.598Z","1435.986","7.588","1006.935","1006.935","1","kimi-k2.6","kimi","133","24","157","","kimi-k2.6","true","SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980","1","0","true","SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980",""
+"171","car_1","Which models are lighter than 3500 but not built by the 'Ford Motor Company'?","completed","false","rule_only","2026-10-28T17:02:16.603Z","2026-10-28T17:02:18.629Z","2025.852","9.431","1617.965","1617.965","1","kimi-k2.6","kimi","130","78","208","","kimi-k2.6","true","SELECT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id JOIN car_names AS T3 ON T1.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T4.Weight < 3500 AND T2.FullName != 'Ford Motor Company'","1","0","true","SELECT T1.Model FROM model_list AS T1 JOIN car_makers AS T2 ON T1.Maker = T2.Id JOIN car_names AS T3 ON T1.Model = T3.Model JOIN cars_data AS T4 ON T3.MakeId = T4.Id WHERE T4.Weight < 3500 AND T2.FullName != 'Ford Motor Company'",""
+"172","car_1","What are the different models wthat are lighter than 3500 but were not built by the Ford Motor Company?","completed","false","rule_only","2026-10-28T17:02:18.634Z","2026-10-28T17:02:20.767Z","2133.218","8.176","1673.51","1673.51","1","kimi-k2.6","kimi","134","81","215","","kimi-k2.6","true","SELECT DISTINCT T2.model 
+FROM car_names AS T1 
+JOIN model_list AS T2 ON T1.model = T2.model 
+JOIN cars_data AS T3 ON T1.makeid = T3.id 
+JOIN car_makers AS T4 ON T2.maker = T4.id 
+WHERE T3.weight < 3500 AND T4.maker != 'Ford'","1","0","true","SELECT DISTINCT T2.model 
+FROM car_names AS T1 
+JOIN model_list AS T2 ON T1.model = T2.model 
+JOIN cars_data AS T3 ON T1.makeid = T3.id 
+JOIN car_makers AS T4 ON T2.maker = T4.id 
+WHERE T3.weight < 3500 AND T4.maker != 'Ford'",""
+"173","car_1","What are the name of the countries where there is not a single car maker?","completed","false","rule_only","2026-10-28T17:02:20.773Z","2026-10-28T17:02:22.192Z","1418.664","9.261","951.65","951.65","1","kimi-k2.6","kimi","127","21","148","","kimi-k2.6","true","SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT Country FROM car_makers)","1","0","true","SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT Country FROM car_makers)",""
+"174","car_1","What are the names of the countries with no car makers?","completed","false","rule_only","2026-10-28T17:02:22.197Z","2026-10-28T17:02:23.607Z","1410.324","11.886","1039.879","1039.879","1","kimi-k2.6","kimi","123","32","155","","kimi-k2.6","true","SELECT CountryName FROM countries WHERE CountryName NOT IN (SELECT DISTINCT c.Country FROM car_makers c WHERE c.Country IS NOT NULL)","1","0","true","SELECT CountryName FROM countries WHERE CountryName NOT IN (SELECT DISTINCT c.Country FROM car_makers c WHERE c.Country IS NOT NULL)",""
+"175","car_1","Which are the car makers which produce at least 2 models and more than 3 car makers ? List the id and the maker .","completed","false","rule_only","2026-10-28T17:02:23.613Z","2026-10-28T17:02:39.480Z","15866.313","9.768","15202.179","15202.179","1","kimi-k2.6","kimi","138","1207","1345","","kimi-k2.6","true","SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 
+AND cm.Id IN (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(DISTINCT ModelId) >= 2
+) 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(*) > 3;
+
+Wait, let me re-read: ""at least 2 models and more than 3 car makers"" - this seems to mean car makers that produce at least 2 models, and we need more than 3 such car makers? Or car makers with at least 2 models where the maker id > 3?
+
+Re-interpreting: car makers which produce at least 2 models, and we need to list id and maker where there are more than 3 car makers meeting this criteria? Or perhaps ""more than 3"" refers to something else.
+
+Actually re-reading: ""at least 2 models and more than 3 car makers"" - this is ambiguous. Perhaps it means car makers with at least 2 models, and the result should show when there are more than 3 such makers? Or perhaps it's a mistranslation and means maker id > 3?
+
+Given standard SQL patterns, likely: car makers that produce at least 2 models, and we want those with maker count > 3 in some grouping, or perhaps it's asking for makers with id > 3 that have at least 2 models.
+
+Let me try: makers with at least 2 models, and we only want results if there are more than 3 such makers total (but that's a HAVING on outer query which needs subquery).
+
+Or simpler interpretation: car makers with Id > 3 that produce at least 2 models.
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+WHERE cm.Id > 3 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Or if ""more than 3 car makers"" means something else - perhaps countries with more than 3 car makers that each have 2+ models?
+
+Given ambiguity, I'll go with: car makers producing at least 2 models, with Id > 3:
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker WHERE cm.Id > 3 GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Actually re-reading once more: ""Which are the car makers which produce at least 2 models and more than 3 car makers"" - this seems like it might mean ""car makers which produce at least 2 models"" AND (separate condition about car makers). 
+
+Perhaps it means: find car makers that produce at least 2 models, and among those, show where the maker's id corresponds to a country that has more than 3 car makers?
+
+Let me try: countries having more than 3 car makers, where those makers produce at least 2 models:
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+WHERE cm.Country IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    HAVING COUNT(*) > 3
+)
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Or perhaps: car makers with at least 2 models, and we want to know if there are more than 3 such makers (return all if count > 3):
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 
+AND (SELECT COUNT(*) FROM (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(DISTINCT ModelId) >= 2
+) t) > 3;
+
+Given the ambiguity, I'll provide the most straightforward interpretation: car makers producing at least 2 models where maker id > 3:
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker WHERE cm.Id > 3 GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Wait - ""more than 3 car makers"" - could mean the maker itself has made more than 3 car makers? No that doesn't make sense. Could mean more than 3 models? ""at least 2 models and more than 3"" - perhaps at least 2 models and more than 3 of something else?
+
+Let me try: at least 2 models and more than 3 car names (actual car variants)?
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(DISTINCT cn.MakeId) > 3;
+
+This seems plausible - ""more than 3 car makers"" might mean more than 3 entries in car_names (which are specific makes).
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker JOIN car_names cn ON ml.Model = cn.Model GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(DISTINCT cn.MakeId) > 3;","1","0","true","SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 
+AND cm.Id IN (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(DISTINCT ModelId) >= 2
+) 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(*) > 3;
+
+Wait, let me re-read: ""at least 2 models and more than 3 car makers"" - this seems to mean car makers that produce at least 2 models, and we need more than 3 such car makers? Or car makers with at least 2 models where the maker id > 3?
+
+Re-interpreting: car makers which produce at least 2 models, and we need to list id and maker where there are more than 3 car makers meeting this criteria? Or perhaps ""more than 3"" refers to something else.
+
+Actually re-reading: ""at least 2 models and more than 3 car makers"" - this is ambiguous. Perhaps it means car makers with at least 2 models, and the result should show when there are more than 3 such makers? Or perhaps it's a mistranslation and means maker id > 3?
+
+Given standard SQL patterns, likely: car makers that produce at least 2 models, and we want those with maker count > 3 in some grouping, or perhaps it's asking for makers with id > 3 that have at least 2 models.
+
+Let me try: makers with at least 2 models, and we only want results if there are more than 3 such makers total (but that's a HAVING on outer query which needs subquery).
+
+Or simpler interpretation: car makers with Id > 3 that produce at least 2 models.
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+WHERE cm.Id > 3 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Or if ""more than 3 car makers"" means something else - perhaps countries with more than 3 car makers that each have 2+ models?
+
+Given ambiguity, I'll go with: car makers producing at least 2 models, with Id > 3:
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker WHERE cm.Id > 3 GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Actually re-reading once more: ""Which are the car makers which produce at least 2 models and more than 3 car makers"" - this seems like it might mean ""car makers which produce at least 2 models"" AND (separate condition about car makers). 
+
+Perhaps it means: find car makers that produce at least 2 models, and among those, show where the maker's id corresponds to a country that has more than 3 car makers?
+
+Let me try: countries having more than 3 car makers, where those makers produce at least 2 models:
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+WHERE cm.Country IN (
+    SELECT Country 
+    FROM car_makers 
+    GROUP BY Country 
+    HAVING COUNT(*) > 3
+)
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Or perhaps: car makers with at least 2 models, and we want to know if there are more than 3 such makers (return all if count > 3):
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 
+AND (SELECT COUNT(*) FROM (
+    SELECT Maker 
+    FROM model_list 
+    GROUP BY Maker 
+    HAVING COUNT(DISTINCT ModelId) >= 2
+) t) > 3;
+
+Given the ambiguity, I'll provide the most straightforward interpretation: car makers producing at least 2 models where maker id > 3:
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker WHERE cm.Id > 3 GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2;
+
+Wait - ""more than 3 car makers"" - could mean the maker itself has made more than 3 car makers? No that doesn't make sense. Could mean more than 3 models? ""at least 2 models and more than 3"" - perhaps at least 2 models and more than 3 of something else?
+
+Let me try: at least 2 models and more than 3 car names (actual car variants)?
+
+SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(DISTINCT cn.MakeId) > 3;
+
+This seems plausible - ""more than 3 car makers"" might mean more than 3 entries in car_names (which are specific makes).
+
+SELECT cm.Id, cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker JOIN car_names cn ON ml.Model = cn.Model GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(DISTINCT cn.MakeId) > 3;",""
+"176","car_1","What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?","completed","false","rule_only","2026-10-28T17:02:39.486Z","2026-10-28T17:02:41.562Z","2075.828","10.43","1541.048","1541.048","1","kimi-k2.6","kimi","136","72","208","","kimi-k2.6","true","SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(cn.MakeId) > 3","1","0","true","SELECT cm.Id, cm.Maker 
+FROM car_makers cm 
+JOIN model_list ml ON cm.Id = ml.Maker 
+JOIN car_names cn ON ml.Model = cn.Model 
+GROUP BY cm.Id, cm.Maker 
+HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(cn.MakeId) > 3",""
+"177","car_1","What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?","completed","false","rule_only","2026-10-28T17:02:41.568Z","2026-10-28T17:02:44.089Z","2521.117","12.521","1796.986","1796.986","1","kimi-k2.6","kimi","137","103","240","","kimi-k2.6","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+LEFT JOIN car_makers cm ON c.CountryId = cm.Country 
+LEFT JOIN model_list ml ON cm.Id = ml.Maker AND ml.Model = 'fiat' 
+GROUP BY c.CountryId, c.CountryName 
+HAVING COUNT(DISTINCT cm.Id) > 3 OR SUM(CASE WHEN ml.Model = 'fiat' THEN 1 ELSE 0 END) > 0","1","0","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+LEFT JOIN car_makers cm ON c.CountryId = cm.Country 
+LEFT JOIN model_list ml ON cm.Id = ml.Maker AND ml.Model = 'fiat' 
+GROUP BY c.CountryId, c.CountryName 
+HAVING COUNT(DISTINCT cm.Id) > 3 OR SUM(CASE WHEN ml.Model = 'fiat' THEN 1 ELSE 0 END) > 0",""
+"178","car_1","What are the ids and names of all countries that either have more than 3 car makers or produce fiat model ?","completed","false","rule_only","2026-10-28T17:02:44.094Z","2026-10-28T17:02:46.909Z","2814.682","9.567","2303.935","2303.935","1","kimi-k2.6","kimi","134","103","237","","kimi-k2.6","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+LEFT JOIN car_makers cm ON c.CountryId = cm.Country 
+LEFT JOIN model_list ml ON cm.Id = ml.Maker AND ml.Model = 'fiat' 
+GROUP BY c.CountryId, c.CountryName 
+HAVING COUNT(DISTINCT cm.Id) > 3 OR SUM(CASE WHEN ml.Model = 'fiat' THEN 1 ELSE 0 END) > 0","1","0","true","SELECT DISTINCT c.CountryId, c.CountryName 
+FROM countries c 
+LEFT JOIN car_makers cm ON c.CountryId = cm.Country 
+LEFT JOIN model_list ml ON cm.Id = ml.Maker AND ml.Model = 'fiat' 
+GROUP BY c.CountryId, c.CountryName 
+HAVING COUNT(DISTINCT cm.Id) > 3 OR SUM(CASE WHEN ml.Model = 'fiat' THEN 1 ELSE 0 END) > 0",""
+"179","flight_2","Which country does Airline ""JetBlue Airways"" belong to?","completed","false","rule_only","2026-10-28T17:02:46.914Z","2026-10-28T17:02:48.088Z","1174.002","8.377","919.608","919.608","1","kimi-k2.6","kimi","90","16","106","","kimi-k2.6","true","SELECT Country FROM airlines WHERE Airline = 'JetBlue Airways'","1","0","true","SELECT Country FROM airlines WHERE Airline = 'JetBlue Airways'",""
+"180","flight_2","What country is Jetblue Airways affiliated with?","completed","false","rule_only","2026-10-28T17:02:48.093Z","2026-10-28T17:02:49.222Z","1129.482","6.586","932.832","932.832","1","kimi-k2.6","kimi","86","16","102","","kimi-k2.6","true","SELECT Country FROM airlines WHERE Airline = 'Jetblue Airways';","1","0","true","SELECT Country FROM airlines WHERE Airline = 'Jetblue Airways';",""
+"181","flight_2","What is the abbreviation of Airline ""JetBlue Airways""?","completed","false","rule_only","2026-10-28T17:02:49.228Z","2026-10-28T17:02:50.383Z","1154.091","4.399","907.989","907.989","1","kimi-k2.6","kimi","89","18","107","","kimi-k2.6","true","SELECT Abbreviation FROM airlines WHERE Airline = 'JetBlue Airways';","1","0","true","SELECT Abbreviation FROM airlines WHERE Airline = 'JetBlue Airways';",""
+"182","flight_2","Which abbreviation corresponds to Jetblue Airways?","completed","false","rule_only","2026-10-28T17:02:50.387Z","2026-10-28T17:02:51.509Z","1122.515","4.592","928.589","928.589","1","kimi-k2.6","kimi","85","18","103","","kimi-k2.6","true","SELECT Abbreviation FROM airlines WHERE Airline = 'Jetblue Airways'","1","0","true","SELECT Abbreviation FROM airlines WHERE Airline = 'Jetblue Airways'",""
+"183","flight_2","List all airline names and their abbreviations in ""USA"".","completed","false","rule_only","2026-10-28T17:02:51.516Z","2026-10-28T17:02:52.780Z","1263.811","6.638","911.093","911.093","1","kimi-k2.6","kimi","89","18","107","","kimi-k2.6","true","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA';","1","0","true","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA';",""
+"184","flight_2","What are the airline names and abbreviations for airlines in the USA?","completed","false","rule_only","2026-10-28T17:02:52.785Z","2026-10-28T17:02:53.902Z","1117.591","4.335","889.679","889.679","1","kimi-k2.6","kimi","91","18","109","","kimi-k2.6","true","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA'","1","0","true","SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA'",""
+"185","flight_2","List the airport code and name in the city of Anthony.","completed","false","rule_only","2026-10-28T17:02:53.908Z","2026-10-28T17:02:54.976Z","1068.005","5.275","814.248","814.248","1","kimi-k2.6","kimi","89","17","106","","kimi-k2.6","true","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'","1","0","true","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'",""
+"186","flight_2","Give the airport code and airport name corresonding to the city Anthony.","completed","false","rule_only","2026-10-28T17:02:54.980Z","2026-10-28T17:02:56.144Z","1163.831","5.824","899.733","899.733","1","kimi-k2.6","kimi","92","17","109","","kimi-k2.6","true","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'","1","0","true","SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'",""
+"187","flight_2","How many airlines do we have?","completed","false","rule_only","2026-10-28T17:02:56.150Z","2026-10-28T17:02:57.177Z","1027.289","3.826","827.502","827.502","1","kimi-k2.6","kimi","84","9","93","","kimi-k2.6","true","SELECT COUNT(*) FROM airlines;","1","0","true","SELECT COUNT(*) FROM airlines;",""
+"188","flight_2","What is the total number of airlines?","completed","false","rule_only","2026-10-28T17:02:57.182Z","2026-10-28T17:02:58.224Z","1041.765","4.978","827.372","827.372","1","kimi-k2.6","kimi","85","9","94","","kimi-k2.6","true","SELECT COUNT(*) FROM airlines;","1","0","true","SELECT COUNT(*) FROM airlines;",""
+"189","flight_2","How many airports do we have?","completed","false","rule_only","2026-10-28T17:02:58.229Z","2026-10-28T17:02:59.238Z","1008.538","8.32","800.408","800.408","1","kimi-k2.6","kimi","84","9","93","","kimi-k2.6","true","SELECT COUNT(*) FROM airports;","1","0","true","SELECT COUNT(*) FROM airports;",""
+"190","flight_2","Return the number of  airports.","completed","false","rule_only","2026-10-28T17:02:59.243Z","2026-10-28T17:03:00.197Z","954.08","6.174","735.281","735.281","1","kimi-k2.6","kimi","84","9","93","","kimi-k2.6","true","SELECT COUNT(*) FROM airports;","1","0","true","SELECT COUNT(*) FROM airports;",""
+"191","flight_2","How many flights do we have?","completed","false","rule_only","2026-10-28T17:03:00.203Z","2026-10-28T17:03:01.132Z","929.251","5.764","747.35","747.35","1","kimi-k2.6","kimi","84","8","92","","kimi-k2.6","true","SELECT COUNT(*) FROM flights","1","0","true","SELECT COUNT(*) FROM flights",""
+"192","flight_2","Return the number of flights.","completed","false","rule_only","2026-10-28T17:03:01.137Z","2026-10-28T17:03:02.096Z","958.948","5.725","816.317","816.317","1","kimi-k2.6","kimi","83","8","91","","kimi-k2.6","true","SELECT COUNT(*) FROM flights","1","0","true","SELECT COUNT(*) FROM flights",""
+"193","flight_2","Which airline has abbreviation 'UAL'?","completed","false","rule_only","2026-10-28T17:03:02.106Z","2026-10-28T17:03:03.206Z","1100.002","7.6","896.688","896.688","1","kimi-k2.6","kimi","85","16","101","","kimi-k2.6","true","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'","1","0","true","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'",""
+"194","flight_2","Give the airline with abbreviation 'UAL'.","completed","false","rule_only","2026-10-28T17:03:03.210Z","2026-10-28T17:03:04.392Z","1181.421","5.833","909.798","909.798","1","kimi-k2.6","kimi","85","16","101","","kimi-k2.6","true","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'","1","0","true","SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'",""
+"195","flight_2","How many airlines are from USA?","completed","false","rule_only","2026-10-28T17:03:04.398Z","2026-10-28T17:03:05.408Z","1009.815","5.052","838.623","838.623","1","kimi-k2.6","kimi","84","14","98","","kimi-k2.6","true","SELECT COUNT(*) FROM airlines WHERE Country = 'USA'","1","0","true","SELECT COUNT(*) FROM airlines WHERE Country = 'USA'",""
+"196","flight_2","Return the number of airlines in the USA.","completed","false","rule_only","2026-10-28T17:03:05.413Z","2026-10-28T17:03:06.522Z","1109.256","4.018","919.015","919.015","1","kimi-k2.6","kimi","86","14","100","","kimi-k2.6","true","SELECT COUNT(*) FROM airlines WHERE Country = 'USA'","1","0","true","SELECT COUNT(*) FROM airlines WHERE Country = 'USA'",""
+"197","flight_2","Which city and country is the Alton airport at?","completed","false","rule_only","2026-10-28T17:03:06.527Z","2026-10-28T17:03:07.644Z","1117.115","5.135","876.821","876.821","1","kimi-k2.6","kimi","88","17","105","","kimi-k2.6","true","SELECT City, Country FROM airports WHERE AirportName = 'Alton'","1","0","true","SELECT City, Country FROM airports WHERE AirportName = 'Alton'",""
+"198","flight_2","Give the city and country for the Alton airport.","completed","false","rule_only","2026-10-28T17:03:07.651Z","2026-10-28T17:03:08.811Z","1160.088","5.694","934.117","934.117","1","kimi-k2.6","kimi","88","17","105","","kimi-k2.6","true","SELECT City, Country FROM airports WHERE AirportName = 'Alton'","1","0","true","SELECT City, Country FROM airports WHERE AirportName = 'Alton'",""
+"199","flight_2","What is the airport name for airport 'AKO'?","completed","false","rule_only","2026-10-28T17:03:08.816Z","2026-10-28T17:03:10.173Z","1356.987","4.461","1163.167","1163.167","1","kimi-k2.6","kimi","89","16","105","","kimi-k2.6","true","AirportName FROM airports WHERE AirportCode = 'AKO'","1","0","true","SELECT AirportName FROM airports WHERE AirportCode = 'AKO'",""

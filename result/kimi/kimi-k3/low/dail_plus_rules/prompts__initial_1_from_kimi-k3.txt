@@ -1,0 +1,34 @@
+
+================ LLM PROMPTS ================
+Index: 0
+Database: concert_singer
+Mode: full
+Question: How many singers do we have?
+Started at: 2026-11-19T02:45:58.790Z
+Finished at: 2026-11-19T02:46:03.662Z
+Status: completed
+
+Stage: generation, attempt: 1
+Model: kimi-k3
+--- BEGIN PROMPT ---
+/* Some SQL examples are provided based on similar problems: */
+/* Answer the following: How many aircrafts do we have? */
+SELECT count(*) FROM Aircraft
+
+/* Answer the following: How many employees do we have? */
+SELECT count(*) FROM Employee
+
+/* Answer the following: How many flights do we have? */
+SELECT count(*) FROM Flight
+
+### Complete sqlite SQL query only and with no explanation
+### SQLite SQL tables, with their properties:
+#
+# stadium(Stadium_ID, Location, Name, Capacity, Highest, Lowest, Average)
+# singer(Singer_ID, Name, Country, Song_Name, Song_release_year, Age, Is_male)
+# concert(concert_ID, concert_Name, Theme, Stadium_ID, Year)
+# singer_in_concert(concert_ID, Singer_ID)
+#
+### How many singers do we have?
+SELECT 
+--- END PROMPT ---

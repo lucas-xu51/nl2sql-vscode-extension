@@ -1,0 +1,1870 @@
+
+================ COPILOT PROMPTS ================
+Index: 0
+Database: concert_singer
+Mode: schema_copilot
+Question: How many singers do we have?
+Started at: 2026-10-07T17:26:36.240Z
+Finished at: 2026-10-07T17:26:37.423Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+How many singers do we have?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 1
+Database: concert_singer
+Mode: schema_copilot
+Question: What is the total number of singers?
+Started at: 2026-10-07T17:26:37.425Z
+Finished at: 2026-10-07T17:26:37.976Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What is the total number of singers?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 2
+Database: concert_singer
+Mode: schema_copilot
+Question: Show name, country, age for all singers ordered by age from the oldest to the youngest.
+Started at: 2026-10-07T17:26:37.989Z
+Finished at: 2026-10-07T17:26:38.473Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+Show name, country, age for all singers ordered by age from the oldest to the youngest.
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 3
+Database: concert_singer
+Mode: schema_copilot
+Question: What are the names, countries, and ages for every singer in descending order of age?
+Started at: 2026-10-07T17:26:38.477Z
+Finished at: 2026-10-07T17:26:39.078Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What are the names, countries, and ages for every singer in descending order of age?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 4
+Database: concert_singer
+Mode: schema_copilot
+Question: What is the average, minimum, and maximum age of all singers from France?
+Started at: 2026-10-07T17:26:39.081Z
+Finished at: 2026-10-07T17:26:39.901Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What is the average, minimum, and maximum age of all singers from France?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 5
+Database: concert_singer
+Mode: schema_copilot
+Question: What is the average, minimum, and maximum age for all French singers?
+Started at: 2026-10-07T17:26:39.904Z
+Finished at: 2026-10-07T17:26:40.590Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What is the average, minimum, and maximum age for all French singers?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 6
+Database: concert_singer
+Mode: schema_copilot
+Question: Show the name and the release year of the song by the youngest singer.
+Started at: 2026-10-07T17:26:40.594Z
+Finished at: 2026-10-07T17:26:41.453Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+Show the name and the release year of the song by the youngest singer.
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 7
+Database: concert_singer
+Mode: schema_copilot
+Question: What are the names and release years for all the songs of the youngest singer?
+Started at: 2026-10-07T17:26:41.455Z
+Finished at: 2026-10-07T17:26:42.068Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What are the names and release years for all the songs of the youngest singer?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 8
+Database: concert_singer
+Mode: schema_copilot
+Question: What are all distinct countries where singers above age 20 are from?
+Started at: 2026-10-07T17:26:42.070Z
+Finished at: 2026-10-07T17:26:42.590Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What are all distinct countries where singers above age 20 are from?
+--- END PROMPT ---
+
+================ COPILOT PROMPTS ================
+Index: 9
+Database: concert_singer
+Mode: schema_copilot
+Question: What are  the different countries with singers above age 20?
+Started at: 2026-10-07T17:26:42.592Z
+Finished at: 2026-10-07T17:26:43.140Z
+Status: completed
+
+Stage: direct, attempt: 1
+Model: gpt-4o-mini
+--- BEGIN PROMPT ---
+Generate one SQLite SQL query for the question using the following database schema. Return SQL only.
+Schema (JSON):
+[
+  {
+    "name": "stadium",
+    "columns": [
+      {
+        "name": "Stadium_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Location",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Capacity",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Highest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Lowest",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Average",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "singer",
+    "columns": [
+      {
+        "name": "Singer_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Country",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Song_release_year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Age",
+        "type": "INT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Is_male",
+        "type": "bool",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": []
+  },
+  {
+    "name": "concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "concert_Name",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Theme",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Stadium_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      },
+      {
+        "name": "Year",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Stadium_ID",
+        "refTable": "stadium",
+        "refColumn": "Stadium_ID"
+      }
+    ]
+  },
+  {
+    "name": "singer_in_concert",
+    "columns": [
+      {
+        "name": "concert_ID",
+        "type": "INT",
+        "notnull": false,
+        "pk": true
+      },
+      {
+        "name": "Singer_ID",
+        "type": "TEXT",
+        "notnull": false,
+        "pk": false
+      }
+    ],
+    "foreignKeys": [
+      {
+        "column": "Singer_ID",
+        "refTable": "singer",
+        "refColumn": "Singer_ID"
+      },
+      {
+        "column": "concert_ID",
+        "refTable": "concert",
+        "refColumn": "concert_ID"
+      }
+    ]
+  }
+]
+Question:
+What are  the different countries with singers above age 20?
+--- END PROMPT ---

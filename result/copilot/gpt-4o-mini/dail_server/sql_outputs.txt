@@ -1,0 +1,200 @@
+SELECT count(*) FROM singer
+SELECT count(*) FROM singer
+SELECT Name, Country, Age FROM singer ORDER BY Age DESC
+SELECT Name, Country, Age FROM singer ORDER BY Age DESC
+SELECT AVG(Age), MIN(Age), MAX(Age) FROM singer WHERE Country = 'France'
+SELECT avg(Age), min(Age), max(Age) FROM singer WHERE Country = 'France'
+SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT min(Age) FROM singer)
+SELECT Song_Name, Song_release_year FROM singer WHERE Age = (SELECT min(Age) FROM singer)
+SELECT DISTINCT Country FROM singer WHERE Age > 20
+SELECT DISTINCT Country FROM singer WHERE Age > 20
+SELECT Country, count(*) FROM singer GROUP BY Country
+SELECT Country, COUNT(*) FROM singer GROUP BY Country
+SELECT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)
+SELECT Song_Name FROM singer WHERE Age > (SELECT AVG(Age) FROM singer)
+SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000
+SELECT Location, Name FROM stadium WHERE Capacity BETWEEN 5000 AND 10000
+SELECT max(Capacity), avg(Capacity) FROM stadium
+SELECT avg(Capacity), max(Capacity) FROM stadium
+SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1
+SELECT Name, Capacity FROM stadium ORDER BY Average DESC LIMIT 1
+SELECT COUNT(*) FROM concert WHERE Year IN (2014, 2015)
+SELECT count(*) FROM concert WHERE Year IN (2014, 2015)
+SELECT Name, count(*) FROM stadium JOIN concert ON stadium.Stadium_ID = concert.Stadium_ID GROUP BY Name
+SELECT T1.Stadium_ID, COUNT(*) FROM stadium AS T1 JOIN concert AS T2 ON T1.Stadium_ID = T2.Stadium_ID GROUP BY T1.Stadium_ID
+SELECT S.Name, S.Capacity FROM stadium AS S JOIN concert AS C ON S.Stadium_ID = C.Stadium_ID WHERE C.Year >= 2014 GROUP BY S.Name, S.Capacity ORDER BY COUNT(*) DESC LIMIT 1
+SELECT s.Name, s.Capacity FROM stadium AS s JOIN concert AS c ON s.Stadium_ID = c.Stadium_ID WHERE c.Year > 2013 GROUP BY s.Stadium_ID ORDER BY COUNT(c.concert_ID) DESC LIMIT 1
+SELECT Year FROM concert GROUP BY Year ORDER BY count(*) DESC LIMIT 1
+SELECT Year FROM concert GROUP BY Year ORDER BY COUNT(*) DESC LIMIT 1
+SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)
+SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert)
+SELECT Country FROM singer WHERE Age > 40 INTERSECT SELECT Country FROM singer WHERE Age < 30
+SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)
+SELECT Name FROM stadium WHERE Stadium_ID NOT IN (SELECT Stadium_ID FROM concert WHERE Year = 2014)
+SELECT c.concert_Name, c.Theme, COUNT(sic.Singer_ID) AS Number_of_Singers FROM concert AS c LEFT JOIN singer_in_concert AS sic ON c.concert_ID = sic.concert_ID GROUP BY c.concert_ID
+SELECT c.concert_Name, c.Theme, COUNT(s.Singer_ID) FROM concert c JOIN singer_in_concert sic ON c.concert_ID = sic.concert_ID JOIN singer s ON sic.Singer_ID = s.Singer_ID GROUP BY c.concert_Name, c.Theme
+SELECT s.Name, COUNT(sc.concert_ID) FROM singer s LEFT JOIN singer_in_concert sc ON s.Singer_ID = sc.Singer_ID GROUP BY s.Name
+SELECT s.Name, COUNT(sc.concert_ID) FROM singer AS s LEFT JOIN singer_in_concert AS sc ON s.Singer_ID = sc.Singer_ID GROUP BY s.Name
+SELECT DISTINCT s.Name FROM singer s JOIN singer_in_concert sic ON s.Singer_ID = sic.Singer_ID JOIN concert c ON sic.concert_ID = c.concert_ID WHERE c.Year = 2014
+SELECT DISTINCT S.Name FROM singer AS S JOIN singer_in_concert AS SIC ON S.Singer_ID = SIC.Singer_ID JOIN concert AS C ON SIC.concert_ID = C.concert_ID WHERE C.Year = 2014
+SELECT Name, Country FROM singer WHERE Song_Name LIKE '%Hey%'
+SELECT Name, Country FROM singer WHERE Song_Name LIKE "%Hey%"
+SELECT DISTINCT s.Name, s.Location FROM stadium AS s JOIN concert AS c ON s.Stadium_ID = c.Stadium_ID WHERE c.Year IN (2014, 2015) GROUP BY s.Stadium_ID HAVING COUNT(DISTINCT c.Year) = 2
+SELECT DISTINCT S.Name, S.Location FROM stadium AS S JOIN concert AS C ON S.Stadium_ID = C.Stadium_ID WHERE C.Year IN (2014, 2015) GROUP BY S.Stadium_ID HAVING COUNT(DISTINCT C.Year) = 2
+SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)
+SELECT COUNT(*) FROM concert WHERE Stadium_ID = (SELECT Stadium_ID FROM stadium ORDER BY Capacity DESC LIMIT 1)
+SELECT count(*) FROM Pets WHERE weight > 10
+SELECT count(*) FROM Pets WHERE weight > 10
+SELECT weight FROM Pets WHERE PetType = 'dog' ORDER BY pet_age ASC LIMIT 1
+SELECT weight FROM Pets WHERE PetType = 'dog' AND pet_age = (SELECT min(pet_age) FROM Pets WHERE PetType = 'dog')
+SELECT PetType, MAX(weight) FROM Pets GROUP BY PetType
+SELECT max(weight), PetType FROM Pets GROUP BY PetType
+SELECT count(*) FROM Has_Pet AS T1 JOIN Student AS T2 ON T1.StuID = T2.StuID WHERE T2.Age > 20
+SELECT count(*) FROM Has_Pet WHERE StuID IN (SELECT StuID FROM Student WHERE Age > 20)
+SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID JOIN Student AS T3 ON T1.StuID = T3.StuID WHERE T2.PetType = 'Dog' AND T3.Sex = 'F'
+SELECT count(*) FROM Has_Pet AS T1 JOIN Pets AS T2 ON T1.PetID = T2.PetID JOIN Student AS T3 ON T1.StuID = T3.StuID WHERE T2.PetType = 'Dog' AND T3.Sex = 'F'
+SELECT count(DISTINCT PetType) FROM Pets
+SELECT count(DISTINCT PetType) FROM Pets
+SELECT DISTINCT t1.Fname FROM Student AS t1 JOIN Has_Pet AS t2 ON t1.StuID = t2.StuID JOIN Pets AS t3 ON t2.PetID = t3.PetID WHERE t3.PetType IN ('cat', 'dog')
+SELECT Fname FROM Student WHERE StuID IN ( SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType IN ('cat', 'dog') )
+SELECT DISTINCT s.Fname FROM Student AS s JOIN Has_Pet AS hp ON s.StuID = hp.StuID JOIN Pets AS p ON hp.PetID = p.PetID WHERE p.PetType IN ('cat', 'dog') GROUP BY s.StuID HAVING COUNT(DISTINCT p.PetType) = 2
+SELECT S.Fname FROM Student S JOIN Has_Pet HP1 ON S.StuID = HP1.StuID JOIN Pets P1 ON HP1.PetID = P1.PetID JOIN Has_Pet HP2 ON S.StuID = HP2.StuID JOIN Pets P2 ON HP2.PetID = P2.PetID WHERE P1.PetType = 'cat' AND P2.PetType = 'dog'
+SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')
+SELECT Major, Age FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet JOIN Pets ON Has_Pet.PetID = Pets.PetID WHERE PetType = 'cat')
+SELECT StuID FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet HP JOIN Pets P ON HP.PetID = P.PetID WHERE P.PetType = 'cat')
+SELECT StuID FROM Student EXCEPT SELECT StuID FROM Has_Pet WHERE PetID IN (SELECT PetID FROM Pets WHERE PetType = 'cat')
+SELECT s.Fname, s.Age FROM Student AS s JOIN Has_Pet AS hp ON s.StuID = hp.StuID JOIN Pets AS p ON hp.PetID = p.PetID WHERE p.PetType = "Dog" AND s.StuID NOT IN (SELECT hp2.StuID FROM Has_Pet AS hp2 JOIN Pets AS p2 ON hp2.PetID = p2.PetID WHERE p2.PetType = "Cat")
+SELECT Fname FROM Student WHERE StuID IN ( SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'Dog' ) AND StuID NOT IN ( SELECT H.StuID FROM Has_Pet H JOIN Pets P ON H.PetID = P.PetID WHERE P.PetType = 'Cat' )
+SELECT PetType, weight FROM Pets ORDER BY pet_age ASC LIMIT 1
+SELECT PetType, weight FROM Pets ORDER BY pet_age ASC LIMIT 1
+SELECT PetID, weight FROM Pets WHERE pet_age > 1
+SELECT PetID, weight FROM Pets WHERE pet_age > 1
+SELECT PetType, avg(pet_age) AS average_age, max(pet_age) AS maximum_age FROM Pets GROUP BY PetType
+SELECT PetType, avg(pet_age) AS average_age, max(pet_age) AS maximum_age FROM Pets GROUP BY PetType
+SELECT PetType, avg(weight) FROM Pets GROUP BY PetType
+SELECT PetType, AVG(weight) FROM Pets GROUP BY PetType
+SELECT DISTINCT T1.Fname, T1.Age FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID
+SELECT DISTINCT Fname, Age FROM Student AS S JOIN Has_Pet AS HP ON S.StuID = HP.StuID
+SELECT H.PetID FROM Student AS S JOIN Has_Pet AS H ON S.StuID = H.StuID WHERE S.LName = 'Smith'
+SELECT H.PetID FROM Student AS S JOIN Has_Pet AS H ON S.StuID = H.StuID WHERE S.LName = 'Smith'
+SELECT T1.StuID, COUNT(T2.PetID) AS NumberOfPets FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID
+SELECT S.StuID, COUNT(HP.PetID) AS PetCount FROM Student AS S JOIN Has_Pet AS HP ON S.StuID = HP.StuID GROUP BY S.StuID
+SELECT T1.Fname, T1.Sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID HAVING COUNT(T2.PetID) > 1
+SELECT T1.Fname, T1.Sex FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID GROUP BY T1.StuID HAVING COUNT(T2.PetID) > 1
+SELECT S.LName FROM Student AS S JOIN Has_Pet AS HP ON S.StuID = HP.StuID JOIN Pets AS P ON HP.PetID = P.PetID WHERE P.PetType = 'cat' AND P.pet_age = 3
+SELECT T1.LName FROM Student AS T1 JOIN Has_Pet AS T2 ON T1.StuID = T2.StuID JOIN Pets AS T3 ON T2.PetID = T3.PetID WHERE T3.PetType = 'cat' AND T3.pet_age = 3
+SELECT avg(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)
+SELECT avg(Age) FROM Student WHERE StuID NOT IN (SELECT StuID FROM Has_Pet)
+SELECT count(*) FROM continents
+SELECT count(*) FROM continents
+SELECT T1.ContId, T1.Continent, COUNT(*) FROM continents AS T1 JOIN countries AS T2 ON T1.ContId = T2.Continent GROUP BY T1.ContId
+SELECT T1.ContId, T1.Continent, COUNT(T2.CountryId) FROM continents AS T1 LEFT JOIN countries AS T2 ON T1.ContId = T2.Continent GROUP BY T1.ContId, T1.Continent
+SELECT count(*) FROM countries
+SELECT count(*) FROM countries
+SELECT CM.FullName, CM.Id, COUNT(ML.ModelId) AS ModelCount FROM car_makers AS CM JOIN model_list AS ML ON CM.Id = ML.Maker GROUP BY CM.FullName, CM.Id
+SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS ModelCount FROM car_makers cm LEFT JOIN model_list ml ON cm.Id = ml.Maker GROUP BY cm.Id, cm.FullName
+SELECT cl.Model FROM cars_data AS cd JOIN car_names AS cl ON cd.Id = cl.MakeId ORDER BY cd.Horsepower ASC LIMIT 1
+SELECT T2.Model FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model ORDER BY T1.Horsepower ASC LIMIT 1
+SELECT ml.Model FROM cars_data cd JOIN car_names cn ON cd.Id = cn.MakeId JOIN model_list ml ON cn.Model = ml.Model WHERE cd.Weight < (SELECT avg(Weight) FROM cars_data)
+SELECT M.Model FROM cars_data AS C JOIN car_names AS N ON C.Id = N.MakeId JOIN model_list AS M ON N.Model = M.Model WHERE C.Weight < (SELECT avg(Weight) FROM cars_data)
+SELECT DISTINCT cm.Maker FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker JOIN car_names cn ON ml.ModelId = cn.Model JOIN cars_data cd ON cn.MakeId = cd.Id WHERE cd.Year = 1970
+SELECT DISTINCT Maker FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id WHERE T2.Year = 1970
+SELECT T1.Maker, T2.Year FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id ORDER BY T2.Year ASC LIMIT 1
+SELECT T1.Maker, T2.Year FROM car_makers AS T1 JOIN cars_data AS T2 ON T1.Id = T2.Id ORDER BY T2.Year ASC LIMIT 1
+SELECT DISTINCT ml.Model FROM model_list AS ml JOIN car_names AS cn ON ml.Model = cn.Model JOIN cars_data AS cd ON cn.MakeId = cd.Id WHERE cd.Year > 1980
+SELECT DISTINCT Model FROM cars_data WHERE Year > 1980
+SELECT C.Continent, COUNT(DISTINCT CM.Id) FROM continents AS C JOIN countries AS CO ON C.ContId = CO.Continent JOIN car_makers AS CM ON CO.CountryId = CM.Country GROUP BY C.Continent
+SELECT C.Continent, COUNT(DISTINCT CM.Id) AS NumberOfCarMakers FROM continents AS C JOIN countries AS CO ON C.ContId = CO.Continent JOIN car_makers AS CM ON CO.CountryId = CM.Country GROUP BY C.Continent
+SELECT t2.CountryName FROM car_makers AS t1 JOIN countries AS t2 ON t1.Country = t2.CountryId GROUP BY t2.CountryName ORDER BY COUNT(*) DESC LIMIT 1
+SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country GROUP BY T1.CountryId ORDER BY count(*) DESC LIMIT 1
+SELECT COUNT(*) AS model_count, T1.FullName FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.FullName
+SELECT cm.Id, cm.FullName, COUNT(ml.ModelId) AS ModelCount FROM car_makers cm JOIN model_list ml ON cm.Id = ml.Maker GROUP BY cm.Id, cm.FullName
+SELECT Accelerate FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE T3.Maker = 'amc' AND T3.Model = 'hornet sportabout (sw)'
+SELECT Accelerate FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE T3.Maker = 'amc' AND T3.Model = 'hornet sportabout (sw)'
+SELECT count(*) FROM car_makers WHERE Country = 'France'
+SELECT COUNT(DISTINCT Maker) FROM car_makers WHERE Country = 'France'
+SELECT COUNT(*) FROM model_list WHERE Maker IN (SELECT Id FROM car_makers WHERE Country = 'USA')
+SELECT count(DISTINCT T2.Model) FROM model_list AS T2 JOIN car_makers AS T1 ON T2.Maker = T1.Id WHERE T1.Country = 'United States'
+SELECT AVG(MPG) FROM cars_data WHERE Cylinders = 4
+SELECT avg(MPG) FROM cars_data WHERE Cylinders = 4
+SELECT MIN(Weight) FROM cars_data WHERE Cylinders = 8 AND Year = 1974
+SELECT min(Weight) FROM cars_data WHERE Cylinders = 8 AND Year = 1974
+SELECT car_makers.Maker, model_list.Model FROM model_list JOIN car_makers ON model_list.Maker = car_makers.Id
+SELECT car_makers.Maker, model_list.Model FROM car_makers JOIN model_list ON car_makers.Id = model_list.Maker
+SELECT CountryId, CountryName FROM countries WHERE CountryId IN (SELECT DISTINCT Country FROM car_makers)
+SELECT DISTINCT T2.CountryId, T2.CountryName FROM car_makers AS T1 JOIN countries AS T2 ON T1.Country = T2.CountryId
+SELECT count(*) FROM cars_data WHERE Horsepower > 150
+SELECT count(*) FROM cars_data WHERE Horsepower > 150
+SELECT avg(Weight), Year FROM cars_data GROUP BY Year
+SELECT avg(Weight), avg(Year) FROM cars_data GROUP BY Year
+SELECT T1.CountryName FROM countries AS T1 JOIN car_makers AS T2 ON T1.CountryId = T2.Country WHERE T1.Continent = 'Europe' GROUP BY T1.CountryName HAVING COUNT(T2.Id) >= 3
+SELECT c.CountryName FROM countries AS c JOIN car_makers AS m ON c.CountryId = m.Country WHERE c.Continent = (SELECT ContId FROM continents WHERE Continent = 'Europe') GROUP BY c.CountryName HAVING COUNT(m.Id) >= 3
+SELECT max(Horsepower), Make FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId WHERE cars_data.Cylinders = 3 GROUP BY Make
+SELECT max(cars_data.Horsepower), car_makers.Maker FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model JOIN car_makers ON model_list.Maker = car_makers.Id WHERE cars_data.Cylinders = 3
+SELECT cl.Model, cd.MPG FROM cars_data cd JOIN car_names cl ON cd.Id = cl.MakeId ORDER BY cd.MPG DESC LIMIT 1
+SELECT ml.Model FROM cars_data cd JOIN car_names cn ON cd.Id = cn.MakeId JOIN model_list ml ON cn.Model = ml.Model ORDER BY cd.MPG DESC LIMIT 1
+SELECT avg(Horsepower) FROM cars_data WHERE Year < 1980
+SELECT AVG(Horsepower) FROM cars_data WHERE Year < 1980
+SELECT avg(Edispl) FROM cars_data WHERE Id IN (SELECT car_names.MakeId FROM car_names JOIN model_list ON car_names.Model = model_list.Model WHERE model_list.Maker = 'Volvo')
+SELECT avg(Edispl) FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId WHERE T2.Make = 'Volvo'
+SELECT Cylinders, max(Accelerate) FROM cars_data GROUP BY Cylinders
+SELECT max(Accelerate), Cylinders FROM cars_data GROUP BY Cylinders
+SELECT Model FROM car_names GROUP BY Model ORDER BY COUNT(MakeId) DESC LIMIT 1
+SELECT Model, COUNT(DISTINCT MakeId) AS VersionCount FROM car_names GROUP BY Model ORDER BY VersionCount DESC LIMIT 1
+SELECT count(*) FROM cars_data WHERE Cylinders > 4
+SELECT count(*) FROM cars_data WHERE Cylinders > 4
+SELECT count(*) FROM cars_data WHERE Year = 1980
+SELECT count(*) FROM cars_data WHERE Year = 1980
+SELECT count(*) FROM model_list AS M JOIN car_makers AS C ON M.Maker = C.Id WHERE C.FullName = 'American Motor Company'
+SELECT COUNT(*) FROM model_list WHERE Maker = 'American Motor Company'
+SELECT FullName, Id FROM car_makers WHERE Id IN ( SELECT Maker FROM model_list GROUP BY Maker HAVING COUNT(ModelId) > 3 )
+SELECT T1.Id, T1.Maker FROM car_makers AS T1 JOIN model_list AS T2 ON T1.Id = T2.Maker GROUP BY T1.Id HAVING count(T2.ModelId) > 3
+SELECT DISTINCT Model FROM model_list AS M JOIN car_makers AS C ON M.Maker = C.Id WHERE C.FullName = 'General Motors' OR M.Model IN (SELECT Model FROM cars_data WHERE Weight > 3500)
+SELECT DISTINCT Model FROM model_list WHERE Maker = 'General Motors' OR ModelId IN (SELECT Id FROM cars_data WHERE Weight > 3500)
+SELECT DISTINCT Year FROM cars_data WHERE Weight >= 3000 AND Weight <= 4000
+SELECT DISTINCT Year FROM cars_data WHERE Weight < 4000 OR Weight > 3000
+SELECT Horsepower FROM cars_data ORDER BY Accelerate DESC LIMIT 1
+SELECT Horsepower FROM cars_data ORDER BY Accelerate DESC LIMIT 1
+SELECT Cylinders FROM cars_data WHERE Id IN (SELECT MakeId FROM car_names WHERE Model = 'volvo') ORDER BY Accelerate LIMIT 1
+SELECT Cylinders FROM cars_data WHERE Id IN (SELECT Id FROM car_names WHERE MakeId IN (SELECT ModelId FROM model_list WHERE Maker IN (SELECT Id FROM car_makers WHERE Maker = 'Volvo'))) ORDER BY Accelerate LIMIT 1
+SELECT COUNT(*) FROM cars_data WHERE Accelerate > (SELECT MAX(Horsepower) FROM cars_data)
+SELECT count(*) FROM cars_data WHERE Accelerate > (SELECT max(Horsepower) FROM cars_data)
+SELECT count(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING count(*) > 2)
+SELECT count(*) FROM (SELECT Country FROM car_makers GROUP BY Country HAVING count(*) > 2)
+SELECT count(*) FROM cars_data WHERE Cylinders > 6
+SELECT count(*) FROM cars_data WHERE Cylinders > 6
+SELECT model_list.Model FROM cars_data JOIN car_names ON cars_data.Id = car_names.MakeId JOIN model_list ON car_names.Model = model_list.Model WHERE cars_data.Cylinders = 4 ORDER BY cars_data.Horsepower DESC LIMIT 1
+SELECT T2.Model FROM cars_data AS T1 JOIN car_names AS T2 ON T1.Id = T2.MakeId JOIN model_list AS T3 ON T2.Model = T3.Model WHERE T1.Cylinders = 4 ORDER BY T1.Horsepower DESC LIMIT 1
+SELECT CN.MakeId, CM.Maker FROM car_names AS CN JOIN model_list AS ML ON CN.Model = ML.ModelId JOIN car_makers AS CM ON ML.Maker = CM.Id JOIN cars_data AS CD ON CN.MakeId = CD.Id WHERE CD.Horsepower > (SELECT MIN(Horsepower) FROM cars_data) AND CD.Cylinders <= 3
+SELECT cn.MakeId, cn.Model FROM car_names cn JOIN cars_data cd ON cn.MakeId = cd.Id WHERE cd.Horsepower < (SELECT MIN(Horsepower) FROM cars_data) AND cd.Cylinders < 4
+SELECT MAX(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980
+SELECT max(MPG) FROM cars_data WHERE Cylinders = 8 OR Year < 1980
+SELECT M.Model FROM model_list AS M JOIN car_makers AS C ON M.Maker = C.Id JOIN car_names AS CN ON C.Id = CN.MakeId JOIN cars_data AS D ON CN.MakeId = D.Id WHERE D.Weight < 3500 AND C.FullName != 'Ford Motor Company'
+SELECT ml.Model FROM model_list AS ml JOIN car_makers AS cm ON ml.Maker = cm.Id JOIN car_names AS cn ON ml.Model = cn.Model JOIN cars_data AS cd ON cn.MakeId = cd.Id WHERE cd.Weight < 3500 AND cm.Maker != 'Ford Motor Company'
+SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT DISTINCT Country FROM car_makers)
+SELECT CountryName FROM countries WHERE CountryId NOT IN (SELECT Country FROM car_makers)
+SELECT Id, Maker FROM car_makers WHERE Id IN ( SELECT Maker FROM model_list GROUP BY Maker HAVING COUNT(ModelId) >= 2 ) GROUP BY Id HAVING COUNT(DISTINCT Id) > 3
+SELECT cm.Id, cm.Maker FROM car_makers AS cm JOIN model_list AS ml ON cm.Id = ml.Maker JOIN car_names AS cn ON ml.Model = cn.Model JOIN cars_data AS cd ON cn.MakeId = cd.Id GROUP BY cm.Id, cm.Maker HAVING COUNT(DISTINCT ml.ModelId) >= 2 AND COUNT(cd.Id) > 3
+SELECT CountryId, CountryName FROM countries WHERE CountryId IN ( SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(Id) > 3 ) OR CountryId IN ( SELECT DISTINCT MakeId FROM car_names WHERE Model = 'fiat' )
+SELECT CountryId, CountryName FROM countries WHERE CountryId IN ( SELECT Country FROM car_makers GROUP BY Country HAVING COUNT(Id) > 3 ) OR CountryId IN ( SELECT DISTINCT CountryId FROM model_list WHERE Model = 'Fiat' )
+SELECT Country FROM airlines WHERE Airline = "JetBlue Airways"
+SELECT Country FROM airlines WHERE Airline = "Jetblue Airways"
+SELECT Abbreviation FROM airlines WHERE Airline = "JetBlue Airways"
+SELECT Abbreviation FROM airlines WHERE Airline = "Jetblue Airways"
+SELECT Airline, Abbreviation FROM airlines WHERE Country = "USA"
+SELECT Airline, Abbreviation FROM airlines WHERE Country = 'USA'
+SELECT AirportCode, AirportName FROM airports WHERE City = "Anthony"
+SELECT AirportCode, AirportName FROM airports WHERE City = 'Anthony'
+SELECT count(*) FROM airlines
+SELECT count(*) FROM airlines
+SELECT count(*) FROM airports
+SELECT COUNT(*) FROM airports
+SELECT count(*) FROM flights
+SELECT COUNT(*) FROM flights
+SELECT Airline FROM airlines WHERE Abbreviation = 'UAL'
+SELECT * FROM airlines WHERE Abbreviation = 'UAL'
+SELECT count(*) FROM airlines WHERE Country = 'USA'
+SELECT count(*) FROM airlines WHERE Country = 'USA'
+SELECT City, Country FROM airports WHERE AirportName = "Alton"
+SELECT City, Country FROM airports WHERE AirportName = "Alton"
+SELECT AirportName FROM airports WHERE AirportCode = 'AKO'
